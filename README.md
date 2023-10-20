@@ -1,2 +1,2 @@
-# learn-cs
-Learning the c# programming language
+# learn-java
+Learning the java programming language.
