@@ -10,10 +10,7 @@ class interest {
 
         principal = principal + interest;
 
-        System.out.print("The interest earned is NGN");
-        System.out.println(interest);
-
-        System.out.print("The value of the investment after one year is NGN");
-        System.out.println(principal);
+        System.out.println("The interest earner is NGN" + interest + ".");
+        System.out.println("The value of the investment after one year is NGN" + principal + ".");
     }
 }
