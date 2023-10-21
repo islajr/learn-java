@@ -42,17 +42,34 @@ class GuessGame {
 
             // Display guess
             System.out.println("Player one guessed " + p1.number);
-            System.out.println("Player two guessed" + p2.number);
+            System.out.println("Player two guessed " + p2.number);
             System.out.println("Player three guessed " + p3.number);
             
             // checking for correctness
-            if (p1.number == targetNumber)
+            String winner = "";
+            if (p1.number == targetNumber) {
                 p1isRight = true;
-            else if (p2.number == targetNumber)
+                winner = "Player one";
+            }
+            else if (p2.number == targetNumber) {
                 p2isRight = true;
-            else if (p3.number == targetNumber)
-                p3isRight == true;
+                winner = "Player two";
+            }
+            else if (p3.number == targetNumber) {
+                p3isRight = true;
+                winner = "Player three";
+            }
 
+            if (p1isRight || p2isRight || p3isRight) {
+                System.out.println("We have a winner! ");
+                System.out.println(winner + " got it right");
+                System.out.println("Game Over!");
+                break;
+            }
+            else {
+                System.out.println("Nobody got it right! ");
+                System.out.println("Try again? ");
+            }
         }
     }
 }
