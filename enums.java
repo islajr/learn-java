@@ -5,10 +5,11 @@ class test
     public static void main (String[] args) {
         Day tgif = Day.FRIDAY;
         Month taurus = Month.MAY;
+        
 
         System.out.println("My sign is taurus, since i was born in " + taurus + ".");
         System.out.println("That's the " + taurus.ordinal() + "th month of the year.");
-       
+        
     }
 }
 
