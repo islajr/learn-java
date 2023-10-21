@@ -1,4 +1,5 @@
 class Dog {
+    // instance variables
     int size;
     String breed;
     String name;
