@@ -1,13 +1,15 @@
-import java.awt.;
-import java.util.Arrays;
+import java.awt.*;
+import java.text.NumberFormat;
+import java.util.Scanner;
 
 public class test {
 
     public static void main(String[] args){
-        int[][] numbers = new int[2][3];
-        String name = "Ronaldo";
-        numbers[0][0] = 1;
-        System.out.println(Arrays.deepToString(numbers));
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("How old are you? ");
+        int age = scanner.nextInt();
+        System.out.println("You are " + age + " years old!");
+
     }
 }
 
@@ -37,9 +39,30 @@ public class test {
  * CONSTANTS
  * constants can be defined as follows: final data-type name = value. e.g: final float PI = 3.142;
  * 
+ * TYPE CASTING AND CONVERSION
+ * casting occurs from byte or int to float or double implicitly.
+ * casting from double to int can be done explicitly with the int keyword. (int)value
+ * conversion from string to integer (incompatible types) can occur with the Integer.parseInt() in the java.lang package.
+ * Short.parseShort() takes in a short and returns a short. 
+ * the same is present for float and double;
+ * 
+ * READING INPUT
+ * input is read with the scanner class found in java.util.Scanner
+ * see example: Scanner variable = new Scanner(system.in)   // to read data from the standard input
+ *              int new_variable = variable.nextint();      // looking to store any integer value found in the standard input in the new_variable
+ *              System.out.println("You are " + age);
+ * .next - returns the next string
+ * .nextLine - returns a string of the next line, whatever it is.
+ * 
+ * FORMATTING NUMBERS
+ * Numbers can be formatted with the NumberFormat abstract class.
+ * the appropriate abstract method .getPercentInstance(), .getCurrencyInstance() or other is called
+ * after that, the .format method is chained to the expression with the value to be formatted as a parameter.
+ * See Example: String result = NumberFormat.getPercentInstance.format(0.1);
+ * 
  * NOTES
  * what is the difference between ++x and x++
- * typically, they both do the same thing but the difference arises when assigning them to variables
+ * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
  *  int x = 2;
  *  int y = ++x     // the value of x is incremented before it is assigned to y. (x, y = 3, 3)
  *  
