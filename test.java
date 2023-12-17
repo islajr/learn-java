@@ -1,11 +1,15 @@
+import java.awt.*;
 import java.util.Arrays;
 
 public class test {
 
     public static void main(String[] args){
-        int[] numbers = {2, 3, 4, 5, 6, 7};
-
+        float cgpa = 4.21F;
+        // String[] names = {"Isaac", "Oluwaseun", "Akinmokun"};
+        int[] numbers = {2, 4, 8, 1, 10, 22};
+        System.out.println(numbers.length);
+        Arrays.sort(numbers);
         System.out.println(Arrays.toString(numbers));
-    
+        
     }
 }
