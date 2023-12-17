@@ -34,4 +34,15 @@ public class test {
  * They are imported by default and can be used in the normal way inbuilt data-types are used.
  * String methods, however, are included in the java.awt.String package
  * 
+ * CONSTANTS
+ * constants can be defined as follows: final data-type name = value. e.g: final float PI = 3.142;
+ * 
+ * NOTES
+ * what is the difference between ++x and x++
+ * typically, they both do the same thing but the difference arises when assigning them to variables
+ *  int x = 2;
+ *  int y = ++x     // the value of x is incremented before it is assigned to y. (x, y = 3, 3)
+ *  
+ *  int x = 2;
+ *  int y = x++;    // x is assigned to y before it is incremented. (x, y = 3, 2)
  */
