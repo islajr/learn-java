@@ -5,10 +5,22 @@ import java.util.Scanner;
 public class test {
 
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("How old are you? ");
-        int age = scanner.nextInt();
-        System.out.println("You are " + age + " years old!");
+        // code to find out the Simple interest
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("How much are you looking to invest? ");
+        int principal = input.nextInt();
+
+        System.out.print("For how many years? ");
+        int time = input.nextInt();
+
+        System.out.print("At how much percent per annum? ");
+        int rate = input.nextInt();
+
+        int simpleInterest = (principal * rate * time)/100;
+        System.out.println("You get " + simpleInterest + " per annum!"); 
+
+
 
     }
 }
