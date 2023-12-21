@@ -18,7 +18,8 @@ public class test {
         int rate = input.nextInt();
 
         int simpleInterest = (principal * rate * time)/100;
-        System.out.println("You get " + simpleInterest + " per annum!"); 
+        String result = NumberFormat.getCurrencyInstance().format(simpleInterest);
+        System.out.println("You get " + result + " per annum!"); 
 
 
 
