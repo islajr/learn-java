@@ -71,7 +71,8 @@ public class test {
  * Numbers can be formatted with the NumberFormat abstract class.
  * the appropriate abstract method .getPercentInstance(), .getCurrencyInstance() or other is called
  * after that, the .format method is chained to the expression with the value to be formatted as a parameter.
- * See Example: String result = NumberFormat.getPercentInstance.format(0.1); 
+ * See Example: String result = NumberFormat.getPercentInstance.format(0.1);  // it is advisable to always make the type of this variable a string
+ * 
  * 
  * NOTES
  * what is the difference between ++x and x++
