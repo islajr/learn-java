@@ -11,11 +11,13 @@ public class mortgage {
         int principal = input.nextInt();
 
         System.out.print("At how much percent? ");
-        double rate = input.nextInt();
+        double rate = input.nextDouble();
+        rate = rate/100;
         rate = rate/12;
 
         System.out.print("For how many years? ");
-        byte years = input.nextByte();
+        int years = input.nextInt();
+        years = years * 12;
 
         double bracket = Math.pow(1 + rate, years);
         double top = rate * bracket;
