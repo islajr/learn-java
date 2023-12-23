@@ -68,6 +68,21 @@ public class test {
  * they follow the syntax: condition ? expression1 : expression2
  * In other words, if the condtion returns true, expression1 is executed; else, expression2 is executed.
  * 
+ * SWITCH-CASE 
+ * this is another way to represent conditional information
+ * it follows the syntax:
+ *  switch(statement) {
+ *      case 1:
+ *          expression
+ *          break;
+ *      case 2:
+ *          expression
+ *          break;
+ *      default:
+ *          expression
+ *  }
+ * bear in mind that the break statement must always be included.
+ * 
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
