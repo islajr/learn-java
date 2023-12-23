@@ -5,24 +5,14 @@ import java.util.Scanner;
 public class test {
 
     public static void main(String[] args){
-        // code to find out the Simple interest
-        Scanner input = new Scanner(System.in);
+        boolean hasHighIncome = true;
+        boolean hasGoodCredit = false;
+        boolean hasCriminalRecord = false;
+        boolean isEligible = (hasGoodCredit || hasHighIncome) && !hasCriminalRecord;
 
-        System.out.print("How much are you looking to invest? ");
-        int principal = input.nextInt();
-
-        System.out.print("For how many years? ");
-        int time = input.nextInt();
-
-        System.out.print("At how much percent per annum? ");
-        int rate = input.nextInt();
-
-        int simpleInterest = (principal * rate * time)/100;
-        String result = NumberFormat.getCurrencyInstance().format(simpleInterest);
-        System.out.println("You get " + result + " per annum!"); 
-
-
-
+        if (isEligible)
+            System.out.println("This is possible! ");
+        
     }
 }
 
@@ -73,6 +63,10 @@ public class test {
  * after that, the .format method is chained to the expression with the value to be formatted as a parameter.
  * See Example: String result = NumberFormat.getPercentInstance.format(0.1);  // it is advisable to always make the type of this variable a string
  * 
+ * TERNARY OPERATOR
+ * ternary operators provide a way to simplify if-statements. 
+ * they follow the syntax: condition ? expression1 : expression2
+ * In other words, if the condtion returns true, expression1 is executed; else, expression2 is executed.
  * 
  * NOTES
  * what is the difference between ++x and x++
