@@ -5,13 +5,10 @@ import java.util.Scanner;
 public class test {
 
     public static void main(String[] args){
-        boolean hasHighIncome = true;
-        boolean hasGoodCredit = false;
-        boolean hasCriminalRecord = false;
-        boolean isEligible = (hasGoodCredit || hasHighIncome) && !hasCriminalRecord;
+        String[] fruits = {"Apples", "Oranges", "Mangoes", "Crayons"};
 
-        if (isEligible)
-            System.out.println("This is possible! ");
+        for (String fruit: fruits)
+            System.out.println(fruit);
         
     }
 }
@@ -82,6 +79,21 @@ public class test {
  *          expression
  *  }
  * bear in mind that the break statement must always be included.
+ * 
+ * DO-WHILE LOOP
+ * this is a loop that must run at least, once before the condition is checked.
+ * it has the syntax:
+ * do {
+ *  expressions
+ * } while (statement);
+ * 
+ * FOR-EACH LOOP
+ * This is one that is popular in javascript.
+ * it presents an easier and quicker way to iterate through iterables
+ * it has syntax resembling that of a conventional 'for loop' but the statement is different
+ * the syntax is as follows: for (type variable : iterable) {}
+ * the logic here is that the variable initialised in the loop serves as the iterator and typically, it is a string
+ * 
  * 
  * NOTES
  * what is the difference between ++x and x++
