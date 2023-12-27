@@ -93,7 +93,14 @@ public class test {
  * it has syntax resembling that of a conventional 'for loop' but the statement is different
  * the syntax is as follows: for (type variable : iterable) {}
  * the logic here is that the variable initialised in the loop serves as the iterator and typically, it is a string
- * 
+ *
+ * TYPICAL PROBLEMS WITH SCANNER CLASS
+ * When using the scanner class to request for input, it is imperative to note that after using the .nextInt() method,
+ * a new line (\n) character is left behind in the stream and as such, if it is followed by a .nextLine(), it will
+ * entirely skip without requesting the input at all!
+ * In order to fix this, the stream has to be flushed with a bare *inputVariable*.nextLine() before the main one.
+ * This problem occurs when we try to use .nextLine() after any method that is not .nextLine().
+ *
  * 
  * NOTES
  * what is the difference between ++x and x++
