@@ -3,21 +3,20 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
         Scanner input = new Scanner(System.in);
-        System.out.print("What is your name? ");
-        String name = input.nextLine();
 
-        System.out.print("How old are you? ");
-        int age = input.nextInt();
+        System.out.print("Enter x: ");
+        double x = input.nextDouble();
 
-        // clearing the stream
-        input.nextLine();
-        System.out.print("What is your best food? ");
-        String food = input.nextLine();
+        System.out.print("Enter y: ");
+        double y = input.nextDouble();
 
-        System.out.println("Your name is " + name);
-        System.out.println("You are " + age + " years old.");
-        System.out.println("Your favourite food is " + food);
+        double z = x*x + y*y;
+        System.out.println(Math.sqrt(z));
+
+        input.close();
+
     }
 }
 
