@@ -30,11 +30,12 @@ public class test {
  * they can be initialised in two ways: type[] variable_name = new type[length] or type[] variable = {value}
  * however, printing to standard output takes a turn as the array needs to be overloaded to a string with the Arrays,toString() method and as a result, the java.util.Arrays package needs to be imported.
  * arrays have other methods like .sort() that arranges the values in ascending order and .toDeepString() that overloads multi-dimensional arrays to strings and these methods are present in the java.util.Arrays package
- * 
+ *
  * STRINGS
  * strings are a very important reference type data type.
  * They are imported by default and can be used in the normal way inbuilt data-types are used.
  * String methods, however, are included in the java.awt.String package
+ *
  * 
  * CONSTANTS
  * constants can be defined as follows: final data-type name = value. e.g: final float PI = 3.142;
@@ -53,6 +54,8 @@ public class test {
  *              System.out.println("You are " + age);
  * .next - returns the next string
  * .nextLine - returns a string of the next line, whatever it is.
+ *
+ * It is good practice to always close the instance of the scanner class after use with the instance.close() method.
  * 
  * FORMATTING NUMBERS
  * Numbers can be formatted with the NumberFormat abstract class.
@@ -101,7 +104,44 @@ public class test {
  * In order to fix this, the stream has to be flushed with a bare *inputVariable*.nextLine() before the main one.
  * This problem occurs when we try to use .nextLine() after any method that is not .nextLine().
  *
- * 
+ * WRAPPER CLASSES
+ * These are classes that provide a way to use primitive data types as reference data types.
+ * this uses the principle of autoboxing - automatic conversion of primitive types into reference types.
+ * for knowledge, 'unboxing' is the opposite of autoboxing and it is the conversion of reference types into primitive types.
+ *
+ * autoboxing can be achieved by capitalizing the first letter of the data type declaration and
+ * using them as you would use a primitive data type.
+ *
+ * See Example:
+ * PRIMITIVE        REFERENCE
+ * int              Int         Int age = 92
+ * char             Char        Char at = "@"
+ * boolean          Boolean     Boolean yes = true
+ * double           Double      Double pi = 3.14
+ *
+ * why anyone would like to do this, i do not know as of yet
+ *
+ * ARRAY LISTS
+ * This is a reference data-type that is resizable, i.e: elements can be added to and removed from them
+ * they also store only reference data types so this creates a use for wrapper classes.
+ * they are contained in the java.util package.
+ *
+ * they can be used as follows:
+ * ArrayList<Int> numbers = new ArrayList<Int>();
+ * numbers.add() adds elements to the array.
+ * numbers.get(index) displays an element from the array - it takes the index number as an argument
+ * numbers.set(index, value) - sets or edits the value of the array at a specified index.
+ * numbers.remove(index) - removes whatever element is contained in the specified index
+ * numbers.clear() - clears all elements from the array.
+ *
+ * These Arraylists can be nested into one another to create a 2d-list or a list of lists.
+ * the only tricky bit is that when declaring the container list, the type specification must include
+ * everything, i.e: ArrayList<ArrayList<String>> container = new ArrayList<ArrayList<String>>();
+ * internal lists can be indexed with the .get method and this can also be chained, one to another to
+ * produce more specific results.
+ *
+ * when looping through an array list, we use variable.size() as opposed to variable.length()
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
@@ -110,4 +150,10 @@ public class test {
  *  
  *  int x = 2;
  *  int y = x++;    // x is assigned to y before it is incremented. (x, y = 3, 2)
+ *
+ * INDEXING FOR STRINGS AND ARRAYS
+ * The typical method of indexing with square brackets does not work with strings in java.
+ * to index strings in java, the string.charAt() method is used and it takes in an index number to return the character at that index.
+ * However, arrays can be indexed with the [] notation as normal.
+ *
  */
