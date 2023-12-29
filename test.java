@@ -142,6 +142,28 @@ public class test {
  *
  * when looping through an array list, we use variable.size() as opposed to variable.length()
  *
+ * FUNCTIONS IN JAVA (METHODS)
+ * In a way, functions are always methods in java since everything is always inside of a class.
+ * to define a function, you need to step out of the main method, preferably under it.]
+ * definition of functions in java follows a specific syntax:
+ * return-type name(parameters) {
+ *      whatever the fuck you want.
+ * }
+ *
+ * typically, since the main method is almost always static, we need to make whatever function we're defining
+ * static too.
+ * so before the return-type, we need to insert the keyword, 'static'.
+ *
+ * METHOD OVERLOADING
+ * This is a phenomenon where two methods share the same name but have different parameters and as a result, different
+ * signatures.
+ *
+ * a typical example of this is in OOP where depending on the return value and use case, two or three methods can share
+ * names. (Operaator Overloading)
+ *
+ * it is also note-worthy that changing the return-type and keeping the name without altering the parameters will
+ * lead to a compile-time error.
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
