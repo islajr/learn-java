@@ -164,6 +164,30 @@ public class test {
  * it is also note-worthy that changing the return-type and keeping the name without altering the parameters will
  * lead to a compile-time error.
  *
+ * CONSTRUCTOR OVERLOADING
+ * This is a concept similar to that of operator and method overloading where two constructors can have the
+ * same name but different parameters in order to have different signatures.
+ *
+ * An important use case of this is when defining a constructor that can take in optional arguments.
+ *
+ * TO STRING()
+ * This is a special method that all objects import that prints a textual representation of an object.
+ * Note that this effect can be obtained either implicitly or explicitly
+ *
+ * Doing this explicitly is the conventional way as the stock .toString() method only returns the memory
+ * address of the given object.
+ *
+ * To combat this, a technique known as METHOD OVERLOADING is used.
+ * Here, a default method is re-defined in the context of a specific class to do something different from
+ * what the language set it up to do.
+ *
+ * All of this, however, is just semantics as the main point to this is to define the default method in the
+ * target class with the exact same name and the body of the method should contain procedural information as to
+ * what it is supposed to do.
+ *
+ * Implicit use of the .toString() method occurs when the object of the class is called within a 'print' statement.
+ *
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
