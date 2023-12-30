@@ -187,6 +187,12 @@ public class test {
  *
  * Implicit use of the .toString() method occurs when the object of the class is called within a 'print' statement.
  *
+ * OBJECT ARRAY
+ * since arrays can hold elements as long as they are within the set limit and have the specified type, it
+ * is also possible to define arrays that can hold objects as elements.
+ *
+ * it may sound bizarre but it is actually quite easy.
+ * class-name[] variable-name = new class-name[length]
  *
  * NOTES
  * what is the difference between ++x and x++
