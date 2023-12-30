@@ -6,7 +6,7 @@ public class Main {
         Human him = new Human("Isla", 20, 182);
         Human her = new Human("Mum", 45);
 
-
+        System.out.println(him.toString());
 
     }
 }
