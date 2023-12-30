@@ -9,6 +9,11 @@ public class Human {
         this.height = height;
     }
 
+    Human(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     void eat() {
         System.out.printf("%s is eating.\n", this.name);
     }
