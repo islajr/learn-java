@@ -201,6 +201,9 @@ public class test {
  * Also, since the static variable/method is shared by all members of the class, there can only be one copy
  * of that variable within the class.
  *
+ * it may also be worth noting that static methods can be referenced in a non-static way, i.e: with instances
+ * but this is not recommended.
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
