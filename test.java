@@ -198,6 +198,16 @@ public class test {
  * The static keyword is a modifier that indicates that the variable or method which it points to belongs to
  * the parent class and as such, need to be instantiated for it to be used.
  *
+ * INHERITANCE
+ * This is a process where a class (child) acquires the attributes and methods of another class (parent) in
+ * addition to its own.
+ *
+ * This is done with the keyword 'extends'.
+ * See example:
+ * public class *child* extands *parent* {}
+ *
+ *
+ *
  * Also, since the static variable/method is shared by all members of the class, there can only be one copy
  * of that variable within the class.
  *

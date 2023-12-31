@@ -3,10 +3,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Human him = new Human("Isla", 20, 182);
-        Human her = new Human("Mum", 45);
-
-        System.out.println(him.toString());
+        Human him = new Human();
+        him.display();
 
     }
 }
