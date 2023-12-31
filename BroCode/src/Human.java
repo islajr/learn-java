@@ -1,6 +1,7 @@
 public class Human extends Ancestor {
-    public static void main(String[] args) {
-        Human him = new Human();
-        him.display();
+
+    @Override
+    void display() {
+        System.out.println("This is an override of the ancestor class.");
     }
 }

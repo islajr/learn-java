@@ -206,7 +206,14 @@ public class test {
  * See example:
  * public class *child* extands *parent* {}
  *
+ * METHOD OVERRIDING / OVERLOADING
+ * This is the process of declaring the same method in two different classes, usually a parent and child with
+ * the original method present in the parent class, overriding would be declaring a similarly-named method
+ * to the child class in order for the child class to have a different or more specific implementation of
+ * the class.
  *
+ * When overriding a method, it is good method to preface it with the @override identifier to hint
+ * anyone reading the code in the future of your intentions.
  *
  * Also, since the static variable/method is shared by all members of the class, there can only be one copy
  * of that variable within the class.
