@@ -194,6 +194,13 @@ public class test {
  * it may sound bizarre but it is actually quite easy.
  * class-name[] variable-name = new class-name[length]
  *
+ * STATIC KEYWORD
+ * The static keyword is a modifier that indicates that the variable or method which it points to belongs to
+ * the parent class and as such, need to be instantiated for it to be used.
+ *
+ * Also, since the static variable/method is shared by all members of the class, there can only be one copy
+ * of that variable within the class.
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables

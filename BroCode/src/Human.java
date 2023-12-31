@@ -3,10 +3,13 @@ public class Human {
     int age;
     double height;
 
+    static int headCount;       // testing the static keyword.
+
     Human(String name, int age, double height) {
         this.name = name;
         this.age = age;
         this.height = height;
+        ++headCount;
     }
 
     Human(String name, int age) {
