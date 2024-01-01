@@ -198,6 +198,15 @@ public class test {
  * The static keyword is a modifier that indicates that the variable or method which it points to belongs to
  * the parent class and as such, need to be instantiated for it to be used.
  *
+ * ABSTRACT KEYWORD
+ * Any class declared as 'abstract', as a security measure, cannot be instantiated.
+ * This used when defining a class that by itself, is too vague to have meaning but comes into life when
+ * specific features are being focused on.
+ * This means that abstract classes are only used as a container to hold more useful, specific classes.
+ *
+ * An example might be a 'vehicle'. It is an abstract word that can refer to anything from a bicycle to an airplane.
+ * Trying to create an instance of a vehicle is useless cos it has no specific meaning or use.
+ * However, a car is a type of vehicle with a real world use and as such, is a sub-class of vehicle.
  * INHERITANCE
  * This is a process where a class (child) acquires the attributes and methods of another class (parent) in
  * addition to its own.
@@ -205,6 +214,22 @@ public class test {
  * This is done with the keyword 'extends'.
  * See example:
  * public class *child* extands *parent* {}
+ *
+ * SUPER KEYWORD
+ * Building on the inheritance note, the "super" keyword comes into play when defining context in constructors.
+ * usually, the "this" keyword tells the compiler that you are referring to a variable present in the current class
+ * However, the "super" keyword tells the compiler that you wish to deal with the super (parent) class.
+ *
+ * See Example:
+ * String instanceVariable;
+ *
+ * Constructor(...) {
+ *  super(parent variables);
+ *  ...
+ * }
+ *
+ * the super ting there simply tells the compiler to look for those variables in constructor of the super class.
+ * 
  *
  * METHOD OVERRIDING / OVERLOADING
  * This is the process of declaring the same method in two different classes, usually a parent and child with
@@ -220,6 +245,7 @@ public class test {
  *
  * it may also be worth noting that static methods can be referenced in a non-static way, i.e: with instances
  * but this is not recommended.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
