@@ -9,6 +9,13 @@ public class Human {
         this.height = height;
     }
 
+    // constructor to accommodate instance level copying.
+    Human(Human old) {
+        this.setName(old.getName());
+        this.setAge(old.getAge());
+        this.setHeight(old.getHeight());
+    }
+
     // defining getters
     public String getName() {
         return name;
