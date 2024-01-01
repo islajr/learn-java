@@ -3,8 +3,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Human him = new Human();
-        him.display();
+        Male himothy = new Male();
+
+        himothy.provide();
 
     }
 }

@@ -207,6 +207,11 @@ public class test {
  * An example might be a 'vehicle'. It is an abstract word that can refer to anything from a bicycle to an airplane.
  * Trying to create an instance of a vehicle is useless cos it has no specific meaning or use.
  * However, a car is a type of vehicle with a real world use and as such, is a sub-class of vehicle.
+ *
+ * You can also have abstract methods - methods without a body.
+ * At first glance, it seems useless but it forces the programmer to override such a method in one of the child
+ * classes for it have a more specific meaning, hereby tying in with the 'abstract' idea.
+ *
  * INHERITANCE
  * This is a process where a class (child) acquires the attributes and methods of another class (parent) in
  * addition to its own.
