@@ -212,13 +212,27 @@ public class test {
  * At first glance, it seems useless but it forces the programmer to override such a method in one of the child
  * classes for it have a more specific meaning, hereby tying in with the 'abstract' idea.
  *
+ * ACCESS MODIFIERS: PRIVATE, PUBLIC, PROTECTED
+ * This is a concept that adds security to the class which it points to.
+ * In a case where there is no access modifier included, the default modifier is used and it grants access
+ * only within a class and a package; anything outside of this is not recognized.
+ *
+ * with the modifier, public, the class, package, subclass and anything else has access.    EVERYTHING
+ * with the modifier, protected, the class, package and subclass have access. no one else does.
+ * with the modifier, private, only the class has access. nothing else does.    CLASS
+ *
+ * in order of increasing protection, access levels are as follows: public, protected, default, private,
+ * with private being the highest level of protection available.
+ *
+ * import statements do not affect the visibility of these access modifiers.
+ *
  * INHERITANCE
  * This is a process where a class (child) acquires the attributes and methods of another class (parent) in
  * addition to its own.
  *
  * This is done with the keyword 'extends'.
  * See example:
- * public class *child* extands *parent* {}
+ * public class *child* extends *parent* {}
  *
  * SUPER KEYWORD
  * Building on the inheritance note, the "super" keyword comes into play when defining context in constructors.
