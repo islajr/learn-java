@@ -11,9 +11,10 @@ public class Human {
 
     // constructor to accommodate instance level copying.
     Human(Human old) {
-        this.setName(old.getName());
-        this.setAge(old.getAge());
-        this.setHeight(old.getHeight());
+//        this.setName(old.getName());
+//        this.setAge(old.getAge());
+//        this.setHeight(old.getHeight());
+        this.copy(old);
     }
 
     // defining getters
