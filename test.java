@@ -265,6 +265,33 @@ public class test {
  * it may also be worth noting that static methods can be referenced in a non-static way, i.e: with instances
  * but this is not recommended.
  *
+ * ENCAPSULATION
+ * Building on the concept of security, when dealing with private classes that can only be seen and used
+ * within the same file, it creates a problem of compartmentalization and reusability where we are unable to
+ * use private classes in other parts of our code.
+ *
+ * This can easily be solved by encapsulation.
+ * This provides a way to use and change private methods without relating with them directly through the use of
+ * setters and getters.
+ *
+ * Setters and getters are usually defined in the class with a public modifier.
+ * Getters help fetch variables or methods in a private class while setters help change or create new methods.
+ *
+ * An example would be:
+ * public class Whatever {
+ *  private String name = "name"
+ *
+ *  // getter
+ *  public getName() {
+ *      return name;
+ *  }
+ *
+ *  // setter
+ *  public setName(String new) {
+ *      name = new;
+ *  }
+ * }
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
