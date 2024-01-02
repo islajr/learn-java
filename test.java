@@ -297,6 +297,8 @@ public class test {
  * It works in the same way as abstract classes but the difference lies in that interfaces can be implemented
  * across various classes, meanwhile, a class can only have one 'super'.
  *
+ * In other words, a class can implement more than one interface, while it can only have one super class.
+ *
  * Interfaces are defined in their own separate class in the following way:
  * modifier interface name{
  *      *method*
