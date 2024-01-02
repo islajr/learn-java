@@ -292,6 +292,21 @@ public class test {
  *  }
  * }
  *
+ * INTERFACES
+ * An interface is a blueprint for a class.
+ * It works in the same way as abstract classes but the difference lies in that interfaces can be implemented
+ * across various classes, meanwhile, a class can only have one 'super'.
+ *
+ * Interfaces are defined in their own separate class in the following way:
+ * modifier interface name{
+ *      *method*
+ *      usually do not contain a body as it is only a blueprint.
+ *      each implementing class overrides this as it sees fit.
+ * }
+ *
+ * defined interfaces can be used in classes with the 'implement' keyword as in:
+ * modifier class implements interface{}
+ *
  *
  * NOTES
  * what is the difference between ++x and x++

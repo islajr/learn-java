@@ -1,7 +1,7 @@
-//public class Male extends Human{
-//    @Override
-//    void provide() {
-//        System.out.println("A man provides for his family. ");
-//    }
-//
-//}
+public class Male implements Ancestor{
+    @Override
+    public void display() {
+        System.out.println("This is an example of an interface. ");
+    }
+
+}
