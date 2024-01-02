@@ -292,6 +292,15 @@ public class test {
  *  }
  * }
  *
+ * POLYMORPHISM
+ * This is the ability of an object to identify as more than one type.
+ * In other words, an object displaying polymorphism can take in more than one type.
+ * This is shown in the principle of inheritance where a sub class identifies as both a member of its class
+ * and that of its super class.
+ * This creates a scenario where the super class can be used as a container for all of its sub classes and
+ * methods belonging to the super class can be used by any of it's subclasses and can even be overriden, despite
+ * them not owning it directly.
+ *
  * INTERFACES
  * An interface is a blueprint for a class.
  * It works in the same way as abstract classes but the difference lies in that interfaces can be implemented
