@@ -333,4 +333,7 @@ public class test {
  * to index strings in java, the string.charAt() method is used and it takes in an index number to return the character at that index.
  * However, arrays can be indexed with the [] notation as normal.
  *
+ * Object[] can serve as the type for an array when trying to create an array of sibling classes(classes belonging
+ * to the same super class).
+ *
  */
