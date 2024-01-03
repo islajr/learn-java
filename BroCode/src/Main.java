@@ -5,25 +5,20 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Animal animal;
+        System.out.print("Enter a number: ");
+        int x = scanner.nextInt();
 
-        System.out.print("What animal do you want? (d)og or (c)at ");
-        String choice = scanner.next();
+        System.out.print("Enter another number: ");
+        int y = scanner.nextInt();
 
-        switch (choice){
-            case "d":
-                animal = new Dog();
-                animal.speak();
-                break;
-            case "c":
-                animal = new Cat();
-                animal.speak();
-                break;
-            default:
-                System.out.println("Insert a recognized option! ");
-                break;
-
-
+        try {
+            System.out.printf("%.2f", (double)x/y);
+        }
+        catch (ArithmeticException e) {
+            System.out.println("This will not work! ");
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Check your inputs! ");
+        }
         }
     }
-}

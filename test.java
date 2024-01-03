@@ -331,6 +331,20 @@ public class test {
  * defined interfaces can be used in classes with the 'implement' keyword as in:
  * modifier class implements interface{}
  *
+ * EXCEPTION HANDLING
+ * Exceptions are events that disrupts a program's execution. They are also called errors.
+ * exceptions can be predicted and therefore handled in a way that they do not cause a program
+ * to break down and this is called 'Exception Handling'.
+ *
+ * There are different types of exceptions and they can be handled with a try-catch block to catch those exceptions.
+ * See below:
+ * try {
+ *      piece of unsafe code
+ * }
+ * catch(exceptionType variable) {
+ *      expression to be carried out upon exception.
+ * }
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
