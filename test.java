@@ -305,6 +305,14 @@ public class test {
  * is simply polymorphism after the fact. In other words, it is polymorphism occuring during runtime.
  * The object change and adjust based on the requirements of the program to work seamlessly, hence the 'dynamic'.
  *
+ * A use case of this is when defining an onject and you do not know, beforehand, what sort of object it is
+ * going to be.
+ * A good example, which is also present in this commit can be established by employing the principle of inheritance.
+ * A subclass is a type of its class, it's super class and the Object type and as such, can be used to initialize
+ * any variable of that type.
+ *
+ * This information can be used to create a scenario where a program is expecting user input and depending on the type
+ * of input received, the type of a object in use responds differently.
  *
  * INTERFACES
  * An interface is a blueprint for a class.
