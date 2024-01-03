@@ -1,31 +1,21 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int x = scanner.nextInt();
-
-        System.out.print("Enter another number: ");
-        int y = scanner.nextInt();
-
         try {
-            System.out.printf("%.2f", (double)x/y);
+            FileWriter writer = new FileWriter("poem.txt");
+            writer.write("I am isla; I am him.\n Isla Archer! ");
+            writer.append("nobody comes close!");
+            writer.close();
         }
-        catch (ArithmeticException e) {
-            System.out.println("This will not work! ");
+        catch(IOException e) {
+            e.printStackTrace();
         }
-        catch (InputMismatchException e) {
-            System.out.println("Check your inputs! ");
-        }
-        catch (Exception e) {
-            System.out.println("Something went wrong. ");
-        }
-        finally {
-            System.out.println("This will always print. ");
-            scanner.close();
-        }
+
+
         }
     }

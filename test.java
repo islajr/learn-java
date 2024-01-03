@@ -367,6 +367,16 @@ public class test {
  * file.getAbsolutePath - returns the complete path to the file.
  * file.delete() - deletes specified file.
  *
+ * FILE WRITER CLASS
+ * This is a class created to help to write to a file
+ * it is contained in the java.io.FileWriter
+ *
+ * typically, to use this class, you should invoke some sort of error handling after instantialization.
+ * some useful methods of this class are as follows:
+ * .write() - takes in a string message and writes it to a file
+ * .append() - adds to a current
+ *
+ * file writers should also be closed after use to free up memory with the .close() method.
  *
  * NOTES
  * what is the difference between ++x and x++
