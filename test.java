@@ -301,6 +301,11 @@ public class test {
  * methods belonging to the super class can be used by any of it's subclasses and can even be overriden, despite
  * them not owning it directly.
  *
+ * DYNAMIC POLYMORPHISM
+ * is simply polymorphism after the fact. In other words, it is polymorphism occuring during runtime.
+ * The object change and adjust based on the requirements of the program to work seamlessly, hence the 'dynamic'.
+ *
+ *
  * INTERFACES
  * An interface is a blueprint for a class.
  * It works in the same way as abstract classes but the difference lies in that interfaces can be implemented
