@@ -378,6 +378,23 @@ public class test {
  *
  * file writers should also be closed after use to free up memory with the .close() method.
  *
+ * FILE READER
+ * This allows us to read the contents of a file as a character stream.
+ * .read() returns an int value that contains the byte value.
+ * whenever .read() returns -1, there is no more data to be read.
+ *
+ * The returning int of the .read(method) can be projected on to the standard output via a while loop but has
+ * to be converted into a character value for it to make sense.
+ *
+ * while (int != -1) {
+ *     print((char) int);
+ * }
+ * reader.close();
+ *
+ * As usual, this has to be wrapped in a try-catch block which can be generated automatically with the catch block
+ * containing directives to print the stack trace of the error.
+ *
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
