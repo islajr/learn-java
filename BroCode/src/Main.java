@@ -20,5 +20,12 @@ public class Main {
         catch (InputMismatchException e) {
             System.out.println("Check your inputs! ");
         }
+        catch (Exception e) {
+            System.out.println("Something went wrong. ");
+        }
+        finally {
+            System.out.println("This will always print. ");
+            scanner.close();
+        }
         }
     }

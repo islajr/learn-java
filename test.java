@@ -344,6 +344,10 @@ public class test {
  * catch(exceptionType variable) {
  *      expression to be carried out upon exception.
  * }
+ * finally {
+ *      this block will always run whether you catch an exception or not.
+ *      a use case for this could be to close any open scanners and free up memory.
+ * }
  *
  *
  * NOTES
