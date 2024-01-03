@@ -349,6 +349,24 @@ public class test {
  *      a use case for this could be to close any open scanners and free up memory.
  * }
  *
+ * FILE HANDLING
+ * This is done with the java.io.file class and a common use case us to check if a file exists in a directory.
+ * See example below:
+ * File file = new File("file name");
+ * if(file.exists()) {
+ *      do whatever
+ * }
+ * else {
+ *      do whatever
+ * }
+ * not specifying any path causes the compiler to look for this file in the project directory
+ * this behaviour can easily be applied to any other folder by preceding it with the required path.
+ *
+ * some other useful file methods:
+ * file.getPath() - returns the pathname argument passed upon instantialization
+ * file.getAbsolutePath - returns the complete path to the file.
+ * file.delete() - deletes specified file.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
