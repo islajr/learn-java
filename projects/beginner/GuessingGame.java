@@ -23,6 +23,7 @@ public class GuessingGame{
                 }
                 catch(InputMismatchException e) {
                     System.out.println("Please input a proper whole number ");
+                    break;
                 }
 
                 check(number, guess);
@@ -40,15 +41,20 @@ public class GuessingGame{
         return (int)raw;
 
     }
-    static void check(int number, int guess){
-        if(guess == number){
-            System.out.println("You got it right! ");
-        }
-        else if(guess > number) {
-            System.out.println("Try lower! ");
-        }
-        else if(guess < number) {
-            System.out.println("Try higher! ");
+    private static void check(int number, int guess){
+        while (true) {
+            if(guess == number){
+                System.out.println("You got it right! ");
+                break;
+            }
+            else if(guess > number) {
+                System.out.println("Try lower! ");
+                break;
+            }
+            else if(guess < number) {
+                System.out.println("Try higher! ");
+                break;
+            }
         }
     }
 }
