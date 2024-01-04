@@ -44,15 +44,15 @@ public class GuessingGame{
     private static void check(int number, int guess){
         while (true) {
             if(guess == number){
-                System.out.println("You got it right! ");
-                break;
+                System.out.print("You got it right! ");
+                System.exit(0);
             }
             else if(guess > number) {
-                System.out.println("Try lower! ");
+                System.out.print("Try lower! ");
                 break;
             }
             else if(guess < number) {
-                System.out.println("Try higher! ");
+                System.out.print("Try higher! ");
                 break;
             }
         }
