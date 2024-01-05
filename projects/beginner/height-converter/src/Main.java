@@ -13,13 +13,14 @@ public class Main {
 
             switch (response) {
                 case 1:
-
+                    MetreToFt.convert();
                     break;
 
                 case 2:
                     break;
 
                 default:
+                    scanner.close();
                     break;
 
             }
