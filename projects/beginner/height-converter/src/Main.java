@@ -11,6 +11,18 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             response = scanner.nextInt();
 
+            switch (response) {
+                case 1:
+
+                    break;
+
+                case 2:
+                    break;
+
+                default:
+                    break;
+
+            }
 
 
         }

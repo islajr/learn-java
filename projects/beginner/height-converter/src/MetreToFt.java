@@ -1,6 +1,6 @@
-public class MetreToFt extends Converter{
+public class MetreToFt {
 
-    static void convert (int metre) {
+    static void convert(int metre) {
 
     }
 }
