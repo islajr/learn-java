@@ -1,14 +1,32 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class FtToMetre {
 
     static void convert() {
         double height;
+        double feet = 0;
+        double inches = 0;
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Ft: ");
-        double feet = scanner.nextInt();
+
+        try {
+            feet = scanner.nextInt();
+        }
+        catch (InputMismatchException e) {
+            System.out.println("That is not valid. ");
+            System.exit(0);
+        }
 
         System.out.print("Inches: ");
-        double inches = scanner.nextDouble();
+
+        try {
+            inches = scanner.nextDouble();
+        }
+        catch (InputMismatchException e) {
+            System.out.println("That is not valid. ");
+            System.exit(0);
+        }
 
         feet = feet * 30.48;
         inches = inches * 2.54;

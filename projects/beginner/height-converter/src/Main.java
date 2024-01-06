@@ -16,11 +16,11 @@ public class Main {
             }
             catch(NoSuchElementException e) {
                 System.out.println("That was not a valid response. ");
-                break;
+                System.exit(0);
             }
             catch (Exception e) {
                 System.out.println("Something went wrong. ");
-                break;
+                System.exit(0);
             }
 
             switch (response) {
