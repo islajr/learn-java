@@ -11,7 +11,7 @@ public class MetreToFt {
         int feet = (int)(raw);
         double inches = Math.ceil((raw - feet) * 12);
 
-        System.out.printf("You are %d'%.0f. ", feet, inches);
+        System.out.printf("You are %d'%.0f\". ", feet, inches);
         System.exit(0);
     }
 }

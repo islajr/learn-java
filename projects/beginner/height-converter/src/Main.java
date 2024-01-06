@@ -29,6 +29,7 @@ public class Main {
                     break;
 
                 case 2:
+                    FtToMetre.convert();
                     break;
 
                 default:
