@@ -4,7 +4,7 @@ public class MetreToFt {
     static void convert() {
         double height, raw;
         Scanner scanner = new Scanner(System.in);
-        System.out.print("How tall are you? ");
+        System.out.print("Height (cm):  ");
         height = scanner.nextInt();
         raw = height/30.48;
 

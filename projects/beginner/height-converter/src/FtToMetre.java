@@ -2,16 +2,20 @@ import java.util.Scanner;
 public class FtToMetre {
 
     static void convert() {
-        String height = "nothing";      // pseudo-initialization
+        double height;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Input your height in the format: f'i\". (e.g: 5'9\" ");
+        System.out.print("Ft: ");
+        double feet = scanner.nextInt();
 
-        height = scanner.nextLine();
+        System.out.print("Inches: ");
+        double inches = scanner.nextDouble();
 
-        double one = height.charAt(0) * 30.48;
-        double two = height.charAt(2) * 2.54;
+        feet = feet * 30.48;
+        inches = inches * 2.54;
+        height = feet + inches;
 
-        System.out.printf("You are %.1fcm tall. ", one + two);
+
+        System.out.printf("You are %.1fcm tall. ", height);
         System.exit(0);
 
     }
