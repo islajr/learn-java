@@ -13,7 +13,6 @@ public class MetreToFt {
         }
         catch (InputMismatchException e) {
             System.out.println("That is not valid. ");
-//            System.exit(0);
             MetreToFt.convert();
         }
         raw = height/30.48;
