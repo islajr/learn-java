@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,5 +13,6 @@ public class Main {
 
         ImageIcon image = new ImageIcon("/home/isla-jr/Downloads/27243728.jpg");
         frame.setIconImage(image.getImage());
+        frame.getContentPane().setBackground(new Color(0, 34, 123));
     }
 }

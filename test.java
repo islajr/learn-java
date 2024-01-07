@@ -394,7 +394,26 @@ public class test {
  * As usual, this has to be wrapped in a try-catch block which can be generated automatically with the catch block
  * containing directives to print the stack trace of the error.
  *
+ * GRAPHICAL USER INTERFACE
+ * JFRAME
+ * is a class from the java swing framework that creates a window frame to add components to.
+ * In order to use this, the import.javax.swing.Jframe import statement must be utilized.
+ * 
+ * After creating an instance of a frame, it won't be visible until the .setVisible() method is set to 'true'.
+ * To change the size of the frame, the .setSize() method is used.
+ * It has variations that take in either an x, y value or a raw value.
+ * .setTitle() names the jframe after whatever is passed into it.
  *
+ * Also, the close button does not actually close the frame; it hides it by default.
+ * To correct this setting, the .setDefaultCloseOperation() method must be set to Jframe.EXIT_ON_CLOSE, which also has the value of 3.
+ * In other words, the argument for the aforementioned can simply be set to 3 to achieve the same effect.
+ *
+ * .setResizable() - controls whether the frame can be resized.
+ * .setIconImage() - takes in a method of an imageicon instance for use as the image's icon.
+ * .setBackgroundColor() - changes the default background color of a content pane.
+ * It takes in an instance of the java.awt.Color class that must also be imported.
+ * New colors can also be created within the argument parenthesis with the new Color() command.
+ * 
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
@@ -411,5 +430,9 @@ public class test {
  *
  * Object[] can serve as the type for an array when trying to create an array of sibling classes(classes belonging
  * to the same super class).
+ *
+ * IMAGEICON CLASS
+ * An image can be directly put into java for the use and formatting as an icon with the image icon class.
+ * Upon instantialization, this takes in the absolute path to the image.
  *
  */
