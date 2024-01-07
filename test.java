@@ -431,8 +431,21 @@ public class test {
  * Object[] can serve as the type for an array when trying to create an array of sibling classes(classes belonging
  * to the same super class).
  *
+ *
  * IMAGEICON CLASS
  * An image can be directly put into java for the use and formatting as an icon with the image icon class.
  * Upon instantialization, this takes in the absolute path to the image.
+ *
+ * IMPORTANT NOTE ON OOP
+ * When using pre-built classes like jframe and others, an alternative to instantiating the classes is to create a
+ * class for the supposed instance and make it a sub-class of the pre-built class.
+ *
+ * Inside this class, the entirely of the code is written within the constructor.
+ * A major advantage to this is that the super class' properties and methods are directly available without any form
+ * of boring instantialization.
+ *
+ * Also, to deploy this sub-class in the main method, one needs only instantiate the sub class.
+ * If there is nothing to be edited, the instantiation can be carried out without the usual LHS of the statement.
+ * In other words, instead of Myframe frame = new MyFrame();, new MyFrame(); would work!
  *
  */
