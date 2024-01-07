@@ -440,7 +440,7 @@ public class test {
  * When using pre-built classes like jframe and others, an alternative to instantiating the classes is to create a
  * class for the supposed instance and make it a sub-class of the pre-built class.
  *
- * Inside this class, the entirely of the code is written within the constructor.
+ * Inside this class, the entirely of the code is written within the constructor, with the this keyword indicating context.
  * A major advantage to this is that the super class' properties and methods are directly available without any form
  * of boring instantialization.
  *
