@@ -418,6 +418,13 @@ public class test {
  * Is a componen of a jframe that displays things like texts and images. It is a class contained in the javax.swing package.
  * It can be added to the frame with the Jframe.add() method.
  * .setText() - takes in a string of text that is displayed in the frame.
+ * .setIcon() - takes in an image icon instance and displays it in the frame.
+ *
+ * Typically, java swing tends to display texts to the right of images but this behaviour can, of course, be altered!
+ * .setHorizontalTextPosition() - takes in a jlable.left, right, or center method that aligns text to the specified direction.
+ * .setVerticalTextPosition() - takes in a jlabel.top, center or bottom method that aligns text to the specified direction.
+ * .setForegroundColor() -  can change the color of text with the Color class as an argument.
+ * .setFont() - takes in an instance of the font class with the name, type and size of the font as arguments.
  * 
  * NOTES
  * what is the difference between ++x and x++
