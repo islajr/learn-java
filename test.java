@@ -430,6 +430,7 @@ public class test {
  * .setIconTextGap() - takes in an integer that can alter the padding between text and image.
  *
  * Borders can be set with the Border class
+ * Border border = BorderFactory.createLineBorder(color, thickness);
  * Labels like to take up as much room as possible but that becomes a problem when creating a program with multiple labels.
  *
  * 
@@ -449,6 +450,14 @@ public class test {
  *
  * Object[] can serve as the type for an array when trying to create an array of sibling classes(classes belonging
  * to the same super class).
+ *
+ * Also, when instantiating an object of a class, it may be a better programming technique to create a method returning
+ * an instance of that class and insside of the method, write all of the code that could have been written in the main
+ * method and at the end return the instance.
+ *
+ * Then, in the main method, simply create an instance of the intended class and on the R.H.S, call the method.
+ * It all makes complete sense when you take a critical look at it.
+ * I'm fairly positive there's a name for this method.
  *
  *
  * IMAGEICON CLASS
