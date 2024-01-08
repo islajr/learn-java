@@ -17,6 +17,7 @@ public class Main {
         ImageIcon image = new ImageIcon("/home/isla-jr/Downloads/27243728.jpg");
         frame.setIconImage(image.getImage());
 //        frame.getContentPane().setBackground(new Color(0, 34, 123));
+        frame.setLayout(null);
     }
 
     private static JLabel getjLabel() {
@@ -32,6 +33,8 @@ public class Main {
         label.setFont(new Font("Liberation Serif", Font.PLAIN, 20));
         label.setIconTextGap(50);
         label.setBorder(border);
+        label.setHorizontalAlignment(0);
+        label.setBounds(100, 0, 1080, 1080);
         return label;
     }
 }

@@ -428,10 +428,15 @@ public class test {
  * However, this will not take effect unless followed up with the .setOpaque() method that takes in a boolean value.
  * .setFont() - takes in an instance of the font class with the name, type and size of the font as arguments.
  * .setIconTextGap() - takes in an integer that can alter the padding between text and image.
+ * .setVerticalalignment(JLabel.top, center or bottom) - sets the vertical position of text + icon within a label
+ * .setHorizontalAlignment(JLabel.left, center, right) - sets the horizontal position of text + icon within a label
  *
  * Borders can be set with the Border class
  * Border border = BorderFactory.createLineBorder(color, thickness);
  * Labels like to take up as much room as possible but that becomes a problem when creating a program with multiple labels.
+ * This behaviour occurs as a result of the default layout being used.
+ * To correct this, the frame layout has to be reset with frame.setLayout(null);
+ * Then new bounds for the label should be specified with label.setBounds(xposition, yposition, xwidth, ywidth);
  *
  * 
  * NOTES
