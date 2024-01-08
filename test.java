@@ -424,7 +424,14 @@ public class test {
  * .setHorizontalTextPosition() - takes in a jlable.left, right, or center method that aligns text to the specified direction.
  * .setVerticalTextPosition() - takes in a jlabel.top, center or bottom method that aligns text to the specified direction.
  * .setForegroundColor() -  can change the color of text with the Color class as an argument.
+ * .setBackgroundColor() - can change the background color of the label to the specified instance of the color class.
+ * However, this will not take effect unless followed up with the .setOpaque() method that takes in a boolean value.
  * .setFont() - takes in an instance of the font class with the name, type and size of the font as arguments.
+ * .setIconTextGap() - takes in an integer that can alter the padding between text and image.
+ *
+ * Borders can be set with the Border class
+ * Labels like to take up as much room as possible but that becomes a problem when creating a program with multiple labels.
+ *
  * 
  * NOTES
  * what is the difference between ++x and x++
