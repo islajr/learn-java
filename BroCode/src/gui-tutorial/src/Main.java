@@ -8,7 +8,7 @@ public class Main {
 
         JFrame frame = new JFrame();
         frame.add(label);
-        frame.setSize(1080, 720);
+//        frame.setSize(1080, 720);
         frame.setTitle("My New Application");
         frame.setDefaultCloseOperation(3);
         frame.setResizable(true);
@@ -17,7 +17,8 @@ public class Main {
         ImageIcon image = new ImageIcon("/home/isla-jr/Downloads/27243728.jpg");
         frame.setIconImage(image.getImage());
 //        frame.getContentPane().setBackground(new Color(0, 34, 123));
-        frame.setLayout(null);
+//        frame.setLayout(null);
+        frame.pack();
     }
 
     private static JLabel getjLabel() {
@@ -34,7 +35,7 @@ public class Main {
         label.setIconTextGap(50);
         label.setBorder(border);
         label.setHorizontalAlignment(0);
-        label.setBounds(100, 0, 1080, 1080);
+//        label.setBounds(100, 0, 1080, 1080);
         return label;
     }
 }

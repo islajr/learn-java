@@ -438,6 +438,8 @@ public class test {
  * To correct this, the frame layout has to be reset with frame.setLayout(null);
  * Then new bounds for the label should be specified with label.setBounds(xposition, yposition, xwidth, ywidth);
  *
+ * JFRAME.pack() - adjusts the frame to accordingly to accomodate whatever is inside of a label.
+ *
  * 
  * NOTES
  * what is the difference between ++x and x++
