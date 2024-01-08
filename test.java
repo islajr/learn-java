@@ -413,6 +413,11 @@ public class test {
  * .setBackgroundColor() - changes the default background color of a content pane.
  * It takes in an instance of the java.awt.Color class that must also be imported.
  * New colors can also be created within the argument parenthesis with the new Color() command.
+ *
+ * JLABEL
+ * Is a componen of a jframe that displays things like texts and images. It is a class contained in the javax.swing package.
+ * It can be added to the frame with the Jframe.add() method.
+ * .setText() - takes in a string of text that is displayed in the frame.
  * 
  * NOTES
  * what is the difference between ++x and x++
