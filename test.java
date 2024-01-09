@@ -440,6 +440,11 @@ public class test {
  *
  * JFRAME.pack() - adjusts the frame to accordingly to accomodate whatever is inside of a label.
  *
+ * JPANEL
+ * Similar to Labels, panels are also frame components but they serve mainly as a container for other components.
+ * Think of it as a 'div' tag.
+ *
+ *
  * 
  * NOTES
  * what is the difference between ++x and x++
