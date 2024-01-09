@@ -443,7 +443,7 @@ public class test {
  * JPANEL
  * Similar to Labels, panels are also frame components but they serve mainly as a container for other components.
  * Think of it as a 'div' tag.
- *
+ * Their methods work in the same way the frame and label methods work.
  *
  * 
  * NOTES
