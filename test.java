@@ -445,6 +445,9 @@ public class test {
  * Think of it as a 'div' tag.
  * Their methods work in the same way the frame and label methods work.
  *
+ * Since panels serve as containers, they can hold almost anything as long as the dimensions and layout are suitable.
+ * They can hold even labels. i.e: labels can be fit into panels, which in turn can be added to the frame.
+ *
  * 
  * NOTES
  * what is the difference between ++x and x++

@@ -8,6 +8,8 @@ public class Panel {
         JPanel bluePanel = panel2();
         JPanel greenPanel = panel3();
 
+        redPanel.add(label());
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
         frame.setSize(1080, 750);
@@ -39,5 +41,14 @@ public class Panel {
         greenPanel.setBounds(0, 250, 500, 250);
 
         return greenPanel;
+    }
+
+    private static JLabel label () {
+        JLabel label = new JLabel();
+        ImageIcon icon = new ImageIcon("/home/isla-jr/Downloads/27243728.jpg");
+        label.setText("Hello, Isla! ");
+        label.setIcon(icon);
+
+        return label;
     }
 }
