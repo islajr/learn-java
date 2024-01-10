@@ -448,7 +448,13 @@ public class test {
  * Since panels serve as containers, they can hold almost anything as long as the dimensions and layout are suitable.
  * They can hold even labels. i.e: labels can be fit into panels, which in turn can be added to the frame.
  *
- * 
+ * LAYOUTS
+ * Layouts refer to the structure of a component.
+ * As mentioned earlier, the default layout of a frame is the border layout.
+ * There are other types, namely: box, spring, overlay, flow, etc; and they differ from each other based on the arrangement of elements.
+ * Border - by default aligns elements to the left from top to bottom in a vertical manner (stacking)
+ * Flow - by default aligns elements to the center of the top from left to right in a horizontal manner.
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables

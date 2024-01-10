@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class Panel {
@@ -23,6 +24,7 @@ public class Panel {
         JPanel redPanel = new JPanel();
         redPanel.setBackground(Color.RED);
         redPanel.setBounds(0, 0, 250, 250);
+        redPanel.setLayout(new SpringLayout());
 
         return redPanel;
     }
@@ -45,9 +47,8 @@ public class Panel {
 
     private static JLabel label () {
         JLabel label = new JLabel();
-        ImageIcon icon = new ImageIcon("/home/isla-jr/Downloads/27243728.jpg");
-        label.setText("Hello, Isla! ");
-        label.setIcon(icon);
+        label.setText("Akinmokun");
+        label.setHorizontalAlignment(JLabel.RIGHT);
 
         return label;
     }
