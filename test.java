@@ -455,6 +455,9 @@ public class test {
  * Border - by default aligns elements to the left from top to bottom in a vertical manner (stacking)
  * Flow - by default aligns elements to the center of the top from left to right in a horizontal manner.
  *
+ * in cases where yuo are not using a layout manager, you can manually set the bounds for the component with the .setBounds() method
+ * and spring will position the relative to the container it is in.
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
