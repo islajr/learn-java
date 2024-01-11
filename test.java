@@ -458,6 +458,9 @@ public class test {
  * in cases where yuo are not using a layout manager, you can manually set the bounds for the component with the .setBounds() method
  * and spring will position the relative to the container it is in.
  *
+ * JBUTTON
+ *
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
