@@ -459,6 +459,22 @@ public class test {
  * and spring will position the relative to the container it is in.
  *
  * JBUTTON
+ * a jbutton is java is a gui component that functions as a button.
+ * it can do anything from displaying content to update website and web servers.
+ * Buttons are usually associated with an event. i.e: when you push a button, you expect something to happen.
+ * In order to recreate this, action listeners are used.
+ *
+ * A button is defined in java via the JButton class from the javax.swing package.
+ * it is defined and initialized the same way as any object type.
+ * when initializing a button instance, some text you want the button to bear may be passed as string arguments.
+ * since buttons are also customizable components, it is logical for them to have bounds.
+ * and as usual, button bounds take in x-position, y-position, width and height attributes.
+ *
+ * the twist comes in when you try to make the button 'do something'.
+ * for a button to 'do something' you have to make the button listen for an event that will trigger the action.
+ * such event may be a click, a hover or even a specific key combination.
+ * you can achieve this with the Action Listener class.
+ * this class is attached to the button instance via the dot operator
  *
  *
  * NOTES
