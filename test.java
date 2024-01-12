@@ -481,6 +481,16 @@ public class test {
  *
  * this can be a way to make the button do whatever is in the expression part of the line.
  *
+ * .setText("string") takes in a text display label for the button.
+ * .setFocusable(boolean) controls whether the button is in focus or not.
+ * the icon of the button can be set with the .setIcon(imageIcon) method.
+ * .setFont(new Font("Hack", style, size)) helps in adjusting the font
+ * .setIconTextGap() adjusts the distance between the icon and the text.
+ * .setForeground(color) - adjusts text colour
+ * .setBackground(color) - adjusts the background colour of a button.
+ * .setBorder(BorderFactory.createWhateverBorder) helps you add a border to your button
+ * .setEnables(boolean) - enables or disables a button.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++

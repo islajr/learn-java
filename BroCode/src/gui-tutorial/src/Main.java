@@ -18,6 +18,7 @@ public class Main {
         });*/
         button.addActionListener(actionEvent -> System.out.println("I'm active!"));
         button.setText("Click me!");
+        button.setFocusable(false);
 
         frame.setLayout(null);
         frame.setSize(1080, 1080);
