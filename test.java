@@ -473,8 +473,13 @@ public class test {
  * the twist comes in when you try to make the button 'do something'.
  * for a button to 'do something' you have to make the button listen for an event that will trigger the action.
  * such event may be a click, a hover or even a specific key combination.
- * you can achieve this with the Action Listener class.
- * this class is attached to the button instance via the dot operator
+ * you can achieve this with the Action Listener interface in the java.awt.event.ActionListener class.
+ * this class is attached to the button instance by some sort of callback function (see Main.java in this commit)
+ * but the easy way to do this is to usee an anonymous function.
+ * An anonymous function is usually a one-liner function, similar to javascript arrow functions.
+ * it takes the syntax: instance.method(variable -> expression);
+ *
+ * this can be a way to make the button do whatever is in the expression part of the line.
  *
  *
  * NOTES

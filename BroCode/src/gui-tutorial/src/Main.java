@@ -9,12 +9,15 @@ public class Main {
         JButton button = new JButton("Click me!");
 
         button.setBounds(250, 250, 100, 50);
-        button.addActionListener(new ActionListener() {
+
+       /* button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.out.println("I'm active!");
             }
-        });
+        });*/
+        button.addActionListener(actionEvent -> System.out.println("I'm active!"));
+        button.setText("Click me!");
 
         frame.setLayout(null);
         frame.setSize(1080, 1080);
