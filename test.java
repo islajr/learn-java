@@ -458,6 +458,13 @@ public class test {
  * in cases where yuo are not using a layout manager, you can manually set the bounds for the component with the .setBounds() method
  * and spring will position the relative to the container it is in.
  *
+ * BORDER LAYOUT
+ * Is a layout designed to place elements in one of five major areas: north, south, east, west, center.
+ * Whatever is put in the center expands and contracts relative to the size and proportion of the frame.
+ * top and bottom components respond to horizontal changes.
+ * east and west components respond to vertical changes.
+ *
+ *
  * JBUTTON
  * a jbutton is java is a gui component that functions as a button.
  * it can do anything from displaying content to update website and web servers.
