@@ -439,6 +439,7 @@ public class test {
  * Then new bounds for the label should be specified with label.setBounds(xposition, yposition, xwidth, ywidth);
  *
  * JFRAME.pack() - adjusts the frame to accordingly to accomodate whatever is inside of a label.
+ * JFrame.add() - can take in positions alongside a component, specifying where within the frame the component will stay.
  *
  * JPANEL
  * Similar to Labels, panels are also frame components but they serve mainly as a container for other components.
@@ -448,12 +449,16 @@ public class test {
  * Since panels serve as containers, they can hold almost anything as long as the dimensions and layout are suitable.
  * They can hold even labels. i.e: labels can be fit into panels, which in turn can be added to the frame.
  *
+ * .setPreferredSize(dimension) - takes in a dimension class that takes in width and height arguments.
+ *
+ * interestingly, panels can also contain other panels. (see code in Layout.java)
+ *
  * LAYOUTS
  * Layouts refer to the structure of a component.
  * As mentioned earlier, the default layout of a frame is the border layout.
  * There are other types, namely: box, spring, overlay, flow, etc; and they differ from each other based on the arrangement of elements.
  * Border - by default aligns elements to the left from top to bottom in a vertical manner (stacking)
- * Flow - by default aligns elements to the center of the top from left to right in a horizontal manner.
+ * Flow - by default aligns elements to the center of the top from left to right in a horizontal manner. (used by panels)
  *
  * in cases where yuo are not using a layout manager, you can manually set the bounds for the component with the .setBounds() method
  * and spring will position the relative to the container it is in.
@@ -463,7 +468,8 @@ public class test {
  * Whatever is put in the center expands and contracts relative to the size and proportion of the frame.
  * top and bottom components respond to horizontal changes.
  * east and west components respond to vertical changes.
- *
+ * when setting a border layout for a frame, it is possible to add margins between horizontal and vertical components.
+ * this is done by passing the required pixels for width and height accordingly as arguments.
  *
  * JBUTTON
  * a jbutton is java is a gui component that functions as a button.

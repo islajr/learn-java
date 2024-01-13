@@ -36,6 +36,29 @@ public class Layout {
         frame.add(west, BorderLayout.WEST);
         frame.add(center, BorderLayout.CENTER);
 
+        // creating subpanels
+        JPanel subPanel1 = new JPanel();
+        JPanel subPanel2 = new JPanel();
+        JPanel subPanel3 = new JPanel();
+        JPanel subPanel4 = new JPanel();
+
+        center.setLayout(new BorderLayout(10, 10));
+
+        subPanel1.setBackground(Color.magenta);
+        subPanel2.setBackground(Color.white);
+        subPanel3.setBackground(Color.orange);
+        subPanel4.setBackground(Color.cyan);
+
+
+        subPanel1.setPreferredSize(new Dimension(40, 40));
+        subPanel2.setPreferredSize(new Dimension(40, 40));
+        subPanel3.setPreferredSize(new Dimension(40, 40));
+        subPanel4.setPreferredSize(new Dimension(40, 40));
+
+        center.add(subPanel1, BorderLayout.NORTH);
+        center.add(subPanel2, BorderLayout.SOUTH);
+        center.add(subPanel3, BorderLayout.EAST);
+        center.add(subPanel4, BorderLayout.WEST);
 
     }
 }
