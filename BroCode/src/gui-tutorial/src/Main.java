@@ -17,9 +17,9 @@ public class Main {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-//                System.out.println("I'm active!");
+                System.out.println("I'm active!");
                 image.setVisible(true);
-                frame.add(image);
+                image.setBounds(0, 0, 720, 720);
             }
         });
 //        button.addActionListener(actionEvent -> System.out.println("I'm active!"));
@@ -30,7 +30,7 @@ public class Main {
         frame.setSize(1080, 1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(button);
-//        frame.add(image);
+        frame.add(image);
         frame.setVisible(true);
     }
 
