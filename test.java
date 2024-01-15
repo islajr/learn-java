@@ -471,6 +471,14 @@ public class test {
  * when setting a border layout for a frame, it is possible to add margins between horizontal and vertical components.
  * this is done by passing the required pixels for width and height accordingly as arguments.
  *
+ * FLOW LAYOUT
+ * places components horizontally in a row from left to right, relative to the dimension of the frame.
+ * if the row gets too small, or too tight, the components overflowing move to the next row automatically.
+ * by default, components are aligned to the center but this can be changed with the .setHorizontalAlignment() method.
+ * alignment can be to the left, right, center, leading (extreme left) or trailing (extreme right).
+ *
+ * when creating an instance of a flow layout, arguments for alignment, hgap and vgap can be passed in that order.
+ *
  * JBUTTON
  * a jbutton is java is a gui component that functions as a button.
  * it can do anything from displaying content to update website and web servers.
