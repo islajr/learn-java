@@ -479,6 +479,13 @@ public class test {
  *
  * when creating an instance of a flow layout, arguments for alignment, hgap and vgap can be passed in that order.
  *
+ * GRID LAYOUT
+ * places components in a 'grid of cells', i.e: each cell is the same size and each component takes up all available
+ * space within its cell
+ * when defining a grid layout, arguments for rows and columns (in that order) can be passed and no matter how small
+ * the frame gets, this rule is always obeyed, even at the expense of reducing the size of each individual cell.
+ * horizontal and vertical spacing between cells can also be set after the rows and columns arguments.
+ *
  * JBUTTON
  * a jbutton is java is a gui component that functions as a button.
  * it can do anything from displaying content to update website and web servers.
