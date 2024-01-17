@@ -20,9 +20,10 @@ public class LayeredPane {
 
         JLayeredPane layeredPane = new JLayeredPane();
         layeredPane.setBounds(0, 0,1080, 1080);
-        layeredPane.add(label1);
-        layeredPane.add(label2);
-        layeredPane.add(label3);
+//        layeredPane.add(label1, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(label1, Integer.valueOf(0));    // integer wrapper class use case.
+        layeredPane.add(label2, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.add(label3, JLayeredPane.DRAG_LAYER);
 
         JFrame frame = new JFrame();
         frame.add(layeredPane);

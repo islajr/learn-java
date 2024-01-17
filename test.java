@@ -522,6 +522,16 @@ public class test {
  * JLAYEREDPANE
  * is a swing container that provides a third dimension for positioning components.
  * quite similar to the jpanel, it can hold 2D components but unlike the JPanel, it accepts a 3D argument.
+ * in a layered pane, the first added component is fitted on top and the rest are arranged below it in an orderly fashion.
+ * this order can be altered.
+ * there are names for each layer in order of appearance and stacking: default, palette, modal, popup, drag, with
+ * default being the bottom layer and drag being the top-most layer.
+ * to alter the default stacking process, when adding a component to a layeredpane, the desired layer should be added as an extra argument.
+ * i.e: JLayeredPane.add(JPanel, JLayeredPane.DEFAULT_LAYER);
+ *
+ * it is challenging to master the various layer names and their order and as thus, integer wrapper classes can be used
+ * to represent each layer.
+ * in other words, instead of JLayeredPane.DEFAULT_LAYER, an integer wrapper class can be used. Integer.valueOf(number);
  *
  *
  * NOTES
