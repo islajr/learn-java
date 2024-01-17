@@ -519,6 +519,10 @@ public class test {
  * .setBorder(BorderFactory.createWhateverBorder) helps you add a border to your button
  * .setEnables(boolean) - enables or disables a button.
  *
+ * JLAYEREDPANE
+ * is a swing container that provides a third dimension for positioning components.
+ * quite similar to the jpanel, it can hold 2D components but unlike the JPanel, it accepts a 3D argument.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
