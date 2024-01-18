@@ -533,6 +533,9 @@ public class test {
  * to represent each layer.
  * in other words, instead of JLayeredPane.DEFAULT_LAYER, an integer wrapper class can be used. Integer.valueOf(number);
  *
+ * LAUNCHPAGE
+ * is a means of creating a new window from an existing one.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
