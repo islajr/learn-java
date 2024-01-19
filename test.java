@@ -509,6 +509,16 @@ public class test {
  * An anonymous function is usually a one-liner function, similar to javascript arrow functions.
  * it takes the syntax: instance.method(variable -> expression);
  *
+ * --- new ---
+ * to add an action to a button, the ActionListener interface needs to be imported and implemented by the class.
+ * to make it work, the actionPerformed method must be overridden within the class with an ActionEvent argument passed in.
+ * inside of the actionPerformed method, a condition for a button click must be inserted and it is usually (ActionEvent.getSource() == button).
+ * in other words, if the source of the trigger is the specified button, carry out a specific order.
+ *
+ * while all of this is good, it means nothing if the button is not listening for clicks to trigger the event.
+ * as such, an actionListener needs to be added to the button with the .addActionListener(this) method with the 'this' passed as an argument.
+ * this means that a trigger listener is added to 'THIS' particular button.
+ *
  * this can be a way to make the button do whatever is in the expression part of the line.
  *
  * .setText("string") takes in a text display label for the button.
