@@ -414,6 +414,8 @@ public class test {
  * It takes in an instance of the java.awt.Color class that must also be imported.
  * New colors can also be created within the argument parenthesis with the new Color() command.
  *
+ * frames can be closed automatically with the JFrame.dispose() method.
+ *
  * JLABEL
  * Is a componen of a jframe that displays things like texts and images. It is a class contained in the javax.swing package.
  * It can be added to the frame with the Jframe.add() method.
