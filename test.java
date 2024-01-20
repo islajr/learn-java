@@ -545,8 +545,15 @@ public class test {
  * to represent each layer.
  * in other words, instead of JLayeredPane.DEFAULT_LAYER, an integer wrapper class can be used. Integer.valueOf(number);
  *
- * LAUNCHPAGE
- * is a means of creating a new window from an existing one.
+ * JOPTIONPANE
+ * is a standard dialog pop-up box that serves as a prompt for a user.
+ * it is contained in the java.swing.JOptionPane class and this needs to be imported accordingly.
+ * it does not need to be instantiated as its methods can be used directly in a main method.
+ * see example: JOptionPane.showMessage(parentComponent, message, title, type);
+ * in event of a lack of a parent component, null will suffice.
+ * types of JOptionPanes greatly affect the look of the pane:
+ * JOptionPane.PLAIN_MESSAGE, INFORMATION, ERROR, QUESTION, WARNING
+ *
  *
  *
  * NOTES
