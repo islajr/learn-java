@@ -555,7 +555,10 @@ public class test {
  * JOptionPane.PLAIN_MESSAGE, INFORMATION, ERROR, QUESTION, WARNING and they seek to perform different functions.
  * typically, with varying types of option pane messages come varying types of icons beside the text.
  *
- *
+ * JOptionPane.showConfirmDialog is another method that can be used.
+ * similar to the one before it, it takes in the same arguments; the distinction comes in when passing the 'type' argument.
+ * the options available are: JOptionPane.YES_NO_CANCEL_OPTION (yes - 0, no - 1, cancel - 2, x - -1);
+ * JOptionPane.showInputDialog(string) - prompts the user for a string response and returns a string.
  *
  * NOTES
  * what is the difference between ++x and x++
