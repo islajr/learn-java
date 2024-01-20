@@ -552,7 +552,8 @@ public class test {
  * see example: JOptionPane.showMessage(parentComponent, message, title, type);
  * in event of a lack of a parent component, null will suffice.
  * types of JOptionPanes greatly affect the look of the pane:
- * JOptionPane.PLAIN_MESSAGE, INFORMATION, ERROR, QUESTION, WARNING
+ * JOptionPane.PLAIN_MESSAGE, INFORMATION, ERROR, QUESTION, WARNING and they seek to perform different functions.
+ * typically, with varying types of option pane messages come varying types of icons beside the text.
  *
  *
  *
