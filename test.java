@@ -559,6 +559,11 @@ public class test {
  * similar to the one before it, it takes in the same arguments; the distinction comes in when passing the 'type' argument.
  * the options available are: JOptionPane.YES_NO_CANCEL_OPTION (yes - 0, no - 1, cancel - 2, x - -1);
  * JOptionPane.showInputDialog(string) - prompts the user for a string response and returns a string.
+ * JOptionPane.showOptionDialog(parent, message, title, paneType, meassageType, icon, options, initialValue): this method
+ * combines all of the above methods into one.
+ * the options argument is an array of strings containing possible override options for the default options.
+ * for example, insted of yes_no_cancel, it could be anything you want.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
