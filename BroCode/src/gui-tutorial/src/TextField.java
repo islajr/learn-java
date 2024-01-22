@@ -12,8 +12,10 @@ public class TextField extends JFrame implements ActionListener {
 
         field = new JTextField();
         field.setPreferredSize(new Dimension(250, 25));
+        field.setFont(new Font("Times New Roman", Font.BOLD, 16));
 
         submit = new JButton("Submit");
+        submit.setFont(new Font(null, Font.BOLD, 17));
         submit.addActionListener(this);
 
         this.add(field);
