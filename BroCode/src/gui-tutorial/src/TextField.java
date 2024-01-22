@@ -32,6 +32,8 @@ public class TextField extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         if (actionEvent.getSource() == submit) {
             System.out.println(field.getText());
+            field.setEditable(false);   // disables the text field after a text has been sent.
+            submit.setEnabled(false);   // disables the button after the text has been submitted.
         }
     }
 }
