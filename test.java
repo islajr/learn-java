@@ -564,6 +564,13 @@ public class test {
  * the options argument is an array of strings containing possible override options for the default options.
  * for example, insted of yes_no_cancel, it could be anything you want.
  *
+ * JTEXTFIELD
+ * is a GUI textbox component used to add, set, or get text.
+ * When setting up a text field, it is possible to specifty the preferred dimension with the .setPreferredSize() method
+ * that takes in a dimension type of width and height respectively.
+ *
+ * Useful JTextField functions include: .getText() returns whatever text is in the textfield.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
