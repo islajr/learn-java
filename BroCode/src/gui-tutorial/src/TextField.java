@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,11 +12,14 @@ public class TextField extends JFrame implements ActionListener {
         this.setLayout(new FlowLayout());
 
         field = new JTextField();
-        field.setPreferredSize(new Dimension(250, 25));
-        field.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        field.setPreferredSize(new Dimension(250, 25)); // sets the size of the text field.
+        field.setFont(new Font("Times New Roman", Font.BOLD, 16));  // sets the font of the field.
+        field.setBorder(new SoftBevelBorder(1));    // changes the border type of the textfield.
+        field.setText("What's on your mind?");  // sets placeholder
+        field.setEditable(true);   // makes the field editable (or not) - set to true by default.
 
         submit = new JButton("Submit");
-        submit.setFont(new Font(null, Font.BOLD, 17));
+        submit.setFont(new Font("Times New Roman", Font.BOLD, 16));
         submit.addActionListener(this);
 
         this.add(field);
