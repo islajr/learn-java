@@ -570,6 +570,11 @@ public class test {
  * that takes in a dimension type of width and height respectively.
  *
  * Useful JTextField functions include: .getText() returns whatever text is in the textfield.
+ * .setText() sets a placeholder text for the field
+ * .setEditable(boolean) - makes a field editable or not.
+ * .setPreferredSize(new Dimension) - sets the size for the text field
+ * .setFont(new Font) - sets the font to be used in the text field.
+ * .setBorder() - selects the type of border for the text field.
  *
  *
  * NOTES
