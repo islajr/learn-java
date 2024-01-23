@@ -9,9 +9,14 @@ public class CheckBox extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
 
+        ImageIcon tick = new ImageIcon("/home/isla-jr/Pictures/green_tick.jpg");
+        ImageIcon cross = new ImageIcon("/home/isla-jr/Pictures/red_x.png");
+
         checker = new JCheckBox("Boy");
         checker.setFocusable(false);
-        checker.setPreferredSize(new Dimension(100, 100));
+//        checker.setPreferredSize(new Dimension(50, 100));
+        checker.setIcon(tick);
+        checker.setSelectedIcon(cross);
         checker.addActionListener(this);
         checker.setFont(new Font("Noto Serif", Font.BOLD, 15));
 
@@ -23,7 +28,7 @@ public class CheckBox extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if (actionEvent.getSource() == checker) {
-            checker.setEnabled(false);
+//            checker.setEnabled(false);
             System.out.println("This is a " + checker.getText());
         }
     }

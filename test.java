@@ -576,6 +576,14 @@ public class test {
  * .setFont(new Font) - sets the font to be used in the text field.
  * .setBorder() - selects the type of border for the text field.
  *
+ * JCHECKBOX
+ * checkboxes are pretty self-explanatory.
+ * they work similarly to how text field work in terms of having the same methods.
+ * JCheckBox.isSelected() returns a boolean showing if the checkbox has or hasn't been ticked.
+ *
+ * it is possible to edit the appearance of a checkbox with the .setIcon(icon) method
+ * .setSelectedicon(icon) changes the appearance of a checkbox when it is selected.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
