@@ -590,6 +590,8 @@ public class test {
  * this defeats the entire point and as such, non-contingent options need to be grouped into similar button groups.
  *
  * A button group is a type (ButtonGroup) that takes in buttons and groups them together.
+ * similar to checkboxes, specific icons can be set with the .setIcon(icon) method.
+ *
  *
  *
  * NOTES
