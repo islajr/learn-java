@@ -584,6 +584,9 @@ public class test {
  * it is possible to edit the appearance of a checkbox with the .setIcon(icon) method
  * .setSelectedicon(icon) changes the appearance of a checkbox when it is selected.
  *
+ * JRADIOBUTTONS
+ * are groups of one or more buttons where only one may be selected per group.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
