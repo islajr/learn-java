@@ -586,6 +586,10 @@ public class test {
  *
  * JRADIOBUTTONS
  * are groups of one or more buttons where only one may be selected per group.
+ * typically, when radio buttons are defined, they can be more than one of them can be selected at a time.
+ * this defeats the entire point and as such, non-contingent options need to be grouped into similar button groups.
+ *
+ * A button group is a type (ButtonGroup) that takes in buttons and groups them together.
  *
  *
  * NOTES
