@@ -13,6 +13,7 @@ public class ComboBox extends JFrame implements ActionListener {
         // list of items to be in the combo box
         String[] strikers = {"Cristiano", "Benzema", "Suarez", "Lewandowski"};
         comboBox = new JComboBox(strikers);
+        comboBox.addActionListener(this);
 
         this.add(comboBox);
         this.pack();
@@ -21,6 +22,8 @@ public class ComboBox extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed (ActionEvent actionEvent) {
-
+        if (actionEvent.getSource() == comboBox) {
+            System.out.println(comboBox.getSelectedItem());
+        }
     }
 }

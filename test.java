@@ -595,6 +595,19 @@ public class test {
  * JCOMBOBOXES
  * a combo box is one that contains a dropdown list of objects and an editable field or button.
  * it is used to cycle between selections.
+ * a new combo box is created by creating an instance of the class JComboBox.
+ * when defining it, a list of objects can be passed in at the moment of instantiation.
+ * some useful methods are:
+ * .addItem(object) for adding new items to the list in the combo box
+ * .getSelectedItem() returns a string version of the currently selected item of the combo box.
+ * .getSelectedIndex() returns an integer of the index of the currently selected item of the combo box.
+ * .setEditable(boolean) controls the editability and selectability of the combo box.
+ * .getItemCount() returns an integer of the total current items in the combo box.
+ * .insertItemAt(string, int) inserts a new item into a specified index point.
+ * .setSelectedIndex(int) sets the default selected index at run time.
+ * .removeItem(item) removes an item from the combo box.
+ * .removeItemAt(int) removes the item at the specified index.
+ * .removeAllItems() - resets the combo box.
  *
  * NOTES
  * what is the difference between ++x and x++
