@@ -592,7 +592,9 @@ public class test {
  * A button group is a type (ButtonGroup) that takes in buttons and groups them together.
  * similar to checkboxes, specific icons can be set with the .setIcon(icon) method.
  *
- *
+ * JCOMBOBOXES
+ * a combo box is one that contains a dropdown list of objects and an editable field or button.
+ * it is used to cycle between selections.
  *
  * NOTES
  * what is the difference between ++x and x++
