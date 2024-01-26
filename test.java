@@ -609,6 +609,18 @@ public class test {
  * .removeItemAt(int) removes the item at the specified index.
  * .removeAllItems() - resets the combo box.
  *
+ * it is important to note that combo boxes only accept arrays of reference data types (strings, other types).
+ * primitive data types wont work and if they need to be used, the wrapper classes of such types would need to be used instead.
+ *
+ * JSLIDER
+ * is a gui component that lets users enter values by using an adjustable slider.
+ * it can be found in the javax.swing.JSlider class.
+ *
+ * for JSliders to work, a change listener that listens for any change must be added to any instance of the class.
+ * Change Listeners, when implemented as an interface, have a stateChanged method that needs to be overriden.
+ * the stateChanged method takes in a ChangeEvent argument that is used to listen for particular changes.
+ *
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
@@ -650,5 +662,7 @@ public class test {
  * Also, to deploy this sub-class in the main method, one needs only instantiate the sub class.
  * If there is nothing to be edited, the instantiation can be carried out without the usual LHS of the statement.
  * In other words, instead of Myframe frame = new MyFrame();, new MyFrame(); would work!
+ *
+ *
  *
  */
