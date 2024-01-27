@@ -21,6 +21,11 @@ public class Slider extends JFrame implements ChangeListener {
         slider.setPaintTrack(true);
         slider.setMajorTickSpacing(20);
         slider.setPaintLabels(true);
+        slider.setFont(new Font("SF Pro Display", Font.BOLD, 15 ));
+        slider.setOrientation(SwingConstants.VERTICAL);
+
+        label.setText("Temperature is " + slider.getValue() + "C.");
+        label.setFont(new Font("SF Pro Display", Font.BOLD, 15));
 
         panel.add(slider);
         panel.add(label);

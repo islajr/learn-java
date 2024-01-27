@@ -624,6 +624,7 @@ public class test {
  * .setPaintTicks(boolean) is a prelude to .setMinorTickSpacing(boolean) and this sets the little ticks in the slider
  * .setPaintTrack(boolean) is a prelude to .setMajorTickSpacing(integer) and this prints the cummulative value at the specified interval.
  * .setPaintLabels(boolean) displays the numbers at the intervals specified by .setMajorTickSpacing().
+ * ,setOrientation(SwingConstants.VERTICAL) changes the orientation vertically.
  *
  *
  * NOTES
