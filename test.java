@@ -621,9 +621,9 @@ public class test {
  * the stateChanged method takes in a ChangeEvent argument that is used to listen for particular changes.
  *
  * when defining a JSlider, it takes in a minimum, maximum and starting point value, all in integers.
- * .setPaintTicks() is a prelude to .setMinorTickSpacing(boolean) and this sets the little ticks in the slider
- * .setPaintTrack() is a prelude to .setMajorTickSpacing(integer) and this prints the cummulative value at the specified interval.
- * .setPaintLabels(
+ * .setPaintTicks(boolean) is a prelude to .setMinorTickSpacing(boolean) and this sets the little ticks in the slider
+ * .setPaintTrack(boolean) is a prelude to .setMajorTickSpacing(integer) and this prints the cummulative value at the specified interval.
+ * .setPaintLabels(boolean) displays the numbers at the intervals specified by .setMajorTickSpacing().
  *
  *
  * NOTES

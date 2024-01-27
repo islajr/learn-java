@@ -15,7 +15,7 @@ public class Slider extends JFrame implements ChangeListener {
         label = new JLabel();
         panel = new JPanel();
         slider = new JSlider(0, 100, 50);
-        slider.setSize(new Dimension(720, 420));
+        slider.setPreferredSize(new Dimension(700, 400));
         slider.setPaintTicks(true);
         slider.setMinorTickSpacing(10);
         slider.setPaintTrack(true);
