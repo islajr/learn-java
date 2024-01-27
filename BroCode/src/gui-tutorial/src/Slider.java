@@ -27,6 +27,8 @@ public class Slider extends JFrame implements ChangeListener {
         label.setText("Temperature is " + slider.getValue() + "C.");
         label.setFont(new Font("SF Pro Display", Font.BOLD, 15));
 
+        slider.addChangeListener(this);
+
         panel.add(slider);
         panel.add(label);
 
@@ -36,6 +38,6 @@ public class Slider extends JFrame implements ChangeListener {
     }
     @Override
     public void stateChanged(ChangeEvent changeEvent) {
-
+        label.setText("Temperature is " + slider.getValue() + "C.");
     }
 }
