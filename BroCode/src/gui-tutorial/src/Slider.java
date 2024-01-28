@@ -8,6 +8,7 @@ public class Slider extends JFrame implements ChangeListener {
     JPanel panel;
     JLabel label;
     JSlider slider;
+    JTextField field;
     Slider () {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Slider Demo");
@@ -24,13 +25,17 @@ public class Slider extends JFrame implements ChangeListener {
         slider.setFont(new Font("SF Pro Display", Font.BOLD, 15 ));
         slider.setOrientation(SwingConstants.VERTICAL);
 
-        label.setText("Temperature is " + slider.getValue() + "C.");
-        label.setFont(new Font("SF Pro Display", Font.BOLD, 15));
+        field = new JTextField("Temp: " + slider.getValue() + "C.");
+//        field.setText("Temperature is " + slider.getValue() + "C.");
+        field.setFont(new Font("SF Pro Display", Font.BOLD, 15));
+//        field.setLayout(new FlowLayout());
+//        field.setPreferredSize(new Dimension(100, 100));
 
         slider.addChangeListener(this);
 
         panel.add(slider);
         panel.add(label);
+        panel.add(field);
 
         this.add(panel);
         this.setSize(720, 720);

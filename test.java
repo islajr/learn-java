@@ -627,6 +627,9 @@ public class test {
  * .setOrientation(SwingConstants.VERTICAL) changes the orientation vertically.
  * JSlider.getValue() returns the current value of the JSlider.
  *
+ * Progress Bar
+ *
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
