@@ -25,7 +25,7 @@ public class Slider extends JFrame implements ChangeListener {
         slider.setFont(new Font("SF Pro Display", Font.BOLD, 15 ));
         slider.setOrientation(SwingConstants.VERTICAL);
 
-        field = new JTextField("Temp: " + slider.getValue() + "C.");
+        field = new JTextField("Temperature: " + slider.getValue() + "C.");
 //        field.setText("Temperature is " + slider.getValue() + "C.");
         field.setFont(new Font("SF Pro Display", Font.BOLD, 15));
 //        field.setLayout(new FlowLayout());
@@ -34,7 +34,7 @@ public class Slider extends JFrame implements ChangeListener {
         slider.addChangeListener(this);
 
         panel.add(slider);
-        panel.add(label);
+//        panel.add(label);
         panel.add(field);
 
         this.add(panel);
@@ -43,6 +43,6 @@ public class Slider extends JFrame implements ChangeListener {
     }
     @Override
     public void stateChanged(ChangeEvent changeEvent) {
-        label.setText("Temperature is " + slider.getValue() + "C.");
+        field.setText("Temperature: " + slider.getValue() + "C.");
     }
 }
