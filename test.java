@@ -639,6 +639,8 @@ public class test {
  * text can be added to the progress bar with the .setString() method.
  * the default progress bar colour is 'blue' but can be changed with the .setForegroundColor() and the .setBackgroundColor() methods as appropriate.
  *
+ * when instatiating a progress bar, it takes in minimum and maximum values and throw exceptions when these values are exceeded.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++

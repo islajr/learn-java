@@ -6,8 +6,8 @@ public class Progress extends JFrame {
 
     Progress () {
 
-        progress = new JProgressBar();
-        progress.setValue(0);
+        progress = new JProgressBar(0, 100);
+//        progress.setValue(0);
         progress.setBounds(0, 0, 420, 50);
         progress.setStringPainted(true);
         progress.setFont(new Font("SF Display Pro", Font.BOLD, 16));
@@ -25,7 +25,7 @@ public class Progress extends JFrame {
     }
 
     private void fill () {
-        for (int i = 0; i <= 100; i+=10) {
+        for (int i = 100; i >= 0; i-=10) {
             progress.setValue(i);
             try {
                 Thread.sleep(1000);
@@ -34,7 +34,7 @@ public class Progress extends JFrame {
             }
         }
 
-        progress.setString("Completed!");
+        progress.setString("Dead!");
     }
 
 }
