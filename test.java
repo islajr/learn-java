@@ -627,8 +627,14 @@ public class test {
  * .setOrientation(SwingConstants.VERTICAL) changes the orientation vertically.
  * JSlider.getValue() returns the current value of the JSlider.
  *
- * Progress Bar
+ * JPROGRESSBAR
+ * A JProgressBar is one that indicates the progress level of a particular operation, typically on a scale of 1-100.
+ * it can be found in the package javax.swing.JProgressBar.
+ * all other methods remain as you would expect but here are a few worth noting:
+ * .setValue(int) - sets the value of the bar.
+ * .setStringPainted(true) - gives the bar a string percentage in the centre.
  *
+ * a progress bar may be filled in a number of ways, most popularly through a loop.
  *
  * NOTES
  * what is the difference between ++x and x++
