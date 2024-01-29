@@ -17,6 +17,19 @@ public class Progress extends JFrame {
         this.setLayout(null);
         this.pack();
         this.setVisible(true);
+
+        fill();
+    }
+
+    private void fill () {
+        for (int i = 0; i <= 100; i+=10) {
+            progress.setValue(i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }
