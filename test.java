@@ -634,7 +634,11 @@ public class test {
  * .setValue(int) - sets the value of the bar.
  * .setStringPainted(true) - gives the bar a string percentage in the centre.
  *
- * a progress bar may be filled in a number of ways, most popularly through a loop.
+ * a progress bar may be filled in a number of ways, most popularly through a loop which ideally should be placed at the
+ * bottom of the program, after the frame has been made visible.
+ * text can be added to the progress bar with the .setString() method.
+ * the default progress bar colour is 'blue' but can be changed with the .setForegroundColor() and the .setBackgroundColor() methods as appropriate.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++

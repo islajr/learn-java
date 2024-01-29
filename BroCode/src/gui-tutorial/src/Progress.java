@@ -10,6 +10,9 @@ public class Progress extends JFrame {
         progress.setValue(0);
         progress.setBounds(0, 0, 420, 50);
         progress.setStringPainted(true);
+        progress.setFont(new Font("SF Display Pro", Font.BOLD, 16));
+        progress.setForeground(Color.BLACK);
+        progress.setBackground(Color.WHITE);
 
         this.add(progress);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +33,8 @@ public class Progress extends JFrame {
                 throw new RuntimeException(e);
             }
         }
+
+        progress.setString("Completed!");
     }
 
 }
