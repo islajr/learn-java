@@ -641,6 +641,13 @@ public class test {
  *
  * when instatiating a progress bar, it takes in minimum and maximum values and throw exceptions when these values are exceeded.
  *
+ * JMENUBAR
+ * different from a MenuBar, a JMenuBar is a java-specific menu bar housing the most important file methods.
+ * it is contained in the javax.swing package.
+ * it is instantiated in pretty much the same way as anything else but a JMenuBar is special in that while other components
+ * need to be the added to the JFrame, a JMenuBar needs to be 'set'.
+ * it follows the procedure: JFrame.setJMenuBar(mb);
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
