@@ -12,6 +12,15 @@ public class Menu implements ActionListener {
 
         JMenuBar menuBar = new JMenuBar();
 
+
+        JMenu fileMenu = new JMenu("File");
+        JMenu editMenu = new JMenu("Edit");
+        JMenu helpMenu = new JMenu("Help");
+
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+        menuBar.add(helpMenu);
+
         frame.setJMenuBar(menuBar);
         frame.setVisible(true);
     }

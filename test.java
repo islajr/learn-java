@@ -648,6 +648,8 @@ public class test {
  * need to be the added to the JFrame, a JMenuBar needs to be 'set'.
  * it follows the procedure: JFrame.setJMenuBar(mb);
  *
+ * a JMenuBar will be empty if no menus are added.
+ * menus are instances of the JMenu class and are added to the parent JMenuBar component to be held in a bar.
  *
  * NOTES
  * what is the difference between ++x and x++
