@@ -17,6 +17,22 @@ public class Menu implements ActionListener {
         JMenu editMenu = new JMenu("Edit");
         JMenu helpMenu = new JMenu("Help");
 
+        JMenuItem loadItem = new JMenuItem("Load");
+        JMenuItem saveItem = new JMenuItem("Save");
+        JMenuItem saveAsItem = new JMenuItem("Save As");
+        JMenuItem exitItem = new JMenuItem("Exit");
+
+        loadItem.addActionListener(this);
+        saveItem.addActionListener(this);
+        saveAsItem.addActionListener(this);
+        exitItem.addActionListener(this);
+
+        fileMenu.add(loadItem);
+        fileMenu.add(saveItem);
+        fileMenu.add(saveAsItem);
+        fileMenu.add(exitItem);
+
+
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         menuBar.add(helpMenu);
@@ -27,6 +43,8 @@ public class Menu implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-
+        if (actionEvent.getSource() == loadItem){
+            System.out.println("You have loaded a file");
+        }
     }
 }

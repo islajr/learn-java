@@ -650,6 +650,7 @@ public class test {
  *
  * a JMenuBar will be empty if no menus are added.
  * menus are instances of the JMenu class and are added to the parent JMenuBar component to be held in a bar.
+ * inside of menus are menu items which are instances of JMenuItems.
  *
  * NOTES
  * what is the difference between ++x and x++
