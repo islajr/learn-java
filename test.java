@@ -653,6 +653,8 @@ public class test {
  * inside of menus are menu items which are instances of JMenuItems.
  *
  * .setMnemonic(KeyEvent) - sets a keyboard combination to trigger the object to which it is attached.
+ * .setIcon(Icon) - sets the icon for the menu item.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++
