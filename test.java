@@ -652,6 +652,8 @@ public class test {
  * menus are instances of the JMenu class and are added to the parent JMenuBar component to be held in a bar.
  * inside of menus are menu items which are instances of JMenuItems.
  *
+ * .setMnemonic(KeyEvent) - sets a keyboard combination to trigger the object to which it is attached.
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
