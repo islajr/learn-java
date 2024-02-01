@@ -655,6 +655,9 @@ public class test {
  * .setMnemonic(KeyEvent) - sets a keyboard combination to trigger the object to which it is attached.
  * .setIcon(Icon) - sets the icon for the menu item.
  *
+ * JFILECHOOSER
+ * a java class that lets a user interact with files with a gui. it enables choosing, opening, saving, etc of files.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++

@@ -22,7 +22,9 @@ public class Menu implements ActionListener {
         JMenuItem saveAsItem = new JMenuItem("Save As");
         JMenuItem exitItem = new JMenuItem("Exit");
 
-        loadItem.addActionListener(this);
+        loadItem.addActionListener(actionEvent -> {
+
+        });
         saveItem.addActionListener(this);
         saveAsItem.addActionListener(this);
         exitItem.addActionListener(this);
