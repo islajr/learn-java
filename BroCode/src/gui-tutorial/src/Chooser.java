@@ -23,8 +23,8 @@ public class Chooser extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         if (actionEvent.getSource() == button) {
             JFileChooser fileChooser = new JFileChooser();
-            int response = fileChooser.showOpenDialog(null);   // select file to browse through to open.
-
+//            int response = fileChooser.showOpenDialog(null);   // select file to browse through to open.
+              int response = fileChooser.showSaveDialog(null);
             if (response == JFileChooser.APPROVE_OPTION) {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 System.out.println(file);

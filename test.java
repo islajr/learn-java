@@ -658,8 +658,10 @@ public class test {
  * JFILECHOOSER
  * a java class that lets a user interact with files with a gui. it enables choosing, opening, saving, etc of files.
  * it is defined in the javax.swing.JFileChooser class and it has a bunch of cool methods.
- * .showOpenDialog() - brings up a dialog box enabling a user to browse through the computer's files.
- * .getSelectedFile()
+ * .showOpenDialog() - brings up a dialog box enabling a user to browse through the computer's files. (to open)
+ * .getSelectedFile() - returns the path to a selected file.
+ * .showSaveDialog() - brings up a dialog box so user can select file to save.
+ * .setCurrentDirectory(File) - sets a default directory to open and save files.
  *
  * NOTES
  * what is the difference between ++x and x++
