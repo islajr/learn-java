@@ -31,6 +31,8 @@ public class ColorChooser extends JFrame implements ActionListener {
             JColorChooser chooser = new JColorChooser();
 
             Color color = JColorChooser.showDialog(null, "Pick a Color", Color.black);
+
+            label.setForeground(color); // changes the foreground color of the label according to the color picked in the chooser.
         }
     }
 }
