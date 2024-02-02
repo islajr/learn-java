@@ -663,6 +663,9 @@ public class test {
  * .showSaveDialog() - brings up a dialog box so user can select file to save.
  * .setCurrentDirectory(File) - sets a default directory to open and save files.
  *
+ * JCOLORCHOOSER
+ * is a gui mechanism that lets a user pick a colour.
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
