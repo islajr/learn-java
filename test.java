@@ -665,6 +665,9 @@ public class test {
  *
  * JCOLORCHOOSER
  * is a gui mechanism that lets a user pick a colour.
+ * it is contained in the javax.swing.JColorChooser.
+ * .showDialog(parent, title, default) brings up a color chooser menu and returns a Color.
+ *
  *
  * NOTES
  * what is the difference between ++x and x++

@@ -28,7 +28,7 @@ public class ColorChooser extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvenet) {
         if (actionEvenet.getSource() == button) {
-            JColorChooser chooser = new JColorChooser();
+            new JColorChooser();
 
             Color color = JColorChooser.showDialog(null, "Pick a Color", Color.black);
 
