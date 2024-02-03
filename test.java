@@ -672,6 +672,12 @@ public class test {
  * similar to the action listener interface, the key listener interface is an event driven interface that responds to
  * certain triggers (the pressing of a key on the keyboard.)
  *
+ * with the key listener interface, there are methods that need to be implemented by default: keyTyped, keyPressed and keyReleased.
+ * they are all distinct, serve different purposes and take in a keyEvent argument.
+ * keyTyped - is triggered when a key is 'typed'. it returns a char and uses a keyChar
+ * keyPressed - is triggered when a key is pressed on a keyboard; it returns an int and uses a keyCode.
+ * keyReleased - is triggered when a key is released.
+ *
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
