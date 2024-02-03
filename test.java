@@ -668,6 +668,9 @@ public class test {
  * it is contained in the javax.swing.JColorChooser.
  * .showDialog(parent, title, default) brings up a color chooser menu and returns a Color.
  *
+ * KEY LISTENER INTERFACE
+ * similar to the action listener interface, the key listener interface is an event driven interface that responds to
+ * certain triggers (the pressing of a key on the keyboard.)
  *
  * NOTES
  * what is the difference between ++x and x++
