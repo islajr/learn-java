@@ -679,6 +679,8 @@ public class test {
  * keyTyped - is triggered when a key is 'typed'. it returns a char and uses a keyChar
  * keyPressed - is triggered when a key is pressed on a keyboard; it returns an int and uses a keyCode.
  * keyReleased - is triggered when a key is released.
+ * 
+ * arrow keys do not give off a key character. hence, to listen for them, key codes need to be used under the keyPressed method.
  *
  * NOTES
  * what is the difference between ++x and x++

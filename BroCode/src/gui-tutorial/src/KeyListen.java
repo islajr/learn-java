@@ -19,6 +19,7 @@ public class KeyListen extends JFrame implements KeyListener {
         label.setOpaque(true);
 
         this.add(label);
+        this.getContentPane().setBackground(Color.black);
 
         this.setVisible(true);
     }
@@ -27,19 +28,19 @@ public class KeyListen extends JFrame implements KeyListener {
     public void keyTyped(KeyEvent keyEvent) {
         switch (keyEvent.getKeyChar()) {
             case 'a':
-                label.setLocation(label.getX() - 1, label.getY());
+                label.setLocation(label.getX() - 5, label.getY());
                 break;
             
             case 'd':
-                label.setLocation(label.getX() + 1, label.getY());
+                label.setLocation(label.getX() + 5, label.getY());
                 break;
 
             case 'w':
-                label.setLocation(label.getX(), label.getY() - 1);
+                label.setLocation(label.getX(), label.getY() - 5);
                 break;
 
             case 's':
-                label.setLocation(label.getX(), label.getY() + 1);
+                label.setLocation(label.getX(), label.getY() + 5);
                 break;
 
             default:
@@ -49,7 +50,26 @@ public class KeyListen extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+        switch (keyEvent.getKeyCode()) {
+            case 37:
+                label.setLocation(label.getX() - 5, label.getY());
+                break;
+            
+            case 39:
+                label.setLocation(label.getX() + 5, label.getY());
+                break;
 
+            case 38:
+                label.setLocation(label.getX(), label.getY() - 5);
+                break;
+
+            case 40:
+                label.setLocation(label.getX(), label.getY() + 5);
+                break;
+
+            default:
+                break;
+        }
     }
 
     @Override
