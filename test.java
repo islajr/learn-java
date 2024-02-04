@@ -432,6 +432,8 @@ public class test {
  * .setIconTextGap() - takes in an integer that can alter the padding between text and image.
  * .setVerticalalignment(JLabel.top, center or bottom) - sets the vertical position of text + icon within a label
  * .setHorizontalAlignment(JLabel.left, center, right) - sets the horizontal position of text + icon within a label
+ * .getX() - provides the horizontal position of the label within the context of the frame.
+ * .getY() - provides the vertical position of the label within the context of the frame.
  *
  * Borders can be set with the Border class
  * Border border = BorderFactory.createLineBorder(color, thickness);
