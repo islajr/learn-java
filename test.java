@@ -411,6 +411,8 @@ public class test {
  * .setResizable() - controls whether the frame can be resized.
  * .setIconImage() - takes in a method of an imageicon instance for use as the image's icon.
  * .setBackgroundColor() - changes the default background color of a content pane.
+ * .getContentPane().setBackgroundColor() - is the typical way to change the background color as the .setBackgroundColor() needs to be chained to the content pane either directly or indirectly.
+ * 
  * It takes in an instance of the java.awt.Color class that must also be imported.
  * New colors can also be created within the argument parenthesis with the new Color() command.
  *
@@ -547,8 +549,8 @@ public class test {
  * to represent each layer.
  * in other words, instead of JLayeredPane.DEFAULT_LAYER, an integer wrapper class can be used. Integer.valueOf(number);
  *
- * JOPTIONPANE
  * is a standard dialog pop-up box that serves as a prompt for a user.
+ * JOPTIONPANE
  * it is contained in the java.swing.JOptionPane class and this needs to be imported accordingly.
  * it does not need to be instantiated as its methods can be used directly in a main method.
  * see example: JOptionPane.showMessage(parentComponent, message, title, type);
