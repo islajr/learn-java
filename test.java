@@ -685,6 +685,13 @@ public class test {
  * arrow keys do not give off a key character. hence, to listen for them, key codes need to be used under the keyPressed method.
  *
  * MOUSE LISTENER INTERFACE
+ * this is an event driven interface that responds to triggers related to the mouse.
+ * there are five associated methods with this interface: mouseClicked, mousePressed, mouseReleased, mouseEntered, mouseExited.
+ * mouseClicked - fires off when a mouse has been 'clicked' (pressed and released) on a target.
+ * mousePressed - fires off when a mouse has been 'pressed' on a component.
+ * mouseReleased - fires off when a mouse has been released on a component.
+ * mouseEntered - fires off when a mouse enters the area of a component.
+ * mouseExited - fires off when a mouse leaves the area of a component.
  * 
  * NOTES
  * what is the difference between ++x and x++
