@@ -735,6 +735,8 @@ public class test {
  * If there is nothing to be edited, the instantiation can be carried out without the usual LHS of the statement.
  * In other words, instead of Myframe frame = new MyFrame();, new MyFrame(); would work!
  *
- *
+ * JButtons - you seemingly need only add the conditional statement to the method of an listener interface if there are several 
+ * components that the listener has been added to.
+ * if it is only the one, it is not necessary.
  *
  */
