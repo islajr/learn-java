@@ -684,6 +684,8 @@ public class test {
  * 
  * arrow keys do not give off a key character. hence, to listen for them, key codes need to be used under the keyPressed method.
  *
+ * MOUSE LISTENER INTERFACE
+ * 
  * NOTES
  * what is the difference between ++x and x++
  * typically, they both do the same thing (increment a variable marginally) but the difference arises when assigning them to variables
