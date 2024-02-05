@@ -29,11 +29,13 @@ public class Mouse extends JFrame implements MouseListener {
     @Override
     public void mousePressed(MouseEvent event) {
         // System.out.println("you pressed?");
+        label.setBackground(Color.yellow);
     }
 
     @Override
     public void mouseReleased(MouseEvent event) {
         // System.out.println("you released?");
+        label.setBackground(Color.red);
     }
 
     @Override
