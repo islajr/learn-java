@@ -1,15 +1,32 @@
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
 
 public class DragPanel extends JPanel {
 
-    final int width = 100;
-    final int height = 100;
+    ImageIcon image = new ImageIcon("/home/isla-jr/Pictures/smiley.jpg");
+    final int HEIGHT = image.getIconHeight();
+    final int WIDTH = image.getIconWidth();
+    Point imageCorner;
+    Point prevPoint;
 
     DragPanel() {
         this.setBackground(Color.black);
+        imageCorner = new Point(0, 0);
+        ClickListener clickListener = new ClickListener();
+        DragListener dragListener = new DragListener();
+
+        this.addMouseListener(clickListener);
+        this.addMouseMotionListener(dragListener);
+    }
+
+    public void paintComponent(Graphics graphic) {
+        // re-paints the image after the position is updated.
+        super.paintComponent(graphic);
     }
 
     private class ClickListener extends MouseAdapter {
