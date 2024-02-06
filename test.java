@@ -412,6 +412,7 @@ public class test {
  * .setIconImage() - takes in a method of an imageicon instance for use as the image's icon.
  * .setBackgroundColor() - changes the default background color of a content pane.
  * .getContentPane().setBackgroundColor() - is the typical way to change the background color as the .setBackgroundColor() needs to be chained to the content pane either directly or indirectly.
+ * .setLocationRelativeTo(null) - sets the frame directly in the center of the screen.
  * 
  * It takes in an instance of the java.awt.Color class that must also be imported.
  * New colors can also be created within the argument parenthesis with the new Color() command.
