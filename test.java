@@ -702,6 +702,12 @@ public class test {
  *  
  *  int x = 2;
  *  int y = x++;    // x is assigned to y before it is incremented. (x, y = 3, 2)
+ * 
+ * KEY BINDINGS IN JAVA
+ * Key bindings, similar to key listeners, bind an action to a specific keystroke. however, unlike key listeners, key bindings don't require you to click a component to provide focus as they are natively active within the frame.
+ * keystrokes can be applied to specific components within a frame.
+ * they provide a better way to use key-triggered events.
+ * 
  *
  * INDEXING FOR STRINGS AND ARRAYS
  * The typical method of indexing with square brackets does not work with strings in java.
