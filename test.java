@@ -672,7 +672,7 @@ public class test {
  * is a gui mechanism that lets a user pick a colour.
  * it is contained in the javax.swing.JColorChooser.
  * .showDialog(parent, title, default) brings up a color chooser menu and returns a Color.
- * it is it!
+ *
  *
  * KEY LISTENER INTERFACE
  * similar to the action listener interface, the key listener interface is an event driven interface that responds to
