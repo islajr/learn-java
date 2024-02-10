@@ -15,7 +15,13 @@ Generics solve this problem by making sure the error shows up at compile-time, i
 
 It does this by making sure that only objects of similar types may be stored together inside of a collection.
 
+Before Generics
+`List values = new ArrayList();`
+`values.add(7);     // will work`
+`values.add("yes?");    // while not type-safe, will also work`
 
+
+After generics
 `List<Integer> values = new ArrayList<Integer>();`
 `values.add(7);      // will work`
 `values.add("him");   // is not type-safe`
