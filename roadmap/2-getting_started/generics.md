@@ -27,4 +27,4 @@ After generics
 `values.add("him");   // is not type-safe`
 
 # Streams in Java
-
+this is a placeholder for tomorrow where i'll be exploring streams in-depth.
