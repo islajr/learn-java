@@ -25,3 +25,6 @@ After generics
 `List<Integer> values = new ArrayList<Integer>();`
 `values.add(7);      // will work`
 `values.add("him");   // is not type-safe`
+
+# Streams in Java
+
