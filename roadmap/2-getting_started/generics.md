@@ -27,4 +27,13 @@ After generics
 `values.add("him");   // is not type-safe`
 
 # Streams in Java
-this is a placeholder for tomorrow where i'll be exploring streams in-depth.
+The java stream API brings functional programming to java since java is, by default, object-oriented.
+They make use of lambda expressions heavily.
+
+A stream consists of a source, followed by intermediate operations and finally a terminal operation.
+
+A stream source can either be a collection, list, set, anything that can hold data.
+
+The intermediate function can be a filter, map or sort function; basically a function that returns a stream.
+
+A terminal function returns a non-stream result. Examples my be: forEach, reduce, etc.
