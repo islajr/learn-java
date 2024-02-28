@@ -26,6 +26,12 @@ After generics
 `values.add(7);      // will work`
 `values.add("him");   // is not type-safe`
 
+A huge selling point of generics is the ability to create a method that can work for universal types.
+The is defined in the angle brackets by <E> before the return-type of the method.
+
+Example
+`public static <E> void doSomething(E[] parameterName) {}`
+
 # Streams in Java
 The java stream API brings functional programming to java since java is, by default, object-oriented.
 They make use of lambda expressions heavily.
