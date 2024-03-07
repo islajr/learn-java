@@ -23,20 +23,14 @@ public class GameLauncher {
         player3.guess = scanner.nextInt();
 
         // checking for correctness
-        boolean player1isRight = false;
-        boolean player2isRight = false;
-        boolean player3isRight = false;
 
         if (player1.guess == targetNumber) {
-            player1isRight = true;
             System.out.println("Player 1 guessed right! ");
         }
         if (player2.guess == targetNumber) {
-            player2isRight = true;
             System.out.println("Player 2 guessed right! ");
         }
         if (player3.guess == targetNumber) {
-            player3isRight = true;
             System.out.println("Player 3 guessed right! ");
         }
 
