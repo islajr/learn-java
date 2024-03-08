@@ -9,3 +9,17 @@ Since the JVM is a 'specification', it can have various implementations, as long
 ## JVM Architecture
 ![img.png](img.png)
 
+*Picture showing the JVM architecture*
+
+## Garbage Collection
+This is java's automatic process of freeing up memory.
+It finds objects that are no longer in use and clears them, thereby reclaiming their memory from the heap.
+
+Java does all of this automatically, without any user input.
+
+Garbage collection helps greatly in providing massive performance boosts to applications and they are of different types, namely:
+- Serial Collector
+- Throughput Collector
+- CMS Collector
+- G1 Collector
+
