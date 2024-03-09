@@ -14,6 +14,17 @@ The JVM takes over from the compiler in that it picks up the .class file output 
   - Linking: This step verifies the correctness of the .class file (verification), allocates and intializes memory (preparation), and replaces symbolic references with direct references (resolution).
   - Initialization: this step assigns static variables with their values that are either defined in the code or in the **static block**.
 
+- JVM Memory: 
+  - Method Area: stores class-level information from the class loader (class names, immediate parent names, methods and variables)
+  - Heap: stores information about ALL objects. It holds things like global variables since it has a long life-span and allows dynamic memory allocation.
+  - Stack: this stores frames (which hold method calls). It is created anytime a thread is run.
+  All local variables of a method are stored in their corresponding frame.
+  In return, whenever a thread is terminated, it's stack is destroyed by the JVM as it is not a shared resource.
+  - Program Counter(PC) Registers: stores the address of the current JVM instruction being executed.
+  - Native Method Stack: For every thread, a new native stack is created that stores all information pertaining to that native method.
+
+- 
+
 ## JVM Architecture
 ![img.png](img.png)
 
