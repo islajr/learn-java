@@ -6,6 +6,12 @@ The JVM runs on the host's operating system and places its demands for resources
 
 Since the JVM is a 'specification', it can have various implementations, as long as they adhere to the specifications.
 
+The JVM takes over from the compiler in that it picks up the .class file output (also called **bytecode**) of the compiler and loads it.
+
+- Class Loader: this section is responsible for loading, linking and initialization of the .class file.
+  - Loading: The .class file is read and the corresponding binary data is generated and saved in the method area.
+  After loading, the JVM also creates an object of type Class to represent this file on the **heap**.
+
 ## JVM Architecture
 ![img.png](img.png)
 
