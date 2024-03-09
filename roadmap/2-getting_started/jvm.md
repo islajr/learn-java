@@ -11,6 +11,8 @@ The JVM takes over from the compiler in that it picks up the .class file output 
 - Class Loader: this section is responsible for loading, linking and initialization of the .class file.
   - Loading: The .class file is read and the corresponding binary data is generated and saved in the method area.
   After loading, the JVM also creates an object of type Class to represent this file on the **heap**.
+  - Linking: This step verifies the correctness of the .class file (verification), allocates and intializes memory (preparation), and replaces symbolic references with direct references (resolution).
+  - Initialization: 
 
 ## JVM Architecture
 ![img.png](img.png)
