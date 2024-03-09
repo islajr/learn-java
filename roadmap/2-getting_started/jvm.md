@@ -12,7 +12,7 @@ The JVM takes over from the compiler in that it picks up the .class file output 
   - Loading: The .class file is read and the corresponding binary data is generated and saved in the method area.
   After loading, the JVM also creates an object of type Class to represent this file on the **heap**.
   - Linking: This step verifies the correctness of the .class file (verification), allocates and intializes memory (preparation), and replaces symbolic references with direct references (resolution).
-  - Initialization: 
+  - Initialization: this step assigns static variables with their values that are either defined in the code or in the **static block**.
 
 ## JVM Architecture
 ![img.png](img.png)
