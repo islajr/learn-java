@@ -30,6 +30,9 @@ The JVM takes over from the compiler in that it picks up the .class file output 
     - Just-In-Time (JIT) Compiler: takes care of the inefficiency of the interpreter. It compiles the entire byte-code into **native code** and provides direct native code interpretation for repeated method calls, thus improving efficiency.
     - Garbage Collector: cleans up unused and un-referenced objects.
 
+- Java Native Interface (JNI): is an interface that interacts with the native method libraries (C, C++) required for execution
+- 
+
 ## JVM Architecture
 ![img.png](img.png)
 
