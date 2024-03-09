@@ -23,7 +23,12 @@ The JVM takes over from the compiler in that it picks up the .class file output 
   - Program Counter(PC) Registers: stores the address of the current JVM instruction being executed.
   - Native Method Stack: For every thread, a new native stack is created that stores all information pertaining to that native method.
 
-- 
+- Execution Engine: this reads the bytecode (.class file) line-by-line and uses the data and information present in various areas of memory to execute the information in the byte-code.
+
+  It is divided into three:
+  - Interpreter: reads the content of the bytecode line-by-line and then interprets it. It is slow, however, and inefficient in that when one method is called multiple times, interpretation is required everytime.
+    - Just-In-Time (JIT) Compiler: takes care of the inefficiency of the interpreter. It compiles the entire byte-code into **native code** and provides direct native code interpretation for repeated method calls, thus improving efficiency.
+    - Garbage Collector: cleans up unused and un-referenced objects.
 
 ## JVM Architecture
 ![img.png](img.png)
