@@ -19,4 +19,8 @@ They can be printed to the standard output with the **.printStackTrace()** metho
 
 To manually throw an exception, the keyword, **throw**, is used. Exceptions thrown out of a method use **throws** instead.
 
+The **throw** keyword is typically inserted inside a **try** block. 
+Whenever the compiler senses the thrown exception, it checks to see if there is a nearby, applicable **catch** statement.
+It it finds one that matches, it transfers control to it, otherwise, it handles it the default way.
+
 Code that must be executed after an exception are put in the "**finally**" block.
