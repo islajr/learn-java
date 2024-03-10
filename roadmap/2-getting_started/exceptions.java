@@ -1,29 +1,21 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class exceptions {
-    public static void main(String[] args) {
-        // program to test exception handling
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("How old are you? ");
-        int age = 0;
-
+    static void fun() {
         try {
-            age = scanner.nextInt();
+            throw new NullPointerException("This is a fucking null pointer, dummy! ");
         }
-        catch (InputMismatchException e) {
-//            System.out.println(e.getMessage());
-//            System.out.println(e.toString());
-//            e.printStackTrace();
-            System.out.println("This is not a valid input. ");
-            scanner.close();
-            System.exit(1);
-        }
-        finally {
-            System.out.println("You are " + age + " years old.");
-        }
+        catch (NullPointerException e) {
+//            System.out.println("Caught in the Fun method. ");
+            System.out.println(e.getMessage());
+            throw e;
 
-
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            fun();
+        }
+        catch (NullPointerException e) {
+            System.out.println("Caught in main. ");
+        }
     }
 }
