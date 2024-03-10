@@ -1,5 +1,5 @@
 # Exception Handling in Java
-Exceptions are things that stop a program from running. They are similar to, but largely different from **errors** even if they have similar functionalities.
+Exceptions that refer to things that may stop a program from running properly. They are similar to, but largely different from **errors** even if they have similar functionalities.
 
 The major distinction comes from the fact that exceptions can typically be and are expected to be handled by programmers while errors can arise from situations and aspects beyond a programmer's reach.
 
@@ -12,4 +12,11 @@ Checked Exceptions are checked by the compiler at compile-time while Unchecked E
 
 Exceptions are handled by programmers with the **try**, **catch**, **throw** or **throws** and **finally** keywords.
 
+Lines of code that may cause exceptions are put inside a **try** block.
+Once the exception occurs, it is **thrown** and the code can **catch** this exception using the **catch** block and handle it in a specified manner.
+
 They can be printed to the standard output with the **.printStackTrace()** method that prints all information concering the exception in **name: description** format, the **.toString()** method that does the same thing but in string format, and the **.getMessage()** method which prints only the **description** of the exception.
+
+To manually throw an exception, the keyword, **throw**, is used. Exceptions thrown out of a method use **throws** instead.
+
+Code that must be executed after an exception are put in the "**finally**" block.
