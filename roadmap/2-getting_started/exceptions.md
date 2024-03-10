@@ -23,4 +23,13 @@ The **throw** keyword is typically inserted inside a **try** block.
 Whenever the compiler senses the thrown exception, it checks to see if there is a nearby, applicable **catch** statement.
 It it finds one that matches, it transfers control to it, otherwise, it handles it the default way.
 
+the syntax for using the **throw** keyword is **throw Instance**. For Example: **throw new ArithmeticException(/ by zero);**
+
+Now, for the **throws** keyword, it is used when a method may raise some type of exception.
+Whenever, there is a risk of an exception being raised, the compiler warns us about it by forcing us to potentially deal with it some way, either through a **try/catch block** or through the "**throws**" keyword.
+
+In this situation, the "throws" keyword delegates the responsibility of handling the exception to the caller of the method.
+
+What is clear is that this keyword gives a programmer freedom to customize exceptions as he would like.
+
 Code that must be executed after an exception are put in the "**finally**" block.
