@@ -1,21 +1,6 @@
-public class exceptions {
-    static void fun() {
-        try {
-            throw new NullPointerException("This is a fucking null pointer, dummy! ");
-        }
-        catch (NullPointerException e) {
-//            System.out.println("Caught in the Fun method. ");
-            System.out.println(e.getMessage());
-            throw e;
-
-        }
-    }
-    public static void main(String[] args) {
-        try {
-            fun();
-        }
-        catch (NullPointerException e) {
-            System.out.println("Caught in main. ");
-        }
+class exceptions {
+    public static void main(String[] args) throws InterruptedException {
+        Thread.sleep(1000);
+        // here, this method will not run because of the possibility of the sleep being interrupted and hence, this expression needs to cater for the potential InterruptedException.
     }
 }
