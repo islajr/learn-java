@@ -23,4 +23,12 @@ The collection framework is made up of interfaces and classes with the classes i
     - LinkedList
     - Vector
         - Stack
-- **Queue Interface** is a direct child of the Collection Interace
+- **Queue Interface** is a direct child of the Collection Interface that maintains the Last-In-First-Out (LIFO) order.
+    - PriorityQueue
+    - Deque Interface
+        - ArrayDeque
+- **Set Interface** represents the unordered set of items.
+    - HashSet
+    - LinkedHashSet
+    - SortedSet Interface
+      - TreeSet
