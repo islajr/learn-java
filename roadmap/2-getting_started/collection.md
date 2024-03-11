@@ -17,4 +17,10 @@ _Hierarchy of Collection Framework_
 ## Individual analysis of each item in the framework.
 The collection framework is made up of interfaces and classes with the classes implementing the interfaces and subclasses extending the parent classes in a hierarchical format.
 
-- Collection Interface
+- **Collection Interface** is the parent interface implemented by every class in the framework. This interface declares the methods that every collection will have and is the foundation of the framework.
+- **List Interface** is a child of the collection interface and lords over the ordered collection section in that every list collection implements this interface. Examples of children include: ArrayList, LinkedLists, etc.
+    - ArrayList
+    - LinkedList
+    - Vector
+        - Stack
+- **Queue Interface** is a direct child of the Collection Interace
