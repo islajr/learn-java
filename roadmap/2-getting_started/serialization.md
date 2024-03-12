@@ -11,3 +11,8 @@ The **ObjectOutputStream** class exists in this package and contains a "**writeO
 
 Similarly, the **ObjectInputStream** class also exists in this package and contains a "**readObject()**" method for de-serializing an object.
 
+It must the noted that the **serializable** interface is only a 'marker' interface used to 'mark' classes so that objects of those classes may get a certain capability.
+
+<!-- Work out examples of collection and serialization tomorrow. -->
+
+
