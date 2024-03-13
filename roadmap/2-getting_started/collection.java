@@ -7,7 +7,7 @@ public class collection {
 
         // iterator interface
 //        Iterable <T> iterator();    - runs the iterator interface over elements of type T.
-        ArrayList <Integer> ages = new ArrayList<>();
+        LinkedList <Integer> ages = new ArrayList<>();
 
         ages.add(18);
         ages.add(21);
