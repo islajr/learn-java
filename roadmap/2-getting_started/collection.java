@@ -7,15 +7,13 @@ public class collection {
 
         // iterator interface
 //        Iterable <T> iterator();    - runs the iterator interface over elements of type T.
-        Vector <Integer> ages = new Vector<>();
+        Stack <Integer> integers = new Stack<>();
+        for (int i = 1; i <= 10; ++i) {
+            integers.push(i);
+        }
 
-        ages.add(18);
-        ages.add(21);
-        ages.add(28);
-
-        Iterator <Integer> iter = ages.iterator();
-        while (iter.hasNext()){
-            System.out.println(iter.next());
+        for (Integer integer : integers) {
+            System.out.println(integer);
         }
     }
 }
