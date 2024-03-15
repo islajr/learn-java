@@ -17,12 +17,13 @@ public class serialization {
         Demo newDemo = new Demo(92, "Archer");
         String filename = "file.ser";
 
+        // Serialization Process
         try {
-            FileOutputStream file = new FileOutputStream(filename);
-            ObjectOutputStream out = new ObjectOutputStream(file);
+            FileOutputStream file = new FileOutputStream(filename); // first conversion step
+            ObjectOutputStream out = new ObjectOutputStream(file);  // final conversion step
 
-            out.writeObject(newDemo);
-            file.close();
+            out.writeObject(newDemo);   // method for serialization
+            file.close();   // courtesy closing.
 
             System.out.println("Object has been serialized.");
         }
