@@ -3,6 +3,7 @@ import java.io.*;
 class Demo implements Serializable {
     int a;
     String b;
+
     Demo(int a, String b) {
         this.a = a;
         this.b = b;
@@ -11,46 +12,45 @@ class Demo implements Serializable {
 
 public class serialization {
     public static void main(String[] args) {
-
-        Demo newDemo = new Demo(92, "Archer");
+        Demo file1 = new Demo(92, "Archer");
         String filename = "file.ser";
 
-        // Serialization Process
+        // Serialization Process.
         try {
-            FileOutputStream file = new FileOutputStream(filename); // first conversion step
-            ObjectOutputStream out = new ObjectOutputStream(file);  // final conversion step
+            FileOutputStream outputStream = new FileOutputStream(filename);
+            ObjectOutputStream output = new ObjectOutputStream(outputStream);
 
-            out.writeObject(newDemo);   // method for serialization
+            output.writeObject(file1);
 
-            out.close();
-            file.close();   // courtesy closing.
+            output.close();
+            outputStream.close();
 
-            System.out.println("Object has been serialized.");
+            System.out.println("The object has been serialized. ");
         }
-        catch (IOException ex) {
-            System.out.println("Caught IOException. ");
+        catch (IOException io) {
+            System.out.println("IOException has been caught");
         }
 
-        // de-serialization process
-        Demo second = null; // creating an instance for use in the try block
+        // De-serialization Process
+        Demo newDemo = null;
         try {
-            FileInputStream file = new FileInputStream(filename);
-            ObjectInputStream in = new ObjectInputStream(file);
+            FileInputStream fileInput = new FileInputStream(filename);
+            ObjectInputStream input = new ObjectInputStream(fileInput);
 
-            second = (Demo)in.readObject(); // method for de-serialization.
+            newDemo = (Demo) input.readObject();
 
-            in.close();
-            file.close();
+            fileInput.close();
+            input.close();
 
-            System.out.println("Object has been de-serialized");
-            System.out.println("a = " + second.a + ". ");
-            System.out.println("b = " + second.b + ". ");
+            System.out.println("a: " + newDemo.a);
+            System.out.println("b: " + newDemo.b);
+
         }
-        catch(IOException io) {
-            System.out.println("Check your Serialization method. ");
+        catch (IOException io) {
+            System.out.println("IOException has been caught! ");
         }
-        catch(ClassNotFoundException cl) {
-            System.out.println("There is a problem with the UID. ");
+        catch (ClassNotFoundException cl) {
+            System.out.println("Please check your UID! ");
         }
     }
 }
