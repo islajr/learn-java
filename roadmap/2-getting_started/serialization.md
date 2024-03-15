@@ -25,5 +25,21 @@ If a UID is not explicitly declared, the runtime will declare one for it based o
 
 It is also worth noting that when declaring a serialUID, it is recommended that the 'private' access modifier is used.
 
-Within the JDK, 
 
+### Process of Serialization
+After going through the process, myself, here is a detailed process of how serialization can be implemented in java.
+
+- A test class is created that will implement **serializable** and will hold details that need to be serialized.
+- An instance of that class is created in main
+- A file output stream is instantiated and stored inside a file at a determined location
+- An object output stream is instantiated and takes the file output stream as an argument, all of which is still part of the preparatory process.
+- The content of the test class is written to the created file with the .writeObject() method of the ObjectOutputStream.
+- Both streams are closed and the IOException is caught.
+
+De-serialization follows the same process but in a different way:
+
+- A new instance of the test class is created but left empty for the purpose of storing our de-serialized object.
+- Inside the try block, this time, instances of the FileInputStreams and ObjectInputStream classes are created to read from the already serialized file.
+- The .readObject() method then reads the serialized file and stores it in the new test class instance created at the beginning of this process.
+- Both streams are then closed and the test class is checked to see if the output stored matches the input.
+- IOException and ClassNotFoundExceptions are caught and the program is concluded.
