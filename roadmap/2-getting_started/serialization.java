@@ -1,56 +1,74 @@
 import java.io.*;
 
 class Demo implements Serializable {
-    int a;
-    String b;
+    private static final long serialUID = 1234567890L;
+    transient int a;
+    static int b;
+    String name;
+    int age;
 
-    Demo(int a, String b) {
+    Demo(int a, int b, String name, int age) {
         this.a = a;
-        this.b = b;
+        Demo.b = b;
+        this.name = name;
+        this.age = age;
     }
 }
 
 public class serialization {
+    static void printData(Demo instance) {
+        System.out.println("a: " + instance.a + ". ");
+        System.out.println("b: " + Demo.b + ". ");
+        System.out.println("name: " + instance.name + ". ");
+        System.out.println("age: " + instance.age + ". ");
+    }
     public static void main(String[] args) {
-        Demo file1 = new Demo(92, "Archer");
-        String filename = "file.ser";
+        Demo first = new Demo(1, 2 ,"Isla", 20);
+        String filename = "subfile.txt";
 
-        // Serialization Process.
+        // serialization
         try {
-            FileOutputStream outputStream = new FileOutputStream(filename);
-            ObjectOutputStream output = new ObjectOutputStream(outputStream);
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
 
-            output.writeObject(file1);
+            out.writeObject(first);
 
-            output.close();
-            outputStream.close();
+            file.close();
+            out.close();
 
-            System.out.println("The object has been serialized. ");
-        }
-        catch (IOException io) {
-            System.out.println("IOException has been caught");
-        }
+            System.out.println("Object has been serialized.");
 
-        // De-serialization Process
-        Demo newDemo = null;
-        try {
-            FileInputStream fileInput = new FileInputStream(filename);
-            ObjectInputStream input = new ObjectInputStream(fileInput);
+            System.out.println("After Serialization...");
+            printData(first);
+            first = null;
+            System.gc();
 
-            newDemo = (Demo) input.readObject();
-
-            fileInput.close();
-            input.close();
-
-            System.out.println("a: " + newDemo.a);
-            System.out.println("b: " + newDemo.b);
+            Demo.b = 5;    // changing the value of the static variable
 
         }
         catch (IOException io) {
-            System.out.println("IOException has been caught! ");
+            System.out.println("IOException has been caught. ");
+        }
+
+        // de-serialization
+        Demo second = null;
+
+        try {
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            second = (Demo) in.readObject();
+
+            in.close();
+            file.close();
+            System.out.println("After Deserialization...");
+            printData(second);
+        }
+        catch (IOException io) {
+            System.out.println("IOException has been caught. ");
         }
         catch (ClassNotFoundException cl) {
-            System.out.println("Please check your UID! ");
+            System.out.println("Check your UID! ");
         }
     }
 }
