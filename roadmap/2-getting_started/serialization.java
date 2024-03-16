@@ -1,74 +1,74 @@
 import java.io.*;
 
-class Demo implements Serializable {
+class Test implements Serializable {
     private static final long serialUID = 1234567890L;
+
     transient int a;
     static int b;
     String name;
     int age;
 
-    Demo(int a, int b, String name, int age) {
+    // constructor
+    Test(int a, int b, String name, int age) {
         this.a = a;
-        Demo.b = b;
+        Test.b = b;
         this.name = name;
         this.age = age;
     }
 }
 
 public class serialization {
-    static void printData(Demo instance) {
-        System.out.println("a: " + instance.a + ". ");
-        System.out.println("b: " + Demo.b + ". ");
-        System.out.println("name: " + instance.name + ". ");
-        System.out.println("age: " + instance.age + ". ");
+
+    static void printData(Test sample) {
+        System.out.println("a: " + sample.a);
+        System.out.println("b: " + Test.b);
+        System.out.println("name: " + sample.name);
+        System.out.println("age: " + sample.age);
     }
+
     public static void main(String[] args) {
-        Demo first = new Demo(1, 2 ,"Isla", 20);
-        String filename = "subfile.txt";
+        Test first = new Test(1, 2, "Archer", 20);
+        String filename = "mine.txt";
 
-        // serialization
         try {
-            FileOutputStream file = new FileOutputStream(filename);
-            ObjectOutputStream out = new ObjectOutputStream(file);
+        FileOutputStream file = new FileOutputStream(filename);
+        ObjectOutputStream out = new ObjectOutputStream(file);
 
-            out.writeObject(first);
+        out.writeObject(first);
 
-            file.close();
-            out.close();
+        System.out.println("After Serialization...");
+        printData(first);
 
-            System.out.println("Object has been serialized.");
+        Test.b = 20;
 
-            System.out.println("After Serialization...");
-            printData(first);
-            first = null;
-            System.gc();
-
-            Demo.b = 5;    // changing the value of the static variable
-
+        file.close();
+        out.close();
         }
         catch (IOException io) {
-            System.out.println("IOException has been caught. ");
+            System.out.println("IOException caught. ");
         }
 
         // de-serialization
-        Demo second = null;
+        first = null;
 
         try {
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
 
-            second = (Demo) in.readObject();
+            first = (Test) in.readObject();
 
-            in.close();
+            System.out.println("After de-serialization...");
+            printData(first);
+
             file.close();
-            System.out.println("After Deserialization...");
-            printData(second);
+            in.close();
         }
         catch (IOException io) {
-            System.out.println("IOException has been caught. ");
+            System.out.println("IOException caught. ");
         }
         catch (ClassNotFoundException cl) {
             System.out.println("Check your UID! ");
         }
+
     }
 }
