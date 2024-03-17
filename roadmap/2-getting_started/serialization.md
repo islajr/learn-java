@@ -43,3 +43,6 @@ De-serialization follows the same process but in a different way:
 - The .readObject() method then reads the serialized file and stores it in the new test class instance created at the beginning of this process.
 - Both streams are then closed and the test class is checked to see if the output stored matches the input.
 - IOException and ClassNotFoundExceptions are caught and the program is concluded.
+
+### Transient and Static Variables
+Transient variables are not serialized during the serialization process. As a result, during de-serialization, it is initialized with a default value which is usually 'null' for objects and 0 for integers.
