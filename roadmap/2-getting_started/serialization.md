@@ -46,3 +46,5 @@ De-serialization follows the same process but in a different way:
 
 ### Transient and Static Variables
 Transient variables are not serialized during the serialization process. As a result, during de-serialization, it is initialized with a default value which is usually 'null' for objects and 0 for integers.
+
+Static variables are also not serialized during the serialization process. But unlike transient variables, during de-serialization, they are initialized with the current value defined in the class.
