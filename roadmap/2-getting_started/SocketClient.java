@@ -1,68 +1,29 @@
-import org.w3c.dom.ls.LSInput;
+import javax.xml.crypto.Data;
+import java.net.*;
+import java.io.*;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-
-// java program for a socket client in a simple client-server connection.
 public class SocketClient {
-    // defining socket and stream variables.
-    private Socket socket = null;
-    private DataInputStream input = null;
-    private DataOutputStream output = null;
-
-    // constructor for the client to input ip address and port.
-    SocketClient(String address, int port) {
-
-        // establishing a connection
-        try {
-            socket = new Socket(address, port);
-            System.out.println("Connected! ");
-
-            // read input from stdin
-            input = new DataInputStream(System.in);
-
-            // send output to socket
-            output = new DataOutputStream(socket.getOutputStream());
-        }
-        catch (UnknownHostException u) {
-            System.out.println(u.getMessage());
-        }
-        catch (IOException i) {
-            System.out.println(i);
-        }
-
-
-        String line = "";
-
-        while (!line.equals("over!")) {
-            try {
-                line = input.readLine();
-                output.writeUTF(line);
-            }
-            catch (IOException i) {
-                System.out.println(i);
-            }
-            catch (NullPointerException n) {
-                System.out.println(n.getMessage());
-                break;
-            }
-        }
+    public static void main(String[] args) {
+        String serverName = args[0];
+        int port = Integer.parseInt(args[1]);
 
         try {
-            input.close();
-            output.close();
+            System.out.println("connecting to " + serverName + "on port " + port);
+            Socket socket = new Socket(serverName, port);
+
+            System.out.println("connected to " + socket.getRemoteSocketAddress());
+            OutputStream out = socket.getOutputStream();
+            DataOutputStream output = new DataOutputStream(out);
+
+            output.writeUTF("hello from " + socket.getLocalSocketAddress());
+            InputStream in = socket.getInputStream();
+            DataInputStream input = new DataInputStream(in);
+
+            System.out.println("server says " + input.readUTF());
             socket.close();
         }
         catch(IOException i) {
-            System.out.println(i.getMessage());
+            System.out.println(i);
         }
     }
-
-    public static void main(String[] args) {
-        SocketClient client = new SocketClient("127.0.0.1", 8000);
-    }
-
 }
