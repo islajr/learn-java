@@ -19,6 +19,7 @@ public class SocketClient {
         // establishing a connection
         try {
             socket = new Socket(address, port);
+            System.out.println("Connected! ");
 
             // read input from stdin
             input = new DataInputStream(System.in);
@@ -32,9 +33,7 @@ public class SocketClient {
         catch (IOException i) {
             System.out.println(i);
         }
-        finally {
-            System.out.println("Connected! ");
-        }
+
 
         String line = "";
 
@@ -45,6 +44,10 @@ public class SocketClient {
             }
             catch (IOException i) {
                 System.out.println(i);
+            }
+            catch (NullPointerException n) {
+                System.out.println(n.getMessage());
+                break;
             }
         }
 
