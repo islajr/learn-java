@@ -1,19 +1,11 @@
-public class threads implements Runnable {
-    @Override
-    public void run() {
-        System.out.println("Thread running successfully.");
-    }
-
+public class threads {
     public static void main(String[] args) {
-        Runnable r = new threads();
+        Thread t = new Thread("Hello!");
 
-        Thread t = new Thread(r, "Hello!");
-
-        // start thread
+        // start the thread with default run method.
         t.start();
 
-        // rest of the string implementation
-        String s = t.getName();
-        System.out.println(s);
+        String name = t.getName();
+        System.out.println(name);
     }
 }
