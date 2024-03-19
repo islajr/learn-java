@@ -18,3 +18,7 @@ Here, it can either be **runnable** or **running**.
 - Timed Waiting State: Since the waiting period of a thread is not explicitly defined, there might be situations where the waiting time of a thread is elongated and the waiting thread is starved. In order to avoid this, the waiting period is timed, after which the **sleep()** method is called.
 - Terminated State: A terminated thread means that the thread is dead and no longer available.
 
+## How to Create threads.
+Threads in java can be created in two ways, namely:
+- By extending the **thread** class
+- By implementing the **runnable** interface
