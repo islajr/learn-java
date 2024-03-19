@@ -1,15 +1,19 @@
-public class threads extends Thread {
-
-    // overriding the run() method of the super class
+public class threads implements Runnable {
     @Override
     public void run() {
-        System.out.println("This is my first thread!");
+        System.out.println("Thread running successfully.");
     }
 
     public static void main(String[] args) {
-        threads thread = new threads();
+        Runnable r = new threads();
 
-        // .start() invokes the run() method.
-        thread.start();
+        Thread t = new Thread(r, "Hello!");
+
+        // start thread
+        t.start();
+
+        // rest of the string implementation
+        String s = t.getName();
+        System.out.println(s);
     }
 }
