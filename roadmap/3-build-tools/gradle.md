@@ -36,3 +36,12 @@ Let's discuss some key differences between Gradle and Maven:
 
 - Gradle avoids the compilation of Java. 	The compilation is mandatory in Maven.
 
+## Gradle Cheatsheet
+- Initialize a project:
+ `gradle init`
+- See a list of tasks:
+ `gradle tasks`
+- Compile code into JAR:
+ `gradle build`
+- 
+
