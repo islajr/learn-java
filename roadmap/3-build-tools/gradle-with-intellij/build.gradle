@@ -17,3 +17,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task hello {
+    doLast {
+        println("i am learning groovy!")
+    }
+}
