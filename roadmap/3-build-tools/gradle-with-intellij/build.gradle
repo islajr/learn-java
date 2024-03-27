@@ -1,5 +1,12 @@
 plugins {
-    id 'java'
+    id 'application'    // this facilitates the creation of an executable jvm application
+                        // declaring this implicitly declares the 'java' plugin that adds compilation and testing to the project.
+
+}
+
+// declaring the 'application' plugin allows us to do this - inserting the 'main' class.
+application {
+    mainClass = 'org.example.main'
 }
 
 group = 'org.example'
