@@ -6,7 +6,7 @@ plugins {
 
 // declaring the 'application' plugin allows us to do this - inserting the 'main' class.
 application {
-    mainClass = 'org.example.main'
+    mainClass = 'org.example.Main'
 }
 
 group = 'org.example'
