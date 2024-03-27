@@ -1,2 +1,10 @@
+// declares root project and sub-project(s) together with their file paths.
+
 rootProject.name = 'gradle-with-intellij'
 
+/*
+* to include subprojects...
+* include('sub-project a')
+* include ('sub-project b')
+*
+*/
