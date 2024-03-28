@@ -1,6 +1,6 @@
 // declares root project and sub-project(s) together with their file paths.
 
-rootProject.name = 'gradle-with-intellij'
+rootProject.name = 'gradle-with-intellij'   // name of root project.
 
 /*
 * to include subprojects...
