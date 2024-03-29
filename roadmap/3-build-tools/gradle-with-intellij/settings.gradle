@@ -7,4 +7,11 @@ rootProject.name = 'gradle-with-intellij'   // name of root project.
 * include('sub-project a')
 * include ('sub-project b')
 *
+* to add specific java toolchain to ease working on different environments...
+* java {
+*   toolchain {
+*       languageVersion = JavaLanguageVersion.of(11)
+*   }
+* }
+*
 */
