@@ -38,3 +38,12 @@ task hello {
         println("i am learning groovy!")
     }
 }
+
+// to add specific java toolchain to ease working on different environments...
+/*
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+*/
+}
