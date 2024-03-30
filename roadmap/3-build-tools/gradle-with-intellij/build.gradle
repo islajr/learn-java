@@ -33,7 +33,7 @@ test {
 
 // tasks
 
-task hello {
+tasks.register("hello") {
     doLast {
         println("i am learning groovy!")
     }
