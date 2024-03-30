@@ -35,8 +35,26 @@ test {
 
 tasks.register("hello") {
     doLast {
-        println("i am learning groovy!")
+        println("hello!")
     }
+}
+
+tasks.register("greet") {
+    doLast {
+        println("how are you?")
+
+    }
+
+    dependsOn(hello)
+
+    /*
+    this is a demonstration of dependencies in gradle tasks.
+    in this case, 'hello' runs before 'greet'.
+
+    it is worth noting that task execution order is determined by gradle depending on the way the dependencies are defined (explicitly or implicitly).
+
+    however, if there are no dependencies between tasks, gradle allows users to define their execution order.
+    */
 }
 
 // to add specific java toolchain to ease working on different environments...
