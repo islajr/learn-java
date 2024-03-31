@@ -86,5 +86,10 @@ Other tasks
 -----------
 compileJava - Compiles main Java source.
 
+
+NOTES
+./gradlew build - builds project
+./gradlew tasks - runs gradle tasks
+./gradlew :app:dependencies - view project dependencies
 */
 
