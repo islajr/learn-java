@@ -21,8 +21,10 @@ repositories {
 // dependencies
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')    // used for unit-testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter'    // also used for unit-testing.
+//    testImplementation platform('org.junit:junit-bom:5.9.1')    // used for unit-testing.
+//    testImplementation 'org.junit.jupiter:junit-jupiter'    // also used for unit-testing.
+      testImplementation(libs.junit)    // look into the lib versions file for the junit versions
+      testImplementation(libs.guava)    // look into the lib versions file for the guava versions
 }
 
 // unit testing
