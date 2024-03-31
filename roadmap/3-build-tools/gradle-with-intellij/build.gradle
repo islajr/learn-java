@@ -64,5 +64,27 @@ java {
         languageVersion = JavaLanguageVersion.of(11)
     }
 }
+
+Application tasks
+-----------------
+run - Runs this project as a JVM application
+
+Build tasks
+-----------
+assemble - Assembles the outputs of this project.
+build - Assembles and tests this project.
+
+...
+
+Documentation tasks
+-------------------
+javadoc - Generates Javadoc API documentation for the main source code.
+
+...
+
+Other tasks
+-----------
+compileJava - Compiles main Java source.
+
 */
 
