@@ -91,5 +91,8 @@ NOTES
 ./gradlew build - builds project
 ./gradlew tasks - runs gradle tasks
 ./gradlew :app:dependencies - view project dependencies
+./gradlew build --scan - view dependencies in a build scan
+
+
 */
 
