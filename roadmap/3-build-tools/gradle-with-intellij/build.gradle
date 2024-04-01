@@ -94,7 +94,9 @@ NOTES
 ./gradlew tasks - runs gradle tasks
 ./gradlew :app:dependencies - view project dependencies
 ./gradlew build --scan - view dependencies in a build scan
-
+./gradlew clean - deletes the build directory
+./gradlew test - tests project builds and generates reports
+./gradlew test -p sub-project - tests a specific project
 
 */
 
