@@ -1,5 +1,7 @@
 package com.example.springGenesis.dao;
 
+import com.example.springGenesis.model.Person;
+
 import java.util.UUID;
 
 public interface PersonDao {
