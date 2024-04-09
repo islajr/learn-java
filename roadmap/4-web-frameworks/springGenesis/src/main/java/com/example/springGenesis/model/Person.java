@@ -6,6 +6,9 @@ public class Person {
     private final UUID id;
     private final String name;
 
+
+    // constructor for person type
+
     public Person(UUID id, String name) {
         this.id = id;
         this.name = name;

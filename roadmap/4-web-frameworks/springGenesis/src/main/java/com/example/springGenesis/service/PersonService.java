@@ -1,6 +1,7 @@
 package com.example.springGenesis.service;
 
 import com.example.springGenesis.dao.PersonDao;
+import com.example.springGenesis.model.Person;
 
 public class PersonService {
 
@@ -11,6 +12,6 @@ public class PersonService {
     }
 
     public int addPerson(Person person) {
-        return personDao.insertPerson();
+        return personDao.insertPerson(person);
     }
 }
