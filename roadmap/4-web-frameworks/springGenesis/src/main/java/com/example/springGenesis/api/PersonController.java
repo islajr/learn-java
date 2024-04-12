@@ -3,10 +3,9 @@ package com.example.springGenesis.api;
 import com.example.springGenesis.model.Person;
 import com.example.springGenesis.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("api/v1/person")
 @RestController
@@ -19,8 +18,13 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PostMapping
+    @PostMapping        // serving this request as a POST request
     public void addPerson(@RequestBody Person person) {
         personService.addPerson(person);
+    }
+
+    @GetMapping     // serving this request as a GET request
+    public List<Person> getAllPeople() {
+        return personService.getAllPeople();
     }
 }
