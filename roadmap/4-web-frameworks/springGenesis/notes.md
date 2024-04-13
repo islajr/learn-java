@@ -4,3 +4,5 @@
 - Read up on concepts like **streams** and the **optional** type.
 - Read up on Spring concepts like Services, controllers and Beans.
 - Check out the .orElse() method, what it entails and where it comes from.
+- Learn about filter, map, reduce and other methods.
+- Learn about anonymous functions and variables.
