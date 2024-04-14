@@ -2,7 +2,9 @@ package com.example.springGenesis.api;
 
 import com.example.springGenesis.model.Person;
 import com.example.springGenesis.service.PersonService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class PersonController {
     }
 
     @PostMapping        // serving this request as a POST request
-    public void addPerson(@RequestBody Person person) {
+    public void addPerson(@Valid @NonNull @RequestBody Person person) {
         personService.addPerson(person);
     }
 
@@ -41,7 +43,7 @@ public class PersonController {
     }
 
     @PutMapping(path = "{id}")
-    public void updatePersonById(@PathVariable ("id") UUID id, @RequestBody Person person) {
+    public void updatePersonById(@PathVariable ("id") UUID id, @Valid @NonNull @RequestBody Person person) {
         personService.updatePerson(id, person);
     }
 }

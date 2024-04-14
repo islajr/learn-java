@@ -7,4 +7,4 @@
 - Learn about filter, map, reduce and other methods.
 - Learn about anonymous functions and variables.
 - How does Spring deal with user-defined methods that return 1 and 0?
-- @NotBlank vs @NotNull
+- @NotBlank vs @NonNull
