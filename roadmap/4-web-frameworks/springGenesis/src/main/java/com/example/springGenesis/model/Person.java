@@ -1,11 +1,14 @@
 package com.example.springGenesis.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.UUID;
 
 public class Person {
     private final UUID id;
+
+    @NotBlank
     private final String name;
 
 
