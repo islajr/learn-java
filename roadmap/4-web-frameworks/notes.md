@@ -25,4 +25,6 @@ This is the most important part of the application. It helps map URLs and genera
 
 This part of the application dictates how data is stored. It receives information and feeds it to the **service** which ultimately feeds it to the controller.
 
+## Service
 
+This serves as a middleman between the dao and the controller. It is connected to both and delivers the data being passed from the dao to the controller for use in whatever way needed.
