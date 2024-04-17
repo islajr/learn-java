@@ -16,3 +16,13 @@ It is also lighter and focuses on convention over configuration and as such, is 
 ## Spring Boot and Backend Development
 
 Spring Boot works for backend development in the same way other backend frameworks work, but with a bit more complexity as it is being written in java which is known for being verbose and complex.
+
+### Controller
+
+This is the most important part of the application. It helps map URLs and generally dictate and implement methods that need to be implemented when the URL is accessed.
+
+### DAO
+
+This part of the application dictates how data is stored. It receives information and feeds it to the **service** which ultimately feeds it to the controller.
+
+
