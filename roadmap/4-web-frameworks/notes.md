@@ -12,3 +12,7 @@ Creating and setting up new projects became a bother, as was the testing and sec
 
 Spring Boot was created to solve these problems. Being built on top of spring, it natively extends all of spring's attributes.
 It is also lighter and focuses on convention over configuration and as such, is easier to work with.
+
+## Spring Boot and Backend Development
+
+Spring Boot works for backend development in the same way other backend frameworks work, but with a bit more complexity as it is being written in java which is known for being verbose and complex.
