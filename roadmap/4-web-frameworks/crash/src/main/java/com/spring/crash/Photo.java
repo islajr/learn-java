@@ -1,7 +1,11 @@
 package com.spring.crash;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class Photo {
     private String id;
+
+    @NotEmpty
     private String name;
 
     public Photo() {}
