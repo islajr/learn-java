@@ -1,5 +1,6 @@
 package com.spring.crash;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
 
 public class Photo {
@@ -33,6 +34,7 @@ public class Photo {
         this.name = name;
     }
 
+    @JsonIgnore
     public byte[] getData() {
         return data;
     }
