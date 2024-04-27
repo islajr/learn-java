@@ -15,9 +15,11 @@ import java.util.UUID;
 @RestController
 public class CrashController {
 
-    private Map<String, Photo> db = new HashMap<>() {{
-        put("1", new Photo("1", "hello.jpg"));
-    }};
+    private final PhotosService photosService;
+
+    public CrashController(PhotosService photosService) {
+        this.photosService = photosService;
+    }
 
 
     @GetMapping("/")
@@ -27,7 +29,7 @@ public class CrashController {
 
     @GetMapping("/photos")
     public Collection<Photo> getAllPhotos() {
-        return db.values();
+        return photosService.get();
     }
 
     @GetMapping("/photos/{id}")
