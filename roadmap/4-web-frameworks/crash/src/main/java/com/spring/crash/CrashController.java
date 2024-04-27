@@ -54,7 +54,7 @@ public class CrashController {
         photo.setId(UUID.randomUUID().toString());
         photo.setName(file.getOriginalFilename());
         photo.setData(file.getBytes());
-        photosService.save(photo.getId(), photo);
+        photosService.save(file.getOriginalFilename(), file.getBytes());
         return photo;
     }
 }
