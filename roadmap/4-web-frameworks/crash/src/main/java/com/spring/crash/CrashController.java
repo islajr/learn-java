@@ -8,8 +8,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -34,7 +32,7 @@ public class CrashController {
 
     @GetMapping("/photos/{id}")
     public Photo getPhoto(@PathVariable String id) {
-        Photo photo = db.get(id);
+        Photo photo = photosService.get(id);
         if (photo == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -45,7 +43,7 @@ public class CrashController {
 
     @DeleteMapping("/photos/{id}")
     public void deletePhoto(@PathVariable String id) {
-        Photo photo = db.remove(id);
+        Photo photo = photosService.remove(id);
 
         if (photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
@@ -56,7 +54,7 @@ public class CrashController {
         photo.setId(UUID.randomUUID().toString());
         photo.setName(file.getOriginalFilename());
         photo.setData(file.getBytes());
-        db.put(photo.getId(), photo);
+        photosService.save(photo.getId(), photo);
         return photo;
     }
 }
