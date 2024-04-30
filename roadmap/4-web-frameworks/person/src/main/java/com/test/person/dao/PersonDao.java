@@ -13,4 +13,6 @@ public interface PersonDao {
         return insertPerson(id, person);
     }
 
+    public Person getPerson(UUID id);
+
 }

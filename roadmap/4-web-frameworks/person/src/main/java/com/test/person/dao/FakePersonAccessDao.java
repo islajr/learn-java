@@ -14,4 +14,10 @@ public class FakePersonAccessDao implements PersonDao{
         db.add(new Person(id, person.getName()));
         return 1;
     }
+
+    @Override
+    public Person getPerson(UUID id) {
+        return null;
+    }
+
 }
