@@ -1,8 +1,7 @@
 package com.test.person.dao;
 import com.test.person.model.Person;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PersonDao {
@@ -15,6 +14,6 @@ public interface PersonDao {
         return insertPerson(id, person);
     }
 
-    public Person getPerson(UUID id);
+    public Optional<Person> getPerson(UUID id);
 
 }

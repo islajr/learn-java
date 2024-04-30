@@ -4,6 +4,7 @@ import com.test.person.model.Person;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository("fakeDao")
@@ -18,8 +19,10 @@ public class FakePersonAccessDao implements PersonDao{
     }
 
     @Override
-    public Person getPerson(UUID id) {
-        return null;
+    public Optional<Person> getPerson(UUID id) {
+        return db.stream()
+                .filter(person -> person.getUuid().equals(id))
+                .findFirst();
     }
 
 }

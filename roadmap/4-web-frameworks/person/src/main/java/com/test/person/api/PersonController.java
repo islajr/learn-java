@@ -1,10 +1,12 @@
 package com.test.person.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.person.model.Person;
 import com.test.person.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class PersonController {
@@ -28,8 +30,13 @@ public class PersonController {
     }
 
     @PostMapping("/person/create")
-    public void addPerson(@JsonProperty Person person) {
+    public void addPerson(@RequestBody Person person) {
         personService.addPerson(person);
+    }
+
+    @GetMapping("/person/get-person")
+    public Optional<Person> getPerson(@RequestBody UUID id) {
+        return personService.getPerson(id);
     }
 
 }
