@@ -1,5 +1,7 @@
 package com.test.person.dao;
 import com.test.person.model.Person;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 

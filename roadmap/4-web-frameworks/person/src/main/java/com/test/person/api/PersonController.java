@@ -1,13 +1,21 @@
 package com.test.person.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.person.model.Person;
 import com.test.person.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PersonController {
 
     private PersonService personService;
+
+    @Autowired
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
+
 
     @GetMapping("/hello")
     public String hello() {
@@ -20,7 +28,7 @@ public class PersonController {
     }
 
     @PostMapping("/person/create")
-    public void addPerson(@RequestBody Person person) {
+    public void addPerson(@JsonProperty Person person) {
         personService.addPerson(person);
     }
 
