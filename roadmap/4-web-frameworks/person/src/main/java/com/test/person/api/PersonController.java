@@ -35,14 +35,19 @@ public class PersonController {
         personService.addPerson(person);
     }
 
-    @GetMapping("/person/get-person")
-    public Optional<Person> getPerson(@RequestBody UUID id) {
+    @GetMapping("/person/getperson/{id}")
+    public Optional<Person> getPerson(@PathVariable UUID id) {
         return personService.getPerson(id);
     }
 
     @GetMapping("/person/getall")
     public ArrayList<Person> getAllPersons() {
         return personService.getAllPersons();
+    }
+
+    @PutMapping("/person/update")
+    public Person updatePerson(@RequestBody UUID id, String replacement) {
+        return personService.updatePerson(id, replacement);
     }
 
 }

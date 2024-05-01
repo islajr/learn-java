@@ -28,4 +28,8 @@ public class PersonService {
     public ArrayList<Person> getAllPersons() {
         return personDao.getAllPersons();
     }
+
+    public Person updatePerson(UUID id, String replacement) {
+        return personDao.updatePerson(id, replacement);
+    }
 }

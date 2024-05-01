@@ -30,4 +30,13 @@ public class FakePersonAccessDao implements PersonDao{
         return db;
     }
 
+    @Override
+    public Person updatePerson(UUID id, String newName) {
+        Person saidPerson = (Person) db.stream().
+                filter(person -> person.getUuid().equals(id));
+
+        saidPerson.setName(newName);
+        return saidPerson;
+    }
+
 }
