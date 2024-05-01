@@ -1,6 +1,7 @@
 package com.test.person.dao;
 import com.test.person.model.Person;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,5 +16,6 @@ public interface PersonDao {
     }
 
     public Optional<Person> getPerson(UUID id);
+    public ArrayList<Person> getAllPersons();
 
 }

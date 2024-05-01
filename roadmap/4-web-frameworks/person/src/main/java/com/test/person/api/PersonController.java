@@ -5,6 +5,7 @@ import com.test.person.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,6 +38,11 @@ public class PersonController {
     @GetMapping("/person/get-person")
     public Optional<Person> getPerson(@RequestBody UUID id) {
         return personService.getPerson(id);
+    }
+
+    @GetMapping("/person/getall")
+    public ArrayList<Person> getAllPersons() {
+        return personService.getAllPersons();
     }
 
 }

@@ -25,4 +25,9 @@ public class FakePersonAccessDao implements PersonDao{
                 .findFirst();
     }
 
+    @Override
+    public ArrayList<Person> getAllPersons() {
+        return db;
+    }
+
 }
