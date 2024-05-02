@@ -33,14 +33,24 @@ public class FakePersonAccessDao implements PersonDao{
     @Override
     public int updatePerson(UUID id, Person newPerson) {
         return getPerson(id).map(p -> {
-            if (db.indexOf(p) >= 0) {
+            if (db.contains(p)) {
                 db.set(db.indexOf(p), new Person(id, newPerson.getName()));
                 return 1;
             }
             return 0;
         }).orElse(0);
     }
-    
 
+    /* the above method works by firstly using the previously-defined getPerson() method that returns a person.
+     *
+     * the person returned is stored in 'p' and it's position in the arrayList is procured via the .indexOf() method.
+     *
+     * alternately, the .contains() method can also be used. to verify if that position truly exists in the arrayList.
+     *
+     * this is a rather weak method of validation, but it works for the purpose of this program.
+     *
+     * once the condition is met, the element contained in the already-procured index is updated with the .getName() setter and 1 is returned; otherwise, 0 is returned.
+     *
+     * .orElse() is used after the closing parenthesis to specify what happens if the conditions of the mapping are not met.*/
 
 }
