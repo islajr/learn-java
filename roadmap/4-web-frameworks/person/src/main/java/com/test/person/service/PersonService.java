@@ -29,7 +29,7 @@ public class PersonService {
         return personDao.getAllPersons();
     }
 
-    public Person updatePerson(UUID id, String replacement) {
-        return personDao.updatePerson(id, replacement);
+    public int updatePerson(UUID id, Person person) {
+        return personDao.updatePerson(id, person);
     }
 }

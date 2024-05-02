@@ -17,6 +17,6 @@ public interface PersonDao {
 
     public Optional<Person> getPerson(UUID id);
     public ArrayList<Person> getAllPersons();
-    public Person updatePerson(UUID id, String replacement);
+    public int updatePerson(UUID id, Person person);
 
 }
