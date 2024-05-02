@@ -45,9 +45,9 @@ public class PersonController {
         return personService.getAllPersons();
     }
 
-    @PutMapping("/person/update")
-    public Person updatePerson(@RequestBody UUID id, String replacement) {
-        return personService.updatePerson(id, replacement);
+    @PutMapping("/person/update/{id}")
+    public int updatePerson(@PathVariable UUID id, @RequestBody Person person) {
+        return personService.updatePerson(id, person);
     }
 
 }
