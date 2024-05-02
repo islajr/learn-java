@@ -33,13 +33,14 @@ public class FakePersonAccessDao implements PersonDao{
     @Override
     public int updatePerson(UUID id, Person newPerson) {
         return getPerson(id).map(p -> {
-            int newIndex = db.indexOf(p);
-            if (newIndex >= 0) {
-                db.set(newIndex, new Person(id, newPerson.getName()));
+            if (db.indexOf(p) >= 0) {
+                db.set(db.indexOf(p), new Person(id, newPerson.getName()));
                 return 1;
             }
             return 0;
         }).orElse(0);
     }
+    
+
 
 }
