@@ -18,5 +18,6 @@ public interface PersonDao {
     public Optional<Person> getPerson(UUID id);
     public ArrayList<Person> getAllPersons();
     public int updatePerson(UUID id, Person person);
+    public int deletePerson(UUID id);
 
 }

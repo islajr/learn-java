@@ -50,4 +50,9 @@ public class PersonController {
         return personService.updatePerson(id, person);
     }
 
+    @DeleteMapping("/person/delete/{id}")
+    public int deletePerson(@PathVariable UUID id) {
+        return personService.removePerson(id);
+    }
+
 }

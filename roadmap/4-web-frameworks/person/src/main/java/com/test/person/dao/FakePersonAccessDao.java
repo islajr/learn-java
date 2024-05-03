@@ -53,4 +53,17 @@ public class FakePersonAccessDao implements PersonDao{
      *
      * .orElse() is used after the closing parenthesis to specify what happens if the conditions of the mapping are not met.*/
 
+    @Override
+    public int deletePerson(UUID id) {
+        Optional<Person> prototype = getPerson(id);
+
+        if (prototype != null) {
+            db.remove(prototype);
+            return 1;
+        }
+        else {
+            return 0;
+        }
+
+    }
 }
