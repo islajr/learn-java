@@ -3,6 +3,7 @@ package com.test.person.dao;
 import com.test.person.model.Person;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.plaf.OptionPaneUI;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
@@ -55,15 +56,13 @@ public class FakePersonAccessDao implements PersonDao{
 
     @Override
     public int deletePerson(UUID id) {
-        Optional<Person> prototype = getPerson(id);
-
-        if (prototype != null) {
-            db.remove(prototype);
-            return 1;
-        }
-        else {
-            return 0;
+        for (Person person : db) {
+            if (person.getUuid().equals(id)) {
+                db.remove(person);
+                return 0;
+            }
         }
 
+        return 1;
     }
 }
