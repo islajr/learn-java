@@ -18,7 +18,7 @@ public class DownloadController {
 
     @GetMapping("download/{id}")
     public ResponseEntity<byte[]> download(@PathVariable String id) {
-        byte[] data;
+        byte[] data = new byte[0];
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<>(data, headers, HttpStatus.OK);
     }
