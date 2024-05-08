@@ -8,6 +8,6 @@ public class VendorController {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello, world!";
+        return "Hello, world!\nWelcome to Cloud Vendor";
     }
 }
