@@ -10,7 +10,7 @@ import com.spring.vendor.model.CloudVendor;
 @RequestMapping("/cloudvendor")
 public class VendorController {
 
-    @GetMapping("/")
+    @GetMapping("{vendorId}")
     public CloudVendor getCloudVendorDetails(String vendorId) {
         return new CloudVendor("c1", "vendor 1", "address 1", "xxxxx");
     }
