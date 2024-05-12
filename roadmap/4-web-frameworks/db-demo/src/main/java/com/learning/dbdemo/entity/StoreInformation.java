@@ -19,8 +19,7 @@ public class StoreInformation {
 
     public StoreInformation(){}
 
-    public StoreInformation(Integer storeId, String storeName, String storeDetails, String storePhoneNumber) {
-        this.storeId = storeId;
+    public StoreInformation(String storeName, String storeDetails, String storePhoneNumber) {
         this.storeName = storeName;
         this.storeDetails = storeDetails;
         this.storePhoneNumber = storePhoneNumber;
