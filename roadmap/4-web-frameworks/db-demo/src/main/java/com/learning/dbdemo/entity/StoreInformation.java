@@ -11,8 +11,6 @@ public class StoreInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer storeId;
-
-
     private String storeName;
     private String storeDetails;
     private String storePhoneNumber;
@@ -58,4 +56,13 @@ public class StoreInformation {
     }
 
 
+    @Override
+    public String toString() {
+        return "StoreInformation{" +
+                "storeId=" + storeId +
+                ", storeName='" + storeName + '\'' +
+                ", storeDetails='" + storeDetails + '\'' +
+                ", storePhoneNumber='" + storePhoneNumber + '\'' +
+                '}';
+    }
 }
