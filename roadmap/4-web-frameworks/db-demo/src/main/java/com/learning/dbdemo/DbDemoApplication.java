@@ -33,5 +33,7 @@ public class DbDemoApplication implements CommandLineRunner {
 		storeInformationRepository.save(storeInformation4);
 
 		storeInformationRepository.findByStoreName("Amazon").forEach(System.out::println);
+		storeInformationRepository.findByStorePhoneNumber("12345").forEach(System.out::println);
+		storeInformationRepository.findByStoreDetail("All").forEach(System.out::println);
 	}
 }
