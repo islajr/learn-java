@@ -9,4 +9,5 @@ public interface StoreInformationRepository extends CrudRepository<StoreInformat
 
     List<StoreInformation> findByStoreName(String name);
     List<StoreInformation> findByStorePhoneNumber(String phoneNumber);
+    List<StoreInformation> findByStoreDetail(String detail);
 }
