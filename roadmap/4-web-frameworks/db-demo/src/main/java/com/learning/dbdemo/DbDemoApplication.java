@@ -23,13 +23,13 @@ public class DbDemoApplication implements CommandLineRunner {
 		StoreInformation storeInformation = new StoreInformation("Amazon", "All", "12345");
 		storeInformationRepository.save(storeInformation);
 
-		StoreInformation storeInformation2 = new StoreInformation("Amazon", "All", "12345");
+		StoreInformation storeInformation2 = new StoreInformation("Flipkart", "All", "12345");
 		storeInformationRepository.save(storeInformation2);
 
-		StoreInformation storeInformation3 = new StoreInformation("Amazon", "All", "12345");
+		StoreInformation storeInformation3 = new StoreInformation("Jumia", "All", "12345");
 		storeInformationRepository.save(storeInformation3);
 
-		StoreInformation storeInformation4 = new StoreInformation("Amazon", "All", "12345");
+		StoreInformation storeInformation4 = new StoreInformation("Konga", "All", "12345");
 		storeInformationRepository.save(storeInformation4);
 
 		storeInformationRepository.findByStoreName("Amazon").forEach(System.out::println);
