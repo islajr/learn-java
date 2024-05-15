@@ -35,5 +35,6 @@ public class DbDemoApplication implements CommandLineRunner {
 		storeInformationRepository.findByStoreName("Amazon").forEach(System.out::println);
 		storeInformationRepository.findByStorePhoneNumber("12345").forEach(System.out::println);
 		storeInformationRepository.findByStoreDetail("All").forEach(System.out::println);
+		storeInformationRepository.findById(2).ifPresent(System.out::println);
 	}
 }
