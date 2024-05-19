@@ -1,6 +1,7 @@
 package com.test.person.service;
 
 import com.test.person.dao.PersonDao;
+import com.test.person.exception.PersonNotFoundException;
 import com.test.person.model.Person;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ public class PersonService {
     }
 
     public Optional<Person> getPerson(UUID id) {
+        if (personDao.getPerson(id).isEmpty())
+            throw new PersonNotFoundException("This person does not exist");
         return personDao.getPerson(id);
     }
 
