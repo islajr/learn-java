@@ -3,6 +3,7 @@ package com.test.person.service;
 import com.test.person.dao.PersonDao;
 import com.test.person.exception.PersonNotFoundException;
 import com.test.person.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class PersonService {
 
     private final PersonDao personDao;
 
+    @Autowired
     public PersonService(PersonDao personDao) {
         this.personDao = personDao;
     }
