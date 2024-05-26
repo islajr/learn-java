@@ -13,3 +13,8 @@ Fundamental commands useful within the `psql` shell environment include:
 
 - `\l` - this outputs a list of databases present on a machine, their owners, encodings, etc.
 - `\du` - this outputs a list of all users (role names), their roles, and groups which they are a part of.
+
+To change the password of a user, 
+
+- `ALTER USER user_name WITH PASSWORD 'password';`
+If successful, this will return an 'ALTER ROLE' text.
