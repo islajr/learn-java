@@ -29,3 +29,8 @@ To effectively alter the roles available to a user,
 - `ALTER USER user_name WITH required_role;`
 
 If successful, as usual, an 'ALTER ROLE' text is returned.
+
+To remove a user, 
+
+- `DROP USER user_name;`
+If successful, 'DROP ROLE' is returned
