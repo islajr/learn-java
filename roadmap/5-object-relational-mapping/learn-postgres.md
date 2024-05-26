@@ -18,3 +18,8 @@ To change the password of a user,
 
 - `ALTER USER user_name WITH PASSWORD 'password';`
 If successful, this will return an 'ALTER ROLE' text.
+
+To create a new user,
+
+- `CREATE USER 'user_name' WITH PASSWORD 'password';`
+If successful, a message 'CREATE ROLE' will be returned.
