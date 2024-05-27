@@ -34,3 +34,5 @@ To remove a user,
 
 - `DROP USER user_name;`
 If successful, 'DROP ROLE' is returned
+
+In order to properly interact with the database, it is necessary to install a front-end client (pgadmin)
