@@ -22,8 +22,8 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//	runtimeOnly("org.postgresql:postgresql")
-	runtimeOnly("com.mysql:mysql-connector-j")
+	runtimeOnly("org.postgresql:postgresql")
+//	runtimeOnly("com.mysql:mysql-connector-j")
 }
 
 tasks.withType<Test> {
