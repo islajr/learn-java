@@ -51,4 +51,14 @@ To access this database directly, `psql -d myDatabaseName` is used.
 
 Another known way is to open the postgres shell with `psql` and within that shell, run `CREATE DATABASE myDatabaseName;`
 
-This has the same effect as the other command and it depends on choice.
+This has the same effect as the other command, and it depends on choice.
+
+**Transferring rights of a database to another user**
+
+This is done with `GRANT ALL PRIVILEGES ON DATABASE "databaseName" TO "user";`
+
+**To connect to a database as a user**
+
+While logged into the postgres shell as a particular user, `\c databaseName` connects to the database as the logged-in user.
+
+
