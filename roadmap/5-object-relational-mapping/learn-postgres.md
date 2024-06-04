@@ -48,3 +48,7 @@ On a registered user, run the command `createdb myDatabaseName`.
 This immediately creates a database with the name, myDatabaseName.
 
 To access this database directly, `psql -d myDatabaseName` is used.
+
+Another known way is to open the postgres shell with `psql` and within that shell, run `CREATE DATABASE myDatabaseName;`
+
+This has the same effect as the other command and it depends on choice.
