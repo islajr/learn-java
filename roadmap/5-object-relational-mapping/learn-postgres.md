@@ -36,3 +36,15 @@ If successful, as usual, an 'ALTER ROLE' text is returned.
 If successful, 'DROP ROLE' is returned
 
 In order to properly interact with the database, it is necessary to install a front-end client (pgadmin)
+
+## Dealing with Databases
+
+**Creating a database:**
+
+This can probably be done in more ways than one. One of such ways being as follows:
+
+On a registered user, run the command `createdb myDatabaseName`.
+
+This immediately creates a database with the name, myDatabaseName.
+
+To access this database directly, `psql -d myDatabaseName` is used.
