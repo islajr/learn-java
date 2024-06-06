@@ -9,6 +9,12 @@ import java.util.UUID;
 @Repository("fakeDao")
 public class FakePersonAccessDao implements PersonDao {
 
+    private final PersonRepository personRepository;
+
+    public FakePersonAccessDao(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
     private static ArrayList<Person> db = new ArrayList<>();
 
     @Override
@@ -26,7 +32,7 @@ public class FakePersonAccessDao implements PersonDao {
 
     @Override
     public ArrayList<Person> getAllPersons() {
-        return db;
+        return (ArrayList<Person>) personRepository.findAll();
     }
 
     @Override
