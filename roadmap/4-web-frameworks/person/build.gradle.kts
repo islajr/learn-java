@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
-//	implementation("org.flyway:flywaydb:flyway-core")
+	implementation("org.flyway:flywaydb:flyway-core")
 //	compileOnly("org.projectlombok:lombok")
 //	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
