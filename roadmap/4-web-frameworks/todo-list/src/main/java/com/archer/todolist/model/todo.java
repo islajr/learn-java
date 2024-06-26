@@ -1,8 +1,24 @@
 package com.archer.todolist.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+
+@Entity
+@Table
+
 public class todo {
+    @Id
+    @SequenceGenerator(
+            name = "todo_sequence",
+            sequenceName = "todo_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "todo_sequence"
+    )
 
     int id;
     String name;
@@ -20,6 +36,10 @@ public class todo {
 
     public todo(String name) {
         this.name = name;
+    }
+
+    public todo() {
+
     }
 
     public int getId() {
