@@ -4,16 +4,26 @@ import java.time.LocalDateTime;
 
 public class todo {
 
+    int id;
     String name;
     LocalDateTime timeIssued;
     Boolean isCompleted;
     LocalDateTime timeTaken;
 
-    public todo(String name, LocalDateTime timeIssued, Boolean isCompleted, LocalDateTime timeTaken) {
+    public todo(int id, String name, LocalDateTime timeIssued, Boolean isCompleted, LocalDateTime timeTaken) {
+        this.id = id;
         this.name = name;
         this.timeIssued = timeIssued;
         this.isCompleted = isCompleted;
         this.timeTaken = timeTaken;
+    }
+
+    public todo(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -30,6 +40,10 @@ public class todo {
 
     public LocalDateTime getTimeTaken() {
         return timeTaken;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {

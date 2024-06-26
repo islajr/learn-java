@@ -1,15 +1,16 @@
 package com.archer.todolist.api;
 
 import com.archer.todolist.model.todo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/todo")
 public class todoController {
 
-    @GetMapping("/")
+    @PostMapping("/create")
+    public void createItem() {
+
+    }
 
 }
