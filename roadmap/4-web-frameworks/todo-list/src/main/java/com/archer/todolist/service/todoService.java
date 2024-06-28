@@ -5,6 +5,8 @@ import com.archer.todolist.dao.todoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class todoService {
 
@@ -17,5 +19,9 @@ public class todoService {
 
     public void createItem(todo todo) {
         repository.save(todo);
+    }
+
+    public List<todo> getItems() {
+        return repository.findAll();
     }
 }
