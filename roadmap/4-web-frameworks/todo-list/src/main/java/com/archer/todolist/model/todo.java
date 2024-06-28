@@ -38,6 +38,11 @@ public class todo {
         this.name = name;
     }
 
+    public todo(String name, LocalDateTime timeIssued) {
+        this.name = name;
+        this.timeIssued = timeIssued;
+    }
+
     public todo() {
 
     }
