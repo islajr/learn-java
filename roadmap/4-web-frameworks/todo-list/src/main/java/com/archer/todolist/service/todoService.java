@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class todoService {
@@ -26,5 +27,15 @@ public class todoService {
 
     public List<todo> getItems() {
         return repository.findAll();
+    }
+
+    public Optional<todo> getItem(int id) {
+        Optional<todo> item = repository.findById(id);
+
+        if (item.isEmpty()) {
+            throw new IllegalStateException("Item does not exist! ");
+        }
+        // else
+        return item;
     }
 }

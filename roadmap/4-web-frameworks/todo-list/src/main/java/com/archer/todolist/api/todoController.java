@@ -5,6 +5,7 @@ import com.archer.todolist.service.todoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -25,6 +26,11 @@ public class todoController {
     @GetMapping("/getItems")
     public List<todo> getTodos() {
        return _todoservice.getItems();
+    }
+
+    @GetMapping("/getItems/{id}")
+    public Optional<todo> getTodo(@PathVariable int id) {
+        return _todoservice.getItem(id);
     }
 
 }
