@@ -38,4 +38,15 @@ public class todoService {
         // else
         return item;
     }
+
+    public void deleteItem(int id) {
+        Optional<todo> item = getItem(id);
+
+        if (item.isEmpty()) {
+            throw new IllegalStateException("Cannot delete a non-existent item! ");
+
+        }
+
+        repository.deleteById(id);
+    }
 }
