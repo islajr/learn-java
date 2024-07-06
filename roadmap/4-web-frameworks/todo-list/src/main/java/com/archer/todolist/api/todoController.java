@@ -35,7 +35,7 @@ public class todoController {
 
     @DeleteMapping("/deleteItem/{id}")
     public void deleteItem(@PathVariable int id) {
-        return _todoservice.deleteItem(id);
+        _todoservice.deleteItem(id);
     }
 
 }
