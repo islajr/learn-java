@@ -38,4 +38,15 @@ public class todoController {
         _todoservice.deleteItem(id);
     }
 
+    @PutMapping("/update/{id}")
+    public void updateItem(
+            @PathVariable int id,
+            @RequestParam (required = false) String name,
+            @RequestParam (required = false) Boolean isCompleted
+    ) {
+       _todoservice.updateItem(id, name, isCompleted);
+    }
+
+
+
 }
