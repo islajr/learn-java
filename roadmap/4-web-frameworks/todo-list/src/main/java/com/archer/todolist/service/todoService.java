@@ -2,6 +2,7 @@ package com.archer.todolist.service;
 
 import com.archer.todolist.model.todo;
 import com.archer.todolist.dao.todoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,9 @@ public class todoService {
         }
 
         repository.deleteById(id);
+    }
+
+    @Transactional
+    public void updateItem(int id, String name, Boolean isCompleted) {
     }
 }
