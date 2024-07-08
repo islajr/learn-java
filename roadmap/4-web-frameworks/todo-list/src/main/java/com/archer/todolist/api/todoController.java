@@ -42,9 +42,10 @@ public class todoController {
     public void updateItem(
             @PathVariable int id,
             @RequestParam (required = false) String name,
-            @RequestParam (required = false) Boolean isCompleted
+            @RequestParam (required = false) Boolean isCompleted,
+            todo todo
     ) {
-       _todoservice.updateItem(id, name, isCompleted);
+       _todoservice.updateItem(id, name, isCompleted, todo);
     }
 
 

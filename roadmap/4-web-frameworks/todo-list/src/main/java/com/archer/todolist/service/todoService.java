@@ -52,6 +52,14 @@ public class todoService {
     }
 
     @Transactional
-    public void updateItem(int id, String name, Boolean isCompleted) {
+    public void updateItem(int id, String name, Boolean isCompleted, todo todo) {
+        if (repository.findById(id).isPresent()) {
+            if (!name.isEmpty()) {
+                todo.setName(name);
+            }
+            if (isCompleted.equals(true)) {
+                todo.setCompleted(true);
+            }
+        }
     }
 }
