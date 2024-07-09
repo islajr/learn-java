@@ -57,9 +57,9 @@ public class todoService {
             if (!name.isEmpty()) {
                 todo.setName(name);
             }
-            if (isCompleted.equals(true)) {
+            /*if (isCompleted.equals(true)) {
                 todo.setCompleted(true);
-            }
+            }*/
         }
     }
 }
