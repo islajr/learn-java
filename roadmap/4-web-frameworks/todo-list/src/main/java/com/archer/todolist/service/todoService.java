@@ -36,30 +36,25 @@ public class todoService {
         if (item.isEmpty()) {
             throw new IllegalStateException("Item does not exist! ");
         }
+
         // else
         return item;
     }
 
     public void deleteItem(int id) {
-        Optional<todo> item = getItem(id);
 
-        if (item.isEmpty()) {
+        Boolean exists= repository.existsById(id);
+
+        if (!exists) {
             throw new IllegalStateException("Cannot delete a non-existent item! ");
 
         }
 
         repository.deleteById(id);
+        System.out.println("Person successfully deleted. ");
     }
 
-    @Transactional
     public void updateItem(int id, String name, Boolean isCompleted, todo todo) {
-        if (repository.findById(id).isPresent()) {
-            if (!name.isEmpty()) {
-                todo.setName(name);
-            }
-            /*if (isCompleted.equals(true)) {
-                todo.setCompleted(true);
-            }*/
-        }
+
     }
 }
