@@ -16,6 +16,12 @@ public class Player {
         this.id = id;
     }
 
+    public Player(String name, UUID id, int age) {
+        this.name = name;
+        this.id = id;
+        this.age = age;
+    }
+
     public String getPosition() {
         return position;
     }
