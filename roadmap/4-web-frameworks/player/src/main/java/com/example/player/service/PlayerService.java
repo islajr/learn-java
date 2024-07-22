@@ -28,4 +28,7 @@ public class PlayerService {
     public Optional<Player> getPlayer(UUID id) {
         return null;
     }
+
+    public void deletePlayer(UUID id) {
+    }
 }
