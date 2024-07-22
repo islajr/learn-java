@@ -34,4 +34,9 @@ public class PlayerController {
     public Optional<Player> getPlayer(@PathVariable("id") UUID id) {
         return playerService.getPlayer(id);
     }
+
+    @DeleteMapping("/deletePlayer{id}")
+    public void deletePlayer(@PathVariable("id") UUID id) {
+        playerService.deletePlayer(id);
+    }
 }
