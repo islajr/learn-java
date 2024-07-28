@@ -1,25 +1,36 @@
 package com.example.player.model;
 
-import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Player {
 
-    private final UUID id;
-    private final String name;
-    private final int age;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private  String name;
+    private int age;
     private String position;
 
-    public Player(String position, int age, String name, UUID id) {
+    public Player(String position, int age, String name, Long id) {
         this.position = position;
         this.age = age;
         this.name = name;
         this.id = id;
     }
 
-    public Player(String name, UUID id, int age) {
-        this.name = name;
+    public Player(Long id, String name, int age) {
+
         this.id = id;
+        this.name = name;
         this.age = age;
+    }
+
+    public Player() {
+
     }
 
     public String getPosition() {
@@ -30,7 +41,7 @@ public class Player {
         this.position = position;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
