@@ -1,15 +1,18 @@
 package com.example.player.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "player_sequence",
+            sequenceName = "player_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_sequence")
     private Long id;
     private  String name;
     private int age;
@@ -29,7 +32,7 @@ public class Player {
         this.age = age;
     }
 
-    public Player() {
+    protected Player() {
 
     }
 
