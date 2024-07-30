@@ -23,6 +23,7 @@ public class PlayerService {
     }
 
     public void createPlayer(Player player) {
+        playerRepository.save(player);
     }
 
     public Optional<Player> getPlayer(UUID id) {
