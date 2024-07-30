@@ -5,6 +5,7 @@ import com.example.player.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class PlayerController {
     }
 
     @GetMapping("/getPlayers")
-    public Optional<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return playerService.getPlayers();
 
     }

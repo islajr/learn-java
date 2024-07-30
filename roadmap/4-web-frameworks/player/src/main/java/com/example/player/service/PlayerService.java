@@ -5,8 +5,8 @@ import com.example.player.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class PlayerService {
@@ -18,18 +18,18 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public Optional<Player> getPlayers() {
-        return null;
+    public List<Player> getPlayers() {
+        return playerRepository.findAll();
     }
 
     public void createPlayer(Player player) {
         playerRepository.save(player);
     }
 
-    public Optional<Player> getPlayer(UUID id) {
+    public Optional<Player> getPlayer(Long id) {
         return null;
     }
 
-    public void deletePlayer(UUID id) {
+    public void deletePlayer(Long id) {
     }
 }
