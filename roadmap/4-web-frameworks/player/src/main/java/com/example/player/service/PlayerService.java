@@ -27,7 +27,11 @@ public class PlayerService {
     }
 
     public Optional<Player> getPlayer(Long id) {
-        return null;
+        if (playerRepository.existsById(id)) {
+            return playerRepository.findById(id);
+        }
+        // else
+        throw new IllegalStateException("Such player does not exist! ");
     }
 
     public void deletePlayer(Long id) {
