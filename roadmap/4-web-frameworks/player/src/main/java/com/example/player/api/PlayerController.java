@@ -31,12 +31,12 @@ public class PlayerController {
     }
 
     @GetMapping("/getPlayer/{id}")
-    public Optional<Player> getPlayer(@PathVariable("id") UUID id) {
+    public Optional<Player> getPlayer(@PathVariable("id") Long id) {
         return playerService.getPlayer(id);
     }
 
     @DeleteMapping("/deletePlayer{id}")
-    public void deletePlayer(@PathVariable("id") UUID id) {
+    public void deletePlayer(@PathVariable("id") Long id) {
         playerService.deletePlayer(id);
     }
 }
