@@ -35,5 +35,9 @@ public class PlayerService {
     }
 
     public void deletePlayer(Long id) {
+        if (!playerRepository.existsById(id)) {
+            throw new IllegalStateException("Cannot delete a non-existent player! ");
+        }
+        playerRepository.deleteById(id);
     }
 }
