@@ -38,4 +38,10 @@ public class PlayerController {
     public void deletePlayer(@PathVariable("id") Long id) {
         playerService.deletePlayer(id);
     }
+
+    @PutMapping("/updatePlayer/{id}")
+    public void updatePlayer(@PathVariable("id") Long id,
+                             @RequestParam (required = false) @RequestBody String name) {
+        playerService.updatePlayer(id);
+    }
 }
