@@ -2,6 +2,7 @@ package com.example.player.service;
 
 import com.example.player.model.Player;
 import com.example.player.repository.PlayerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,22 @@ public class PlayerService {
         playerRepository.deleteById(id);
     }
 
+    @Transactional
     public void updatePlayer(Long id, String name, int age, String position) {
+
+        Optional<Player> player = playerRepository.findById(id);
+        if (player.isEmpty()) {
+            throw new IllegalStateException("Cannot update a non-existent player! ");
+        }
+
+        if (!name.isEmpty()) {
+            player.get().setName(name);
+        }
+        if (((Integer) age) != null) {
+            player.get().setAge(age);
+        }
+        if (!position.isEmpty()) {
+            player.get().setPosition(position);
+        }
     }
 }
