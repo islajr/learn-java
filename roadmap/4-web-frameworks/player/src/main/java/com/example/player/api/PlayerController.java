@@ -22,7 +22,6 @@ public class PlayerController {
     @GetMapping("/getPlayers")
     public List<Player> getPlayers() {
         return playerService.getPlayers();
-
     }
 
     @PostMapping("/createPlayer")
