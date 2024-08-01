@@ -41,7 +41,9 @@ public class PlayerController {
 
     @PutMapping("/updatePlayer/{id}")
     public void updatePlayer(@PathVariable("id") Long id,
-                             @RequestParam (required = false) @RequestBody String name) {
-        playerService.updatePlayer(id);
+                             @RequestParam (required = false) @RequestBody String name,
+                             @RequestParam (required = false) @RequestBody int age,
+                             @RequestParam (required = false) @RequestBody String position) {
+        playerService.updatePlayer(id, name, age, position);
     }
 }

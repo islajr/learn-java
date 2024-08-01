@@ -41,6 +41,6 @@ public class PlayerService {
         playerRepository.deleteById(id);
     }
 
-    public void updatePlayer(Long id) {
+    public void updatePlayer(Long id, String name, int age, String position) {
     }
 }
