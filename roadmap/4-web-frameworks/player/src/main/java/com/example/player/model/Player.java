@@ -15,17 +15,17 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_sequence")
     private Long id;
     private  String name;
-    private int age;
+    private Integer age;
     private String position;
 
-    public Player(String position, int age, String name, Long id) {
+    public Player(String position, Integer age, String name, Long id) {
         this.position = position;
         this.age = age;
         this.name = name;
         this.id = id;
     }
 
-    public Player(Long id, String name, int age) {
+    public Player(Long id, String name, Integer age) {
 
         this.id = id;
         this.name = name;
@@ -56,11 +56,11 @@ public class Player {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

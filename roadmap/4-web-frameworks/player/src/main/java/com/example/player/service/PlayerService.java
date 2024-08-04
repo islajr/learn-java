@@ -43,17 +43,17 @@ public class PlayerService {
     }
 
     @Transactional
-    public void updatePlayer(Long id, String name, int age, String position) {
+    public void updatePlayer(Long id, String name, Integer age, String position) {
 
         Optional<Player> player = playerRepository.findById(id);
         if (player.isEmpty()) {
             throw new IllegalStateException("Cannot update a non-existent player! ");
         }
 
-        if (!name.isEmpty()) {
+        if (!name.equals(player.get().getName()) && !name.isEmpty()) {
             player.get().setName(name);
         }
-        if (((Integer) age) != null) {
+        if (!age.equals(null)){
             player.get().setAge(age);
         }
         if (!position.isEmpty()) {
