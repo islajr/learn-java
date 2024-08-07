@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -53,13 +54,13 @@ public class PlayerService {
             throw new IllegalStateException("Cannot update a non-existent player! ");
         }
 
-        if (!name.equals(player.get().getName()) && !name.isEmpty()) {
+        if (!name.equals(player.get().getName()) && !name.isEmpty() && !Objects.equals(player.get().getName(), name)) {
             player.get().setName(name);
         }
-        if (!age.equals(null)){
+        if (!(age == null)){
             player.get().setAge(age);
         }
-        if (!position.isEmpty()) {
+        if (!(position == null) && !position.isEmpty() && Objects.equals(player.get().getPosition(), position)) {
             player.get().setPosition(position);
         }
     }
