@@ -57,7 +57,7 @@ public class PlayerService {
         if (!name.equals(player.get().getName()) && !name.isEmpty() && !Objects.equals(player.get().getName(), name)) {
             player.get().setName(name);
         }
-        if (!(age == null)){
+        if (!(age == null) && !Objects.equals(player.get().getAge(), age)){
             player.get().setAge(age);
         }
         if (!(position == null) && !position.isEmpty() && Objects.equals(player.get().getPosition(), position)) {
