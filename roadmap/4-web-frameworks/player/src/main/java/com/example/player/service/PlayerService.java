@@ -1,5 +1,6 @@
 package com.example.player.service;
 
+import com.example.player.exception.PlayerNotFoundException;
 import com.example.player.model.Player;
 import com.example.player.repository.PlayerRepository;
 import jakarta.transaction.Transactional;
@@ -33,7 +34,7 @@ public class PlayerService {
             return playerRepository.findById(id);
         }
         // else
-        throw new IllegalStateException("Such player does not exist! ");
+        throw new PlayerNotFoundException("This player does not exist!");
     }
 
     public void deletePlayer(Long id) {
