@@ -42,7 +42,7 @@ public class PlayerService {
         boolean exists = playerRepository.existsById(id);
 
         if (!exists) {
-            throw new IllegalStateException("Cannot delete a non-existent player");
+            throw new PlayerNotFoundException("Cannot delete a non-existent player");
         }
         playerRepository.deleteById(id);
     }
@@ -52,7 +52,7 @@ public class PlayerService {
 
         Optional<Player> player = playerRepository.findById(id);
         if (player.isEmpty()) {
-            throw new IllegalStateException("Cannot update a non-existent player! ");
+            throw new PlayerNotFoundException("Cannot update a non-existent player! ");
         }
 
         if (!name.equals(player.get().getName()) && !name.isEmpty() && !Objects.equals(player.get().getName(), name)) {
