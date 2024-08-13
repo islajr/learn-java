@@ -19,7 +19,7 @@ public class SpringSecurityAuthentication {
                 (req) -> req
                         .requestMatchers("/api/v1/player/getPlayer/", "/api/v1/player/createPlayer").permitAll()
                         .anyRequest().authenticated()
-        )   ;
+        );
 
         return http.build();
     }
