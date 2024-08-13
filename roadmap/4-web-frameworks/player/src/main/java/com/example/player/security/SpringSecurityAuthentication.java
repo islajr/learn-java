@@ -17,7 +17,7 @@ public class SpringSecurityAuthentication {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests(
                 (req) -> req
-                        .requestMatchers("/api/v1/player/getPlayer/", "/api/v1/player/createPlayer").permitAll()
+                        .requestMatchers("/api/v1/player/getPlayer/").permitAll()
                         .anyRequest().authenticated()
         );
 
