@@ -2,6 +2,7 @@ package com.example.player.model;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -22,6 +23,9 @@ public class Player implements UserDetails {
     private  String name;
     private Integer age;
     private String position;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Player(String position, Integer age, String name, Long id) {
         this.position = position;
@@ -71,7 +75,7 @@ public class Player implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
@@ -81,26 +85,30 @@ public class Player implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "";
+        return name;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
+//        return UserDetails.super.isAccountNonExpired();
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+//        return UserDetails.super.isAccountNonLocked();
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
+//        return UserDetails.super.isCredentialsNonExpired();
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+//        return UserDetails.super.isEnabled();
+        return true;
     }
 }
