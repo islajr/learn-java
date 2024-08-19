@@ -66,4 +66,8 @@ public class PlayerService {
         }
         // abandoning this project
     }
+
+    public String extractPlayerName(String token) {
+        return null;
+    }
 }
