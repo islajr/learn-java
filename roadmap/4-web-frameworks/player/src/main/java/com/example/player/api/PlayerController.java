@@ -2,6 +2,7 @@ package com.example.player.api;
 
 import com.example.player.model.Player;
 import com.example.player.service.PlayerService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,10 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
+    @GetMapping("/")
+    public String greet(HttpServletRequest request) {
+        return "Welcome, Isla\n" + request.getSession().getId();
+    }
     @GetMapping("/getPlayers")
     public List<Player> getPlayers() {
         return playerService.getPlayers();
