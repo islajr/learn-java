@@ -4,6 +4,7 @@ import com.example.player.model.Player;
 import com.example.player.service.PlayerService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,11 @@ public class PlayerController {
     @PostMapping("/createPlayer")
     public void createPlayer(@RequestBody Player player) {
         playerService.createPlayer(player);
+    }
+
+    @GetMapping("/csrf")
+    public CsrfToken getCsrfToken(HttpServletRequest request) {
+        return (CsrfToken)      request.getAttribute("_csrf");
     }
 
     @GetMapping("/getPlayer/{id}")
