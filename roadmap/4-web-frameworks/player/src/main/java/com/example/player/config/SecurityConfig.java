@@ -15,20 +15,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        http
         // disabling csrf
-        http.csrf(customizer -> customizer.disable());
+                .csrf(customizer -> customizer.disable())
 
         //making web server able to authorize http requests
-        http.authorizeHttpRequests(request -> request.anyRequest().authenticated());
+                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
 
         // initiating form login
-        http.formLogin(Customizer.withDefaults());
+                .formLogin(Customizer.withDefaults())
 
         // making it accessible to postman
-        http.httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults())
 
         // making csrf stateless
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
 
         return http.build();
     }
