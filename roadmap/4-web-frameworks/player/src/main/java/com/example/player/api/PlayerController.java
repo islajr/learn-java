@@ -37,7 +37,7 @@ public class PlayerController {
 
     @GetMapping("/csrf")
     public CsrfToken getCsrfToken(HttpServletRequest request) {
-        return (CsrfToken)      request.getAttribute("_csrf");
+        return (CsrfToken) request.getAttribute("_csrf");
     }
 
     @GetMapping("/getPlayer/{id}")
