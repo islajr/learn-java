@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request.anyRequest().authenticated())
 
         // initiating form login
-                .formLogin(Customizer.withDefaults())
+//                .formLogin(Customizer.withDefaults())
 
         // making it accessible to postman
                 .httpBasic(Customizer.withDefaults())
