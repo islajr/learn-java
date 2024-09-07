@@ -64,8 +64,7 @@ public class PlayerService {
         if (!(position == null) && !position.isEmpty() && Objects.equals(player.get().getPosition(), position)) {
             player.get().setPosition(position);
         }
-        // abandoning this project
-        // one more green farming.
+
     }
 
     public String extractPlayerName(String token) {
