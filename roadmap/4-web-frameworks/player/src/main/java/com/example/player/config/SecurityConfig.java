@@ -50,6 +50,13 @@ public class SecurityConfig {
                 .password("archerslaps")
                 .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(user1);
+
+        UserDetails user2 = User
+                .withDefaultPasswordEncoder()
+                .username("akinmokun")
+                .password("akinmokun1")
+                .roles("ADMIN")
+                .build();
+        return new InMemoryUserDetailsManager(user1, user2);
     }
 }
