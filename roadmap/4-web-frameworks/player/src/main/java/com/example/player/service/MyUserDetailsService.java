@@ -1,13 +1,14 @@
 package com.example.player.service;
 
-import com.example.player.model.Player;
-import com.example.player.model.PlayerPrincipal;
-import com.example.player.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.example.player.model.Player;
+import com.example.player.model.PlayerPrincipal;
+import com.example.player.repository.PlayerRepository;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
