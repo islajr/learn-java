@@ -11,7 +11,7 @@ import com.example.player.model.PlayerPrincipal;
 import com.example.player.repository.PlayerRepository;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {   
 
     @Autowired
     private PlayerRepository playerRepository;
@@ -19,7 +19,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Player player = playerRepository.findByUsername(username);
+        Player player = playerRepository.findByUsername(username);              
 
         if (player == null) {
             System.out.println("User not found!");
