@@ -21,10 +21,16 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String greet(HttpServletRequest request) {
         return "Welcome, Isla\n" + request.getSession().getId();
+    }*/
+
+    @GetMapping("/")
+    public String greet() {
+        return "Welcome, Isla! ";
     }
+
     @GetMapping("/getPlayers")
     public List<Player> getPlayers() {
         return playerService.getPlayers();
