@@ -15,6 +15,7 @@ public class WebSecurityConfig {
     @Bean
    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        http.csrf(customizer -> customizer.disable());
         http.authorizeHttpRequests(requests -> requests
                 .requestMatchers("/security/greet").permitAll() // permit requests to this URL
                 .anyRequest().authenticated()   // any other request needs to be authenticated
@@ -22,7 +23,7 @@ public class WebSecurityConfig {
                /* .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()
-                )
+                )*
                 .logout(LogoutConfigurer::permitAll);*/
 
                 .httpBasic(Customizer.withDefaults());
