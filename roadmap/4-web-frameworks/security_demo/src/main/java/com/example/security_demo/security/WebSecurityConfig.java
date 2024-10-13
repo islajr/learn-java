@@ -40,12 +40,12 @@ public class WebSecurityConfig {
    }
 
    @Autowired
-   private PasswordEncoder passwordEncoder;
+   private PasswordEncoder passwordEncoder; 
 
    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.inMemoryAuthentication()
                 .withUser("Isla")
-                .roles("ADMIN   ")
-                .password("isla@123");
+                .roles("ADMIN")
+                .password("{noop}isla@123");
    }
 }
