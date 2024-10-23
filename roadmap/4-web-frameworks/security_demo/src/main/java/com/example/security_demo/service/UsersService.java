@@ -11,8 +11,10 @@ public class UsersService {
     public UsersService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    public void createUser(User user) {
-        userRepository.save(user);
+    public void createUser(int id, String username, String password) {
+        User user = new User();
+        user.setId(id);
+        user.setUsername(username);
+        user.setPassword(password);
     }
 }
