@@ -1,8 +1,9 @@
 package com.example.security_demo.service;
 
+import org.springframework.stereotype.Service;
+
 import com.example.security_demo.model.User;
 import com.example.security_demo.repository.UserRepository;
-import org.springframework.stereotype.Service;
 
 @Service
 public class UsersService {
@@ -11,10 +12,8 @@ public class UsersService {
     public UsersService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public void createUser(int id, String username, String password) {
-        User user = new User();
-        user.setId(id);
-        user.setUsername(username);
-        user.setPassword(password);
+    
+    public void createUser(User user) {
+        UserRepository.save();
     }
 }
