@@ -1,6 +1,7 @@
 package com.example.student.student.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +30,10 @@ public class studentController {
     @PostMapping("/register")
     public void registerStudent(@RequestBody student _student) {
         _studentService.registerStudent(_student);
+    }
+
+    @GetMapping("/getStudent/{id}")
+    public student getStudent(@PathVariable int id) throws Exception {
+        return _studentService.getStudent(id);
     }
 }

@@ -11,16 +11,18 @@ public class studentdao {
 
     private ArrayList<student> students = new ArrayList<>();
 
-    public int register(student _student) {
+    public void register(student _student) {
 
-        try {   
+        try {
             students.add(_student);
-            return 0;
             
         } catch (Exception e) {
             System.out.println(e.toString());
-            return 1;
         }
+    }
+
+    public student getStudent(int id) throws Exception {
+        return students.get(id - 1);
     }
 
 }

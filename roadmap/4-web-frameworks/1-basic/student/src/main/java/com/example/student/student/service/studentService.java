@@ -11,11 +11,15 @@ public class studentService {
     private studentdao _studentdao;
 
     public studentService(studentdao _studentdao) {
-        this._studentdao = _studentdao;
+        this._studentdao = _studentdao;     
     }
 
     public void registerStudent(student _student) {
         _studentdao.register(_student);
+    }
+
+    public student getStudent(int id) throws Exception {
+        return _studentdao.getStudent(id);
     }
 
 
