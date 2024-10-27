@@ -33,7 +33,7 @@ public class studentController {
     }
 
     @GetMapping("/getStudent/{id}")
-    public student getStudent(@PathVariable int id) throws Exception {
+    public student getStudent(@PathVariable("id") int id) {           
         return _studentService.getStudent(id);
     }
 }

@@ -18,7 +18,7 @@ public class studentService {
         _studentdao.register(_student);
     }
 
-    public student getStudent(int id) throws Exception {
+    public student getStudent(int id) {
         return _studentdao.getStudent(id);
     }
 
