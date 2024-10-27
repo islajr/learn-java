@@ -1,22 +1,23 @@
 package com.example.player.service;
 
-import com.example.player.exception.PlayerNotFoundException;
-import com.example.player.model.Player;
-import com.example.player.repository.PlayerRepository;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.example.player.exception.PlayerNotFoundException;
+import com.example.player.model.Player;
+import com.example.player.repository.PlayerRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class PlayerService {
 
     public final PlayerRepository playerRepository;
 
-    @Autowired
+    
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }

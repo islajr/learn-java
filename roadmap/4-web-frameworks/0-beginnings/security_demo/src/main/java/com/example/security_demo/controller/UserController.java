@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping(path = "/security")
+@RequestMapping("/security")
 @RestController
 public class UserController {
 
@@ -23,18 +23,14 @@ public class UserController {
         return "<h1>Hello, Stranger! </h1>";
     }
 
-    @GetMapping("/users")
-    public String getUser() {
-        return "This is a user!";
-    }
-
     @GetMapping("/csrf")
     public CsrfToken getCsrf(HttpServletRequest request) {
         return (CsrfToken) request.getAttribute("_csrf");
     }
 
     @PostMapping("/createUser")
-    public void createUser(@RequestBody User user) {
-        UsersService.createUser(user);
+    public String createUser(@RequestBody User user) {
+        return UsersService.createUser(user);
     }
+
 }
