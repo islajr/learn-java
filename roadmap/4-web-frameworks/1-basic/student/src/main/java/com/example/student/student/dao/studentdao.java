@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
+import com.example.student.student.exception.studentAlreadyExistsException;
+import com.example.student.student.exception.studentDoesNotExistException;
 import com.example.student.student.model.student;
 
 @Component
@@ -15,7 +17,7 @@ public class studentdao {
         try {
             students.add(_student);
             
-        } catch (Exception e) {
+        } catch (studentAlreadyExistsException e) {
             System.out.println(e.toString());
         }
     }
@@ -25,8 +27,7 @@ public class studentdao {
             return students.get(id - 1);
         }
         else {
-            System.out.println("Student does not exist! ");
-            throw new IndexOutOfBoundsException("Student does not exist!");
+            throw new studentDoesNotExistException("Student does not exist! ");
         }
     }
 
