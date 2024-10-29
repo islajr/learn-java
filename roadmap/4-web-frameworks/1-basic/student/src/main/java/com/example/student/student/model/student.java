@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 public class student {  
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
     Long id;
     String name;
