@@ -1,25 +1,36 @@
 package com.example.student.student.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
-import com.example.student.student.dao.studentdao;
+import com.example.student.student.exception.studentDoesNotExistException;
 import com.example.student.student.model.student;
+import com.example.student.student.repository.studentRepository;
 
 @Service
 public class studentService {
 
-    private studentdao _studentdao;
+    private studentRepository _studentRepository;
 
-    public studentService(studentdao _studentdao) {
-        this._studentdao = _studentdao;     
+    public studentService(studentRepository _studentRepository) {
+        this._studentRepository = _studentRepository;
     }
 
     public void registerStudent(student _student) {
-        _studentdao.register(_student);
+        _studentRepository.save(_student);
+        
     }
 
-    public student getStudent(int id) {
-        return _studentdao.getStudent(id);
+    public student getStudent(Long id) {
+        Optional<student> __student = _studentRepository.findById(id);
+        
+        if (__student.isPresent()) {
+            return __student.get();
+        }
+        else {
+            throw new studentDoesNotExistException("There isn't such a student.");
+        }
     }
 
 

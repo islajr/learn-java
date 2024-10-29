@@ -1,22 +1,33 @@
 package com.example.student.student.model;
 
-public class student {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table
+public class student {  
     
-    int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+
+    Long id;
     String name;
     String email;
 
-    public student(String email, int id, String name) {
+    public student(Long id, String name, String email) {                     
         this.email = email;
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
