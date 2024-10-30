@@ -12,16 +12,7 @@ import jakarta.persistence.Table;
 public class student {  
     
     @Id
-    @SequenceGenerator(
-        name = "student_sequence", 
-        sequenceName = "student_sequence",
-        allocationSize = 1 
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE, 
-        generator = "student_sequence"
-        
-    )
+    @GeneratedValue(strategy = GenerationType.TABLE)
 
     Long id;
     String name;
