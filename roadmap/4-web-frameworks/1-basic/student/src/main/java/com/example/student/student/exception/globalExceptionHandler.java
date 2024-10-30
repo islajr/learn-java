@@ -15,7 +15,6 @@ public class globalExceptionHandler {
         return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
     }
 
-    
     @ExceptionHandler(value = studentAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public @ResponseBody ErrorResponse handleException(studentAlreadyExistsException ex) {

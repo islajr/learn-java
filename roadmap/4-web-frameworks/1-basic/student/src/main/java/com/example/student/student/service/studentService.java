@@ -45,4 +45,13 @@ public class studentService {
             return students;
         }
     }
+
+    public void deleteStudent(Long id) {
+        if (_studentRepository.existsById(id)) {
+            _studentRepository.deleteById(id);
+        }
+        else {
+            throw new studentDoesNotExistException("Cannot delete a non-existent student.");
+        }
+    }
 }
