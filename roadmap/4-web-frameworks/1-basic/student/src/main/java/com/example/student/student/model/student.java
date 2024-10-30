@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,7 +12,16 @@ import jakarta.persistence.Table;
 public class student {  
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(
+        name = "student_sequence", 
+        sequenceName = "student_sequence",
+        allocationSize = 1 
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE, 
+        generator = "student_sequence"
+        
+    )
 
     Long id;
     String name;
@@ -22,6 +32,9 @@ public class student {
         this.id = id;
         this.name = name;
     }
+
+    // no-arg constructor
+    public student() {}
 
     public Long getId() {
         return id;
