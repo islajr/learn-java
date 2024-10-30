@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.student.student.model.student;
 import com.example.student.student.service.studentService;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/student/")
 public class studentController {
@@ -33,7 +35,12 @@ public class studentController {
     }
 
     @GetMapping("/getStudent/{id}")
-    public student getStudent(@PathVariable("id") Long id) {           
+    public student getStudent(@PathVariable("id") Long id) {
         return _studentService.getStudent(id);
+    }
+
+    @GetMapping("/getStudents")
+    public ArrayList<student> getStudents() {
+        return _studentService.getStudents();
     }
 }

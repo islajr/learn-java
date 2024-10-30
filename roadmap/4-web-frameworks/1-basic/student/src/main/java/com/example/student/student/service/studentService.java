@@ -1,5 +1,6 @@
 package com.example.student.student.service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -33,5 +34,7 @@ public class studentService {
         }
     }
 
-
+    public ArrayList<student> getStudents() {
+        return (ArrayList<student>) _studentRepository.findAll();
+    }
 }
