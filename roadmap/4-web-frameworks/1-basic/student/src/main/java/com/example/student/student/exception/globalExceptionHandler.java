@@ -22,4 +22,10 @@ public class globalExceptionHandler {
         return new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
     }
 
+    @ExceptionHandler(value = noRegisteredStudentException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public @ResponseBody ErrorResponse handleException(noRegisteredStudentException ex) {
+        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), "There is no available student!");
+    }
+
 }

@@ -3,6 +3,7 @@ package com.example.student.student.service;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import com.example.student.student.exception.noRegisteredStudentException;
 import org.springframework.stereotype.Service;
 
 import com.example.student.student.exception.studentDoesNotExistException;
@@ -35,6 +36,13 @@ public class studentService {
     }
 
     public ArrayList<student> getStudents() {
-        return (ArrayList<student>) _studentRepository.findAll();
+        ArrayList<student> students = (ArrayList<student>) _studentRepository.findAll();
+
+        if (students.isEmpty()) {
+            throw new noRegisteredStudentException("There is no available Student.");
+        }
+        else {
+            return students;
+        }
     }
 }
