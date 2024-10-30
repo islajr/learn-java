@@ -54,4 +54,13 @@ public class studentService {
             throw new studentDoesNotExistException("Cannot delete a non-existent student.");
         }
     }
+
+    public void deleteAllStudents() {
+        ArrayList<student> students = (ArrayList<student>) _studentRepository.findAll();
+
+        if (students.isEmpty()) {
+            throw new studentDoesNotExistException("Cannot delete non-existent students. ");
+        }
+        _studentRepository.deleteAll();
+    }
 }
