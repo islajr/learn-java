@@ -32,7 +32,7 @@ public class studentController {
     @GetMapping("/getStudent/{id}")
     public student getStudent(@PathVariable("id") Long id) {
         return _studentService.getStudent(id);
-    }
+    }       
 
     @GetMapping("/getStudents")
     public ArrayList<student> getStudents() {
@@ -46,6 +46,11 @@ public class studentController {
     @DeleteMapping("/deleteStudents")
     public void deleteAllStudents() {
         _studentService.deleteAllStudents();
+    }
+
+    @PutMapping("/updateStudent/{id}")
+    public void updateStudent(@RequestBody student _student, @PathVariable("id") Long id) {
+        _studentService.updateStudent(_student, id);
     }
 
 }

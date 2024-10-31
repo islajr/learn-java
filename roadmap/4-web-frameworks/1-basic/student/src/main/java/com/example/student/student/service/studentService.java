@@ -63,4 +63,26 @@ public class studentService {
         }
         _studentRepository.deleteAll();
     }
+
+    public void updateStudent(student _student, Long id) {
+        student test = _studentRepository.findById(id).get();
+
+        if (test != null && _student != null) {
+
+            test.setId(id);
+
+            if (_student.getName() != null) {
+                test.setName(_student.getName());
+            }
+            if (_student.getEmail() != null) {
+                test.setEmail(_student.getEmail());
+            }
+
+            _studentRepository.save(test);
+        }
+        else {
+            throw new studentDoesNotExistException("Cannot update details of a non-student.");
+        }
+
+    }
 }
