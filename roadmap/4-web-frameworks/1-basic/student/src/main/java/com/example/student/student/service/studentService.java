@@ -1,9 +1,11 @@
 package com.example.student.student.service;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 import com.example.student.student.exception.noRegisteredStudentException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.example.student.student.exception.studentDoesNotExistException;
@@ -64,25 +66,19 @@ public class studentService {
         _studentRepository.deleteAll();
     }
 
-    public void updateStudent(student _student, Long id) {
-        student test = _studentRepository.findById(id).orElseThrow();
+    @Transactional
+    public void updateStudent(Long id, String name, String email) {
+        student prototype = _studentRepository.findById(id).orElseThrow(() -> new studentDoesNotExistException("Cannot update a non-existent student"));
 
-        if (test != null && _student != null) {
-
-            test.setId(id);
-
-            if (_student.getName() != null) {
-                test.setName(_student.getName());
-            }
-            if (_student.getEmail() != null) {
-                test.setEmail(_student.getEmail());
-            }
-
-            _studentRepository.save(test);
+        if (name != null && !name.isEmpty() && !Objects.equals(prototype.getName(), name)) {
+            prototype.setName(name);
         }
-        else {
-            throw new studentDoesNotExistException("Cannot update details of a non-student.");
+
+        if (email != null && !email.isEmpty() && !Objects.equals(prototype.getEmail(), email)) {
+            prototype.setEmail(email);
         }
+
+        _studentRepository.save(prototype);
 
     }
 }
