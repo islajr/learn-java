@@ -67,18 +67,18 @@ public class studentService {
     }
 
     @Transactional
-    public void updateStudent(Long id, String name, String email) {
-        student prototype = _studentRepository.findById(id).orElseThrow(() -> new studentDoesNotExistException("Cannot update a non-existent student"));
+    public void updateStudent(Long id, student _student) {
 
-        if (name != null && !name.isEmpty() && !Objects.equals(prototype.getName(), name)) {
-            prototype.setName(name);
+        student proto = _studentRepository.findById(id).orElseThrow(() -> new studentDoesNotExistException("Cannot update a non-existent student!"));
+
+        if (_student.getName() != null && !_student.getName().isEmpty() && !Objects.equals(_student.getName(), proto.getName())) {
+            proto.setName(_student.getName());
         }
 
-        if (email != null && !email.isEmpty() && !Objects.equals(prototype.getEmail(), email)) {
-            prototype.setEmail(email);
+        if (_student.getEmail() != null && !_student.getEmail().isEmpty() && !Objects.equals(_student.getEmail(), proto.getEmail())) {
+            proto.setEmail(_student.getEmail());
         }
 
-        _studentRepository.save(prototype);
-
+        _studentRepository.save(proto);
     }
 }

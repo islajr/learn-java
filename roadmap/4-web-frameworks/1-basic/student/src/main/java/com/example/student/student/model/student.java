@@ -24,6 +24,12 @@ public class student {
         this.name = name;
     }
 
+    // special constructor
+    public student(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
     // no-arg constructor
     public student() {}
 
