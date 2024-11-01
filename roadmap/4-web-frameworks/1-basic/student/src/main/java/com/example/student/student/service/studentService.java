@@ -65,7 +65,7 @@ public class studentService {
     }
 
     public void updateStudent(student _student, Long id) {
-        student test = _studentRepository.findById(id).get();
+        student test = _studentRepository.findById(id).orElseThrow();
 
         if (test != null && _student != null) {
 
