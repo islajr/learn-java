@@ -13,8 +13,8 @@ public class securityConfig {
     protected void init(AuthenticationManagerBuilder builder) throws Exception {
         builder.inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder())
-                .withUser("islajr")
-                .password(passwordEncoder().encode("isla123"))
+                .withUser("user")
+                .password(passwordEncoder().encode("user"))
                 .roles("ADMIN")
 
                 .and()
