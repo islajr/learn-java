@@ -1,58 +1,58 @@
 package com.example.student.student.security;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.SecurityBuilder;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
+@Configuration
+@EnableWebSecurity
 public class securityConfig {
 
-    protected void init(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder())
-                .withUser("user")
-                .password(passwordEncoder().encode("user"))
-                .roles("ADMIN")
-
-                .and()
-                .passwordEncoder(passwordEncoder())
-                .withUser("user")
-                .password(passwordEncoder().encode("user123"))
-                .roles("BASIC");
-    }
-
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-
-
-    public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers(
                         "/student/getStudent/{id}",
-                        "/student/updateStudent/{id}",
-                        "/student/hello"
-                )
-                .hasAnyRole("BASIC", "ADMIN")
+                        "/student/hello").hasAnyRole("USER", "ADMIN")
 
                 .requestMatchers(
-                        "/student/delete/{id}",
-                        "/student/register",
-                        "/student/getStudents",
+                        "/student/updateStudent/{id}",
                         "/student/deleteStudents",
-                        "/student/updateStudent/{id}"
-                )
-                .hasRole("ADMIN")
+                        "/student/getStudents",
+                        "/student/register",
+                        "/student/delete/{id}"
+                ).hasRole("ADMIN")
 
-                .requestMatchers("/")
-                .permitAll()
+                .anyRequest().authenticated()
+        )
+                .formLogin((form) -> form.permitAll())
+                .logout((logout) -> logout.permitAll());
 
-                .anyRequest()
-                .authenticated();
+        return http.build();
     }
+
+    public UserDetailsService userDetailsService() {
+        UserDetails user1 =
+                User.withDefaultPasswordEncoder()
+                        .username("isla")
+                        .password("isla123")
+                        .roles("ADMIN")
+                        .build();
+
+        UserDetails user2 =
+                User.withDefaultPasswordEncoder()
+                        .username("emma")
+                        .password("emma123")
+                        .roles("USER")
+                        .build();
+
+        return new InMemoryUserDetailsManager(user1, user2);
+    }
+
 }
