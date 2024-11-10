@@ -2,8 +2,10 @@ package com.example.student.student.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,10 +18,12 @@ public class securityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        http.csrf(customizer -> customizer.disable());
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers(
                         "/student/getStudent/{id}",
-                        "/student/hello").hasAnyRole("USER", "ADMIN")
+                        "/student/hello").permitAll()
 
                 .requestMatchers(
                         "/student/updateStudent/{id}",
@@ -31,28 +35,11 @@ public class securityConfig {
 
                 .anyRequest().authenticated()
         )
-                .formLogin((form) -> form.permitAll())
-                .logout((logout) -> logout.permitAll());
+                .formLogin(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults())
+                .logout(Customizer.withDefaults());
 
         return http.build();
-    }
-
-    public UserDetailsService userDetailsService() {
-        UserDetails user1 =
-                User.withDefaultPasswordEncoder()
-                        .username("isla")
-                        .password("isla123")
-                        .roles("ADMIN")
-                        .build();
-
-        UserDetails user2 =
-                User.withDefaultPasswordEncoder()
-                        .username("emma")
-                        .password("emma123")
-                        .roles("USER")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user1, user2);
     }
 
 }
