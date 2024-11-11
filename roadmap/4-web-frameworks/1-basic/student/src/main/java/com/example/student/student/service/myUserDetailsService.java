@@ -2,6 +2,7 @@ package com.example.student.student.service;
 
 import com.example.student.student.repository.UserRepository;
 import com.example.student.student.model.user;
+import com.example.student.student.model.userPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class myUserDeatilsService implements UserDetailsService {
+public class myUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -25,6 +26,6 @@ public class myUserDeatilsService implements UserDetailsService {
         }
 
 
-        return null;
+        return new userPrincipal(_user);
     }
 }
