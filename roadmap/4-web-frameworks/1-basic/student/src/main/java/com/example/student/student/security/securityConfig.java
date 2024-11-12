@@ -9,6 +9,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -26,7 +27,8 @@ public class securityConfig {
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers(
                         "/student/getStudent/{id}",
-                        "/student/hello").permitAll()
+                        "/student/hello",
+                        "/student/user/register").permitAll()
 
                 .requestMatchers(
                         "/student/updateStudent/{id}",
@@ -48,7 +50,7 @@ public class securityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+        provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
         provider.setUserDetailsService(userDetailsService);
 
         return provider;

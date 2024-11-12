@@ -1,10 +1,11 @@
 package com.example.student.student.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users", schema = "public")
 public class user {
+
     @Id
     private int id;
 
