@@ -37,7 +37,7 @@ public class securityConfig {
                         "/student/getStudents",
                         "/student/register",
                         "/student/delete/{id}"
-                ).hasRole("ADMIN")
+                ).hasAnyRole("SUPER_ADMIN", "ADMIN")
 
                 .anyRequest().authenticated()
         )
