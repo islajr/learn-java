@@ -12,18 +12,6 @@ public class user {
     private String username;
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "_role_id")
-    private role _role;
-
-    public role get_role() {
-        return _role;
-    }
-
-    public void set_role(role _role) {
-        this._role = _role;
-    }
-
     public int getId() {
         return id;
     }
@@ -54,7 +42,6 @@ public class user {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + _role + '\'' +
                 '}';
     }
 }
