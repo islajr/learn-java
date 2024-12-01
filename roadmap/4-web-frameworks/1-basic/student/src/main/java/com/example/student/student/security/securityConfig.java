@@ -32,14 +32,6 @@ public class securityConfig {
                         "/student/user/register",
                         "/student/user/login").permitAll()
 
-                .requestMatchers(
-                        "/student/updateStudent/{id}",
-                        "/student/deleteStudents",
-                        "/student/getStudents",
-                        "/student/register",
-                        "/student/delete/{id}"
-                ).hasAnyRole("SUPER_ADMIN", "ADMIN")
-
                 .anyRequest().authenticated()
         )
                 .formLogin(Customizer.withDefaults())
