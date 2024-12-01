@@ -21,7 +21,13 @@ public class    studentController {
 
     @GetMapping("/hello")
     public String hello(Authentication auth) {
-        return "Welcome, " + auth.getName() + "!";
+
+        if (auth.isAuthenticated()) {
+            return "Welcome, " + auth.getName() + "!";
+        }
+
+        // else
+        return "Welcome, stranger!";
     }
 
     
