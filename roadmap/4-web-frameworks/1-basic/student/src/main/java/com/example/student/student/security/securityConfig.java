@@ -29,7 +29,8 @@ public class securityConfig {
                 .requestMatchers(
                         "/student/getStudent/{id}",
                         "/student/hello",
-                        "/student/user/register").permitAll()
+                        "/student/user/register",
+                        "/student/user/login").permitAll()
 
                 .requestMatchers(
                         "/student/updateStudent/{id}",
