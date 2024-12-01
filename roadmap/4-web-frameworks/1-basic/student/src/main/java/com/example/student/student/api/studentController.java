@@ -1,5 +1,6 @@
 package com.example.student.student.api;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.student.student.model.student;
@@ -19,8 +20,8 @@ public class    studentController {
     
 
     @GetMapping("/hello")
-    public String hello() {
-        return "Hello, Isaac! ";
+    public String hello(Authentication auth) {
+        return "Welcome, " + auth.getName() + "!";
     }
 
     

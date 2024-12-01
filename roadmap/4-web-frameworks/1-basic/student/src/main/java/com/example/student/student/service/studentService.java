@@ -6,6 +6,9 @@ import java.util.Optional;
 
 import com.example.student.student.exception.noRegisteredStudentException;
 import jakarta.transaction.Transactional;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.student.student.exception.studentDoesNotExistException;
@@ -81,4 +84,11 @@ public class studentService {
 
         _studentRepository.save(proto);
     }
+
+    /*public String hello() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        return "Welcome, " + auth.getName() + "!";
+    }*/
 }
