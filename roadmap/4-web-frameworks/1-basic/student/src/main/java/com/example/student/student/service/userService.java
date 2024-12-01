@@ -18,6 +18,9 @@ public class userService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private jwtService _jwtService;
+
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public String registerUser(user _user) {
@@ -31,8 +34,8 @@ public class userService {
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(_user.getUsername(), _user.getPassword()));
 
         if (authentication.isAuthenticated()) {
-            System.out.println("Successfully Authenticated");
-            return "Successfully Authenticated!";
+            _jwtService.generateToken(_user.getUsername());
+
         }
 
         System.out.println("Authentication Failed");
