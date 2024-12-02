@@ -13,8 +13,6 @@ import java.util.Map;
 @Service
 public class jwtService {
 
-    private String secret = "elkfnve23knsa";
-
     public String generateToken(String username) {
 
         Map<String, Object> claims = new HashMap<>();
@@ -29,6 +27,7 @@ public class jwtService {
     }
 
     private Key generateKey() {
+        final String secret = "elkfnve23knsa";
         byte[] keyByte = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyByte);
     }
