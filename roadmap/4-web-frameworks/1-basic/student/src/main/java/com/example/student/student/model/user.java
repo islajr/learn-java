@@ -12,6 +12,8 @@ public class user {
     private String username;
     private String password;
 
+
+    // getters and setters
     public int getId() {
         return id;
     }

@@ -34,10 +34,11 @@ public class userService {
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(_user.getUsername(), _user.getPassword()));
 
         if (authentication.isAuthenticated()) {
-            _jwtService.generateToken(_user.getUsername());
+            return _jwtService.generateToken(_user.getUsername());
 
         }
 
+        // else
         System.out.println("Authentication Failed");
         return "Authentication Failed";
     }
