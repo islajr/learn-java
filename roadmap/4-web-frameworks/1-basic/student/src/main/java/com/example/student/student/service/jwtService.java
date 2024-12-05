@@ -1,18 +1,20 @@
 package com.example.student.student.service;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
-import org.springframework.stereotype.Service;
-
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
+import org.springframework.stereotype.Service;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 
 @Service
 public class jwtService {
@@ -37,7 +39,7 @@ public class jwtService {
                 .add(claims)
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 100 ))
+                .expiration(new Date(System.currentTimeMillis() + 60 * 60 * 100))
                 .and().signWith(generateKey())
                 .compact();
     }
@@ -45,5 +47,9 @@ public class jwtService {
     private Key generateKey() {
         byte[] keyByte = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyByte);
+    }
+
+    public String extractUsername(String token) {
+        return null;
     }
 }
