@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Jwts;
@@ -51,5 +52,9 @@ public class jwtService {
 
     public String extractUsername(String token) {
         return null;
+    }
+
+    boolean validateToken(String token, UserDetails userDetails) {
+        return false;
     }
 }
