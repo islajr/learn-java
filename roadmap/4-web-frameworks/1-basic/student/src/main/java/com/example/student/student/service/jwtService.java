@@ -54,7 +54,7 @@ public class jwtService {
         return null;
     }
 
-    boolean validateToken(String token, UserDetails userDetails) {
+    public boolean validateToken(String token, UserDetails userDetails) {
         return false;
     }
 }
