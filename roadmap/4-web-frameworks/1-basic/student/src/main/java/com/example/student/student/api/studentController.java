@@ -51,7 +51,7 @@ public class    studentController {
     @GetMapping("/getStudents")
     public ArrayList<student> getStudents() {
         return _studentService.getStudents();
-    }
+    }               
 
     @DeleteMapping("/delete/{id}")
     public void deleteStudent(@PathVariable("id") Long id) {
