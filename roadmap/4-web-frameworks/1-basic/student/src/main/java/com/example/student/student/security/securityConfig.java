@@ -34,7 +34,8 @@ public class securityConfig {
                         "/student/getStudent/{id}",
                         "/student/hello",
                         "/student/user/register",
-                        "/student/user/login").permitAll()
+                        "/student/user/login",
+                        "/student/getStudents").permitAll()
 
                 .anyRequest().authenticated()
         )
