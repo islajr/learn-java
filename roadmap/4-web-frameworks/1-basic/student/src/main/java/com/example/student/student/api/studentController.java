@@ -17,7 +17,7 @@ import com.example.student.student.service.studentService;
 
 @RestController
 @RequestMapping("/student/")
-public class    studentController {
+public class studentController {
 
     private studentService _studentService;
 
