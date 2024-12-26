@@ -5,6 +5,7 @@ import com.demo.student1.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -16,5 +17,13 @@ public class StudentService {
 
     public Optional<Student> getStudent(Long id) {
         return studentRepository.findById(id);
+    }
+
+    public void registerStudent(Student student) {
+        studentRepository.save(student);
+    }
+
+    public ArrayList<Student> getStudents() {
+        return (ArrayList<Student>) studentRepository.findAll();
     }
 }
