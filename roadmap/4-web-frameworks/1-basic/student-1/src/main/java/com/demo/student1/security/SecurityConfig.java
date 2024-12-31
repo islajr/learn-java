@@ -22,11 +22,12 @@ public class SecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(Customizer.withDefaults())
-                .authorizeHttpRequests(requests -> requests.requestMatchers(
+                /*.authorizeHttpRequests(requests -> requests.requestMatchers(
                         "/",
                         "/***")
                         .permitAll()
-                        .anyRequest().authenticated())
+                        .anyRequest().authenticated())*/
+                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
 
