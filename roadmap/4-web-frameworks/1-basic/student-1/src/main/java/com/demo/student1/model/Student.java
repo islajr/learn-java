@@ -1,12 +1,13 @@
 package com.demo.student1.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table
 public class Student {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String name;
     private String email;

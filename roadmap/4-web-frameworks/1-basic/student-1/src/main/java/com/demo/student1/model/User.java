@@ -1,24 +1,20 @@
 package com.demo.student1.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "student1", schema = "public")
 public class User {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private Long id;
 
     private String username;
-    private String email;
     private String password;
 
-    public User(Long id, String username, String email, String password) {
+    public User(Long id, String username, String password) {
         this.id = id;
         this.username = username;
-        this.email = email;
         this.password = password;
     }
 
@@ -49,13 +45,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }
