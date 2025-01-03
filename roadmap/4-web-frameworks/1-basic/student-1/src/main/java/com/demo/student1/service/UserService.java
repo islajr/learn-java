@@ -13,7 +13,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void register(User user) {
+    public String register(User user) {
         userRepository.save(user);
+        return "Successfully registered new user \"" + user.getUsername() + "\".";
     }
 }
