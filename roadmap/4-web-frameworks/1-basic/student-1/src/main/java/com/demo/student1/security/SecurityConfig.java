@@ -9,6 +9,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -40,8 +41,8 @@ public class SecurityConfig {
     protected AuthenticationProvider authenticationProvider() {
 
         DaoAuthenticationProvider authentication = new DaoAuthenticationProvider();
+        authentication.setPasswordEncoder(new BCryptPasswordEncoder(12));
         authentication.setUserDetailsService(userDetailsService);
-
         return authentication;
 
     }
