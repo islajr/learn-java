@@ -10,7 +10,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;

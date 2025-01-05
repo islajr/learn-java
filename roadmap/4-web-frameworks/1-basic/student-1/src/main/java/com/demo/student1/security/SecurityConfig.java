@@ -23,12 +23,11 @@ public class SecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(customizer -> customizer.disable())
-                /*.authorizeHttpRequests(requests -> requests.requestMatchers(
+                .authorizeHttpRequests(requests -> requests.requestMatchers(
                         "/",
                         "/***")
                         .permitAll()
-                        .anyRequest().authenticated())*/
-                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
+                        .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .logout(Customizer.withDefaults());
@@ -46,4 +45,5 @@ public class SecurityConfig {
         return authentication;
 
     }
+
 }
