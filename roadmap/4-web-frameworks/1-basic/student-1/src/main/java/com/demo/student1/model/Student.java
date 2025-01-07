@@ -3,11 +3,10 @@ package com.demo.student1.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "student_v1")
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String name;
     private String email;
