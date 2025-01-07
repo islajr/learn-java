@@ -2,7 +2,6 @@ package com.demo.student1.api;
 
 import com.demo.student1.model.Student;
 import com.demo.student1.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.Optional;
 @RestController
 public class StudentController {
 
-    @Autowired
     private final StudentService studentService;
 
     public StudentController(StudentService studentService) {
