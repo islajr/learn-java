@@ -13,7 +13,7 @@ import java.io.IOException;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
-    private final String BEARER_PREFIX = "Bearer ";
+    String BEARER_PREFIX = "Bearer ";
     private final JwtService jwtService;
 
     public JwtFilter(JwtService jwtService) {
