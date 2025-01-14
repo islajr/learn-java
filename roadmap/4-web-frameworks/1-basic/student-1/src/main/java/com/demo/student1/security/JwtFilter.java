@@ -33,14 +33,17 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = null;
         String username = null;
 
+        // to extract the username from the token
         if (authHeader != null && authHeader.startsWith(BEARER_PREFIX)) {
             token = authHeader.substring(BEARER_PREFIX.length());
             username = jwtService.extractUsername(authHeader);
         }
 
+        // token validation process
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = myUserDetailsService.loadUserByUsername(username);
 
+            // validation and setting the token to be available as a means of authentication to all application layers.
             if (jwtService.validateToken(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
