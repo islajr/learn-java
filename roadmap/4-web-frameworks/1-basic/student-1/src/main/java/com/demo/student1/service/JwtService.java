@@ -3,6 +3,7 @@ package com.demo.student1.service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
@@ -49,13 +50,14 @@ public class JwtService {
         * generate key and store in variable of type SecretKey
         * encode to string in base64
         * decode encoded string in base64 to byte format
-        * return the key in byte format using the hmacShaKeyfor Key method.
+        * return the key in byte format using the hmacShaKey for Key method.
         * */
 
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
             SecretKey secretKey = keyGenerator.generateKey();
             secret = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -80,5 +82,18 @@ public class JwtService {
                 .build()
                 .parse(token)
                 .getBody();
+    }
+
+    public boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return(username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    private Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
     }
  }
