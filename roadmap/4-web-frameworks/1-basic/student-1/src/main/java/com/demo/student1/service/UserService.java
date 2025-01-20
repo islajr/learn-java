@@ -15,11 +15,12 @@ public class UserService {
     private final JwtService jwtService;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    public UserService(UserRepository userRepository, JwtService jwtService) {
+    public UserService(UserRepository userRepository, JwtService jwtService, AuthenticationManager authManager) {
         this.userRepository = userRepository;
         this.jwtService = jwtService;
+        this.authenticationManager = authManager;
     }
 
     public String register(User user) {
