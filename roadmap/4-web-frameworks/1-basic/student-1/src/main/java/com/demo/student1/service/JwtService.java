@@ -43,7 +43,7 @@ public class JwtService {
     }
 
     private Key generateKey() {
-        final String secret;
+//        final String secret;
 
         /*
         * get instance of key generator and use hmac sha256 algorithm
@@ -53,7 +53,7 @@ public class JwtService {
         * return the key in byte format using the hmacShaKey for Key method.
         * */
 
-        try {
+        /*try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
             SecretKey secretKey = keyGenerator.generateKey();
             secret = Base64.getEncoder().encodeToString(secretKey.getEncoded());
@@ -63,7 +63,7 @@ public class JwtService {
         }
 
         byte[] keyByte = Base64.getDecoder().decode(secret);
-        return Keys.hmacShaKeyFor(keyByte);
+        return Keys.hmacShaKeyFor(keyByte);*/
 
     }
 
