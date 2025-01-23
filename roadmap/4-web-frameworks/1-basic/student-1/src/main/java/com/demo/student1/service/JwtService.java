@@ -18,6 +18,30 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
+
+    final String secret;
+
+    public JwtService() {
+
+        /*
+         * get instance of key generator and use hmac sha256 algorithm
+         * generate key and store in variable of type SecretKey
+         * encode to string in base64
+         * decode encoded string in base64 to byte format
+         * return the key in byte format using the hmacShaKey for Key method.
+         * */
+
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
+            SecretKey secretKey = keyGenerator.generateKey();
+            secret = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     public String generateToken(String username) {
 
         /*
@@ -43,27 +67,12 @@ public class JwtService {
     }
 
     private Key generateKey() {
-//        final String secret;
-
         /*
-        * get instance of key generator and use hmac sha256 algorithm
-        * generate key and store in variable of type SecretKey
-        * encode to string in base64
-        * decode encoded string in base64 to byte format
-        * return the key in byte format using the hmacShaKey for Key method.
+        * proceeded to set this method to simply decode the base64 string 'secret'.
         * */
 
-        /*try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
-            SecretKey secretKey = keyGenerator.generateKey();
-            secret = Base64.getEncoder().encodeToString(secretKey.getEncoded());
-
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-
         byte[] keyByte = Base64.getDecoder().decode(secret);
-        return Keys.hmacShaKeyFor(keyByte);*/
+        return Keys.hmacShaKeyFor(keyByte);
 
     }
 
@@ -77,10 +86,10 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        return (Claims) Jwts.parserBuilder()
+        return Jwts.parserBuilder()
                 .setSigningKey(generateKey())   //
                 .build()
-                .parse(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
