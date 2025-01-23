@@ -2,15 +2,11 @@ package com.demo.student1.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +15,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    final String secret;
+//    final Key secret;
+    final Key secretKey = Jwts.SIG.HS256.key().build();
 
     public JwtService() {
 
@@ -31,14 +28,14 @@ public class JwtService {
          * return the key in byte format using the hmacShaKey for Key method.
          * */
 
-        try {
+        /*try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
             SecretKey secretKey = keyGenerator.generateKey();
             secret = Base64.getEncoder().encodeToString(secretKey.getEncoded());
 
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
     }
 
@@ -57,24 +54,24 @@ public class JwtService {
 
         Map<String, Object> claims = new HashMap<>();
         return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(username)
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1200 * 1000))
-                .signWith(generateKey())
+                .claims(claims)
+                .subject(username)
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + 1200 * 1000))
+                .signWith(secretKey)
                 .compact();
 
     }
 
-    private Key generateKey() {
-        /*
+  /*  private Key generateKey() {
+        *//*
         * proceeded to set this method to simply decode the base64 string 'secret'.
-        * */
+        * *//*
 
         byte[] keyByte = Base64.getDecoder().decode(secret);
         return Keys.hmacShaKeyFor(keyByte);
 
-    }
+    }*/
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -86,11 +83,12 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(generateKey())   //
+        return Jwts.parser()
+                .verifyWith((SecretKey) secretKey)
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
+
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
