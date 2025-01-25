@@ -2,10 +2,15 @@ package com.demo.student1.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +19,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-//    final Key secret;
-    final SecretKey secretKey = Jwts.SIG.HS256.key().build();
+    final String secret;
+    SecretKey secretKey;
 
     public JwtService() {
 
@@ -27,14 +32,14 @@ public class JwtService {
          * return the key in byte format using the hmacShaKey for Key method.
          * */
 
-        /*try {
+        try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
-            SecretKey secretKey = keyGenerator.generateKey();
+            secretKey = keyGenerator.generateKey();
             secret = Base64.getEncoder().encodeToString(secretKey.getEncoded());
 
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
-        }*/
+        }
 
     }
 
@@ -57,20 +62,19 @@ public class JwtService {
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 1200 * 1000))
-                .signWith(secretKey)
+                .signWith(generateKey())
                 .compact();
 
     }
 
-  /*  private Key generateKey() {
-        *//*
+    private Key generateKey() {
+        /*
         * proceeded to set this method to simply decode the base64 string 'secret'.
-        * *//*
+        * */
 
         byte[] keyByte = Base64.getDecoder().decode(secret);
         return Keys.hmacShaKeyFor(keyByte);
-
-    }*/
+    }
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
