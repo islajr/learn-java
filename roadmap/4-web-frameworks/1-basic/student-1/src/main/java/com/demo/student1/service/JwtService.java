@@ -2,13 +2,13 @@ package com.demo.student1.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
@@ -20,7 +20,6 @@ import java.util.function.Function;
 public class JwtService {
 
     final String secret;
-    SecretKey secretKey;
 
     public JwtService() {
 
@@ -34,7 +33,7 @@ public class JwtService {
 
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
-            secretKey = keyGenerator.generateKey();
+            SecretKey secretKey = keyGenerator.generateKey();
             secret = Base64.getEncoder().encodeToString(secretKey.getEncoded());
 
         } catch (NoSuchAlgorithmException e) {
@@ -67,12 +66,12 @@ public class JwtService {
 
     }
 
-    private Key generateKey() {
+    private SecretKey generateKey() {
         /*
         * proceeded to set this method to simply decode the base64 string 'secret'.
         * */
 
-        byte[] keyByte = Base64.getDecoder().decode(secret);
+        byte[] keyByte = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyByte);
     }
 
@@ -87,7 +86,7 @@ public class JwtService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .verifyWith(secretKey)
+                .verifyWith(generateKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
