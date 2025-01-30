@@ -17,9 +17,14 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String hello() {
         return "Hello, Isla!";
+    }*/
+
+    @GetMapping("/")
+    public String home() {
+        return studentService.getHomePage();
     }
 
     @PostMapping("/register")
