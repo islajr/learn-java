@@ -28,7 +28,4 @@ public class StudentService {
         return (ArrayList<Student>) studentRepository.findAll();
     }
 
-    public String getHomePage() {
-        return "index";
-    }
 }

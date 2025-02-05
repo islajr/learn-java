@@ -19,7 +19,7 @@ public class StudentController {
 
     @GetMapping("/")
     public String home() {
-        return studentService.getHomePage();
+        return "home";
     }
 
     @PostMapping("/register")
