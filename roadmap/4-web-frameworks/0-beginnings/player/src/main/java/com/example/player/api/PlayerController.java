@@ -41,6 +41,11 @@ public class PlayerController {
         return "Welcome, Isla! ";
     }
 
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
+
     @GetMapping("/getPlayers")
     public List<Player> getPlayers() {
         return playerService.getPlayers();

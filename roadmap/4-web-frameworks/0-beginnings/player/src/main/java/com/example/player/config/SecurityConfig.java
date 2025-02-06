@@ -32,7 +32,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
 
         //making web server able to authorize http requests
-                .authorizeHttpRequests(request -> request.anyRequest().authenticated())
+                .authorizeHttpRequests(request -> request.requestMatchers(
+                        "/api/v1/player/home"
+                ).permitAll()
+                        .anyRequest().authenticated())
 
         // initiating form login
 //                .formLogin(Customizer.withDefaults())
