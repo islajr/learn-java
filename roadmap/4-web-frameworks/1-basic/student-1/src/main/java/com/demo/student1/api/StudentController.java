@@ -17,7 +17,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping("/home.html")
+    @GetMapping("/home")
     public String home() {
         return "home";
     }
