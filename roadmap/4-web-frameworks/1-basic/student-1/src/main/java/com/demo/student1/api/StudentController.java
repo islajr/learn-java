@@ -2,13 +2,15 @@ package com.demo.student1.api;
 
 import com.demo.student1.model.Student;
 import com.demo.student1.service.StudentService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 @RequestMapping("/student")
-@RestController
+@Controller
 public class StudentController {
 
     private final StudentService studentService;
@@ -18,7 +20,8 @@ public class StudentController {
     }
 
     @GetMapping("/home")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("username", "John Doe");
         return "home";
     }
 

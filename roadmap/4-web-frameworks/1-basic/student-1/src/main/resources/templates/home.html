@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Students Homepage</title>
+  <title>Welcome Homepage For Students</title>
 </head>
 <body>
-  <h1>Welcome to University!</h1>
+  <h1>Welcome to University, <span th:text="${username}"></span> to University!</h1>
 </body>
 </html>

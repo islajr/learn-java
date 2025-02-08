@@ -25,7 +25,8 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:0.12.6")
 	implementation("org.springframework:spring-webmvc:6.2.2")
 	implementation("org.apache.tomcat:tomcat-jasper:10.1.34")
-	implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")
+//	implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
 	compileOnly("org.projectlombok:lombok:1.18.36")
 
