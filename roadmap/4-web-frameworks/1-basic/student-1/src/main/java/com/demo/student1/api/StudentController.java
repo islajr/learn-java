@@ -21,7 +21,7 @@ public class StudentController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("username", "John Doe");
+//        model.addAttribute("username", "John Doe");
         return "home";
     }
 
