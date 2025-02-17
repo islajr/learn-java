@@ -35,6 +35,11 @@ public class Task {
         updatedAt = LocalDateTime.now();
     }
 
+    public void markInProgress() {
+        status = "in-progress";
+        updatedAt = LocalDateTime.now();
+    }
+
     public String parseTime(LocalDateTime time) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy hh:mm:ss");
         return time.format(formatter);
