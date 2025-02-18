@@ -1,10 +1,16 @@
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class TaskManager {
 
+
+    Path path = Path.of("./tasks.json");
+
+    //  implementation methods
     public void addTask(String subject) {
         Task task = new Task(subject);
+        
     }
 
     public void updateTask(int id, String subject) {
