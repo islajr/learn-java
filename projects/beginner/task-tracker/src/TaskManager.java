@@ -4,10 +4,10 @@ import java.util.ArrayList;
 public class TaskManager {
 
     public void addTask(String subject) {
-        
+        Task task = new Task(subject);
     }
 
-    public void updateTask(String subject) {
+    public void updateTask(int id, String subject) {
 
     }
 
@@ -28,7 +28,7 @@ public class TaskManager {
     }
 
     public void markDone(int id) {
-        
+
     }
 
 }

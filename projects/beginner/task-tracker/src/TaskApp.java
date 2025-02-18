@@ -25,7 +25,8 @@ public class TaskApp {
             case "update" -> {
                 if (args.length <= 3) {
                     try {
-                        manager.updateTask(args[2]);
+                        int taskId = Integer.parseInt(args[1]);
+                        manager.updateTask(taskId, args[2]);
                     } catch (Exception e) {
                         System.out.println("There was a problem");
                         System.out.println("Usage: TaskApp [command] id subject");
