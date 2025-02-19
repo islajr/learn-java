@@ -45,11 +45,16 @@ public class Task {
         return time.format(formatter);
     }
 
+    public String toJson() {
+        return "{\"id\": " + id + "\n\"subject\": \"" + subject + "\"\n\"status\": \"" +  status + "\"\n\"createdAt\": " + 
+        parseTime(createdAt) + "\n\"lastUpdated\": " + parseTime(updatedAt) + "}";
+    }
+
 
     @Override
     public String toString() {
         return "id: " + id + " subject: " + subject + " status: " + status + " createdAt: " 
-        + parseTime(createdAt) + " last updated: " + parseTime(updatedAt) + ".";
+        + parseTime(createdAt) + " lastUpdated: " + parseTime(updatedAt) + ".";
     }
 
     
