@@ -3,14 +3,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Task {
 
-    private final int id;
+    private int id;
     public String subject;
     public String status;
     public LocalDateTime createdAt;
     public LocalDateTime updatedAt;
 
     public Task(String subject) {
-        this.id = 1;
         this.subject = subject;
         this.status = "todo";
         this.createdAt = LocalDateTime.now();
@@ -19,6 +18,10 @@ public class Task {
 
     public int getId() {
         return id;
+    }
+
+    protected void setId(int id) {
+        this.id = id;
     }
 
     public String getStatus() {
