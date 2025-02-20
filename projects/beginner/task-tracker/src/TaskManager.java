@@ -32,8 +32,15 @@ public class TaskManager {
         return tasks;
     }
 
-    public String arrayToJson(ArrayList<Task> tasks) {
-        return null;
+    public String arrayToJson(ArrayList<Task> tasks) {  // converts list of tasks into a big file ready to be written
+        String finalJson, eachTask = "";
+
+        for (Task task : tasks) {
+            eachTask = eachTask + "{" + task.toJson() + "}";
+        }
+
+        finalJson = "{" + eachTask + "}";
+        return finalJson;
     }
 
     public void saveTask(String jsonTask) {
