@@ -32,8 +32,19 @@ public class TaskManager {
         return tasks;
     }
 
+    public String arrayToJson(ArrayList<Task> tasks) {
+        return null;
+    }
+
     public void saveTask(String jsonTask) {
         // manually write the task to the file.
+        try {
+            Files.writeString(jsonFile, jsonTask);
+        } catch (IOException e) {
+            System.out.println("File does not exist");
+        } catch (Exception e) {
+            System.out.println("Something went wrong! ");
+        }
     }
 
     public Task findTaskById(int id) {
@@ -47,16 +58,21 @@ public class TaskManager {
     //  implementation methods
     public void addTask(String subject) {
         Task task = new Task(subject);
+        String taskJson;
+        ArrayList<Task> tasks = loadTasks();
 
-        if (loadTasks().isEmpty()) {
+        if (tasks.isEmpty()) {
             task.setId(1);
+            taskJson = task.toJson();
+            saveTask(taskJson);
         }
-        else {
+        else {  // if there are tasks present
             task.setId(loadTasks().size() + 1);
+            tasks.add(task);
+            // convert entire arraylist back to json
+            // pass converted json file to saveTask()
         }
 
-        String taskJson = task.toJson();
-        saveTask(taskJson);
         
     }
 
