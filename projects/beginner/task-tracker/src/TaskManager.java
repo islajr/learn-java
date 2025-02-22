@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TaskManager {
 
@@ -9,7 +10,7 @@ public class TaskManager {
     private ArrayList<Task> tasks;
     
     public TaskManager() {
-        this.tasks = loadTasks();
+       
     }
 
     public ArrayList<Task> loadTasks() {
@@ -24,12 +25,34 @@ public class TaskManager {
             
             if (!fileContent.isEmpty()) {
                 // manually read and convert it into an array of tasks.
+                
+            } else {
+                return tasks;
             }
+
         } catch (IOException e) {
             System.out.println("Something went wrong!");
         }
 
         return tasks;
+    }
+
+    public ArrayList<Task> jsonToArray(String jsonTask) {
+        ArrayList<Task> tasks = new ArrayList<>();
+        
+        //  preliminary json checker
+        if (!jsonTask.startsWith("{") && jsonTask.endsWith("}")) {
+            System.out.println("Error reading file!");
+        } else {
+            int counter = -1;   // starts at -1 to negate the effect of first bracket
+            for (int i = 0; i <= jsonTask.length(); ++i) {
+                if (Objects.equals(jsonTask.charAt(i), '{'))
+                    counter++;
+            }
+            
+
+            
+        }
     }
 
     public String arrayToJson(ArrayList<Task> tasks) {  // converts list of tasks into a big file ready to be written
