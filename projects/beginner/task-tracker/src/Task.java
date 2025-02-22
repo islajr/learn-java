@@ -53,6 +53,14 @@ public class Task {
         parseTime(createdAt) + "\n\"lastUpdated\": " + parseTime(updatedAt) + "}";
     }
 
+    public Task fromJson(String jsonTask) {
+        Task task;
+
+        
+
+        return task;
+    }
+
 
     @Override
     public String toString() {
