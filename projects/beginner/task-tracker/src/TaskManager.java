@@ -26,6 +26,26 @@ public class TaskManager {
             if (!fileContent.isEmpty()) {
                 // manually read and convert it into an array of tasks.
                 
+                int start = 0;
+                int stop = 0;
+                for (int i = 1; i <= fileContent.length() - 1; ++i) {
+                    if (fileContent.charAt(i) == '{') {
+                        start = i;
+
+                    } if (fileContent.charAt(i) == '}') {
+                        stop = i;
+                    }
+
+                    try {
+                        String jsonTask = fileContent.substring(start, stop);
+                        Task task = new Task();
+                        task = task.fromJson(jsonTask);
+                        tasks.add(task);
+                    } catch(Exception e ) {
+                        System.out.println("Something went wrong!");
+                    }
+                }
+                
             } else {
                 return tasks;
             }
