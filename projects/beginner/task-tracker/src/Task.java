@@ -16,6 +16,10 @@ public class Task {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public Task() {
+        
+    }
+
     public int getId() {
         return id;
     }
