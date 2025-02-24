@@ -25,7 +25,7 @@ public class TaskManager {
             
             if (!fileContent.isEmpty()) {
                 // manually read and convert it into an array of tasks.
-                
+
                 int start = 0;
                 int stop = 0;
                 for (int i = 1; i <= fileContent.length() - 1; ++i) {
@@ -101,7 +101,20 @@ public class TaskManager {
         ArrayList<Task> tasks = loadTasks();
         
         // loop through list to find said id and return appropriate task or error.
-        return null;
+
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                if (task.getId() == id) {
+                    return task;
+                } else {
+                    return null;
+                }
+            }
+        } else {
+            return null;
+        }
+                return null;
+
     }
 
 
@@ -129,8 +142,11 @@ public class TaskManager {
     public void updateTask(int id, String subject) {
         // find task by id and update it.
         try {
-            ArrayList<Task> tasks = loadTasks();
+            Task task = findTaskById(id);
+            task.subject = subject;
+            System.out.println(task.toString());
         } catch (Exception e) {
+            System.out.println("There was a problem! ");
         }
     }
 
