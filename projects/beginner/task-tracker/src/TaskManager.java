@@ -152,6 +152,13 @@ public class TaskManager {
 
     public void deleteTask(int id) {
         // find task  by id, and delete it.
+        Task task = findTaskById(id);
+
+        if (task == null) {
+            System.out.println("No such task! ");
+        } else {
+
+        }
     }
 
     public ArrayList<Task> listAll() {
