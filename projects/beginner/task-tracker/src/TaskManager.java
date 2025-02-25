@@ -86,7 +86,7 @@ public class TaskManager {
         return finalJson;
     }
 
-    public void saveTask(String jsonTask) {
+   /*  public void saveTask(String jsonTask) {
         // manually write the task to the file.
         try {
             Files.writeString(jsonFile, jsonTask);
@@ -94,6 +94,17 @@ public class TaskManager {
             System.out.println("File does not exist");
         } catch (Exception e) {
             System.out.println("Something went wrong! ");
+        }
+    } */
+
+    public void saveTask(ArrayList<Task> tasks) {
+        // saves an array list of tasks to json file.
+        String jsonTask = arrayToJson(tasks);
+        
+        try {
+            Files.writeString(jsonFile, jsonTask);
+        } catch (IOException e) {
+            System.out.println("Something went wrong!");
         }
     }
 
