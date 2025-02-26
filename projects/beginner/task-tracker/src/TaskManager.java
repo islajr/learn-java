@@ -2,18 +2,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class TaskManager {
 
     final Path jsonFile = Path.of("./tasks.json");
     private ArrayList<Task> tasks;
     
+
+    // no args constructor
     public TaskManager() {
        
     }
 
-    public ArrayList<Task> loadTasks() {
+    public ArrayList<Task> loadTasks() {    // reads from json file and converts it into an array
         ArrayList<Task> tasks = new ArrayList<>();
 
         if (!Files.exists(jsonFile)) {
@@ -57,24 +58,6 @@ public class TaskManager {
         return tasks;
     }
 
-    public ArrayList<Task> jsonToArray(String jsonTask) {
-        ArrayList<Task> tasks = new ArrayList<>();
-        
-        //  preliminary json checker
-        if (!jsonTask.startsWith("{") && jsonTask.endsWith("}")) {
-            System.out.println("Error reading file!");
-        } else {
-            int counter = -1;   // starts at -1 to negate the effect of first bracket
-            for (int i = 0; i <= jsonTask.length(); ++i) {
-                if (Objects.equals(jsonTask.charAt(i), '{'))
-                    counter++;
-            }
-            
-
-            
-        }
-    }
-
     public String arrayToJson(ArrayList<Task> tasks) {  // converts list of tasks into a big file ready to be written
         String finalJson, eachTask = "";
 
@@ -97,8 +80,7 @@ public class TaskManager {
         }
     } */
 
-    public void saveTask(ArrayList<Task> tasks) {
-        // saves an array list of tasks to json file.
+    public void saveTask(ArrayList<Task> tasks) {   // saves an array list of tasks to json file.
         String jsonTask = arrayToJson(tasks);
         
         try {
@@ -137,15 +119,13 @@ public class TaskManager {
 
         if (tasks.isEmpty()) {
             task.setId(1);
-            taskJson = task.toJson();
-            saveTask(taskJson);
         }
         else {  // if there are tasks present
-            task.setId(loadTasks().size() + 1);
-            tasks.add(task);
-            // convert entire arraylist back to json
-            // pass converted json file to saveTask()
+            task.setId(tasks.size() + 1);
         }
+
+        tasks.add(task);
+        saveTask(tasks);
 
         
     }
