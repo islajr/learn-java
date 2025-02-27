@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TaskManager {
@@ -69,17 +70,6 @@ public class TaskManager {
         return finalJson;
     }
 
-   /*  public void saveTask(String jsonTask) {
-        // manually write the task to the file.
-        try {
-            Files.writeString(jsonFile, jsonTask);
-        } catch (IOException e) {
-            System.out.println("File does not exist");
-        } catch (Exception e) {
-            System.out.println("Something went wrong! ");
-        }
-    } */
-
     public void saveTask(ArrayList<Task> tasks) {   // saves an array list of tasks to json file.
         String jsonTask = arrayToJson(tasks);
         
@@ -132,24 +122,34 @@ public class TaskManager {
     }
 
     public void updateTask(int id, String subject) {
+        ArrayList<Task> tasks = loadTasks();
+
         // find task by id and update it.
-        try {
-            Task task = findTaskById(id);
-            task.subject = subject;
-            System.out.println(task.toString());
-        } catch (Exception e) {
-            System.out.println("There was a problem! ");
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                if (task.getId() == id) {
+                    task.subject = subject;
+                    task.updatedAt = LocalDateTime.now();
+                    saveTask(tasks);
+                }
+            }
+        } else {
+            System.out.println("No task to update! ");
         }
     }
 
     public void deleteTask(int id) {
         // find task  by id, and delete it.
-        Task task = findTaskById(id);
+        ArrayList<Task> tasks = loadTasks();
 
-        if (task == null) {
-            System.out.println("No such task! ");
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                if (task.getId() == id) {
+                    tasks.remove(tasks.indexOf(task));
+                }
+            }
         } else {
-
+            System.out.println("No task to delete! ");
         }
     }
 
@@ -167,7 +167,7 @@ public class TaskManager {
     }
 
     public void listByStatus(String status) {
-        
+
     }
 
     public void markInProgress(int id) {
