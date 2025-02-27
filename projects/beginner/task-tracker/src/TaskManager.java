@@ -117,6 +117,7 @@ public class TaskManager {
 
         tasks.add(task);
         saveTask(tasks);
+        System.out.println("Successfully added task! ");
 
         
     }
@@ -131,6 +132,7 @@ public class TaskManager {
                     task.subject = subject;
                     task.updatedAt = LocalDateTime.now();
                     saveTask(tasks);
+                    System.out.println("Successfully updated task #" + id + "! ");
                 }
             }
         } else {
@@ -146,6 +148,7 @@ public class TaskManager {
             for (Task task : tasks) {
                 if (task.getId() == id) {
                     tasks.remove(tasks.indexOf(task));
+                    System.out.println("Successfully deleted task #" + id + "! ");
                 }
             }
         } else {
