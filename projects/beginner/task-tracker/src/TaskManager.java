@@ -86,6 +86,8 @@ public class TaskManager {
         try {
             Files.writeString(jsonFile, jsonTask);
         } catch (IOException e) {
+            System.out.println("COuld not write to file!");
+        } catch (Exception e) {
             System.out.println("Something went wrong!");
         }
     }
@@ -114,7 +116,6 @@ public class TaskManager {
     //  implementation methods
     public void addTask(String subject) {
         Task task = new Task(subject);
-        String taskJson;
         ArrayList<Task> tasks = loadTasks();
 
         if (tasks.isEmpty()) {
@@ -152,12 +153,21 @@ public class TaskManager {
         }
     }
 
-    public ArrayList<Task> listAll() {
-        return null;
+    public void listAll() {
+        ArrayList<Task> tasks = loadTasks();
+
+        if (tasks.isEmpty()) {
+            System.out.println("There are no tasks to list!");
+        } else {
+            for (Task task : tasks) {
+                System.out.println(task.toString());
+            }
+        }
+        
     }
 
-    public ArrayList<Task> listByStatus(String status) {
-        return null;
+    public void listByStatus(String status) {
+        
     }
 
     public void markInProgress(int id) {
