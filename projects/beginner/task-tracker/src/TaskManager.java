@@ -200,7 +200,20 @@ public class TaskManager {
     }
 
     public void markDone(int id) {
+        ArrayList<Task> tasks = loadTasks();
 
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                if (task.getId() == id) {
+                    task.status = "done";
+                    saveTask(tasks);
+                    System.out.println("Successfully marked task #" + id + " as 'done'");
+                }
+            }
+
+        } else {
+            System.out.println("There is no such task! ");
+        }
     }
 
 }
