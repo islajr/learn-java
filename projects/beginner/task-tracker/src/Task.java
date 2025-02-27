@@ -53,8 +53,8 @@ public class Task {
     }
 
     public String toJson() {
-        return "{\"id\": " + id + "\n\"subject\": \"" + subject + "\"\n\"status\": \"" +  status + "\"\n\"createdAt\": " + 
-        parseTime(createdAt) + "\n\"lastUpdated\": " + parseTime(updatedAt) + "}";
+        return "{\"id\": " + id + ",\n\"subject\": \"" + subject + "\",\n\"status\": \"" +  status + "\",\n\"createdAt\": \"" + 
+        parseTime(createdAt) + "\",\n\"lastUpdated\": \"" + parseTime(updatedAt) + "\"}";
     }
 
     public Task fromJson(String jsonTask) {
