@@ -53,13 +53,13 @@ public class Task {
     }
 
     public String toJson() {
-        return "{\"id\": " + id + ",\n\"subject\": \"" + subject + "\",\n\"status\": \"" +  status + "\",\n\"createdAt\": \"" + 
-        parseTime(createdAt) + "\",\n\"lastUpdated\": \"" + parseTime(updatedAt) + "\"}";
+        return "{\"id\": " + id + ", \"subject\": \"" + subject + "\", \"status\": \"" +  status + "\", \"createdAt\": \"" + 
+        parseTime(createdAt) + "\", \"lastUpdated\": \"" + parseTime(updatedAt) + "\"}";
     }
 
     public Task fromJson(String jsonTask) {
 
-        jsonTask = jsonTask.replace("{", "").replace("}", "").replace("\n", ",");
+        jsonTask = jsonTask.replace("{", "").replace("}", "").replace(",", "");
         String[] jsonArray = jsonTask.split(",");
 
         String id = jsonArray[0].split(":")[1].strip();
