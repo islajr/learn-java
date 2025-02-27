@@ -160,18 +160,43 @@ public class TaskManager {
             System.out.println("There are no tasks to list!");
         } else {
             for (Task task : tasks) {
-                System.out.println(task.toString());
+                System.out.println(task.toString());    // will check this implementation later.
             }
         }
         
     }
 
     public void listByStatus(String status) {
+        ArrayList<Task> tasks = loadTasks();
+
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                if (task.status.equals(status.strip())) {
+                    System.out.println(task.toString());
+                }
+            }
+        } else {
+            System.out.println("There are no " + status.strip() + " tasks registered! ");
+        }
 
     }
 
     public void markInProgress(int id) {
         // find task by id and change status
+        ArrayList<Task> tasks = loadTasks();
+
+        if (!tasks.isEmpty()) {
+            for (Task task : tasks) {
+                if (task.getId() == id) {
+                    task.status = "in-progress";
+                    saveTask(tasks);
+                    System.out.println("Successfully marked task #" + id + " as 'in-progress'");
+                }
+            }
+
+        } else {
+            System.out.println("There is no such task! ");
+        }
     }
 
     public void markDone(int id) {
