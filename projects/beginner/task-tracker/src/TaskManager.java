@@ -30,21 +30,21 @@ public class TaskManager {
 
                 int start = 0;
                 int stop = 0;
-                for (int i = 1; i <= fileContent.length() - 1; ++i) {
+                for (int i = 0; i <= fileContent.length(); ++i) {
                     if (fileContent.charAt(i) == '{') {
                         start = i;
 
                     } if (fileContent.charAt(i) == '}') {
                         stop = i;
-                    }
 
-                    try {
-                        String jsonTask = fileContent.substring(start, stop);
-                        Task task = new Task();
-                        task = task.fromJson(jsonTask);
-                        tasks.add(task);
-                    } catch(Exception e ) {
-                        System.out.println("Something went wrong!");
+                        try {
+                            String jsonTask = fileContent.substring(start, stop);
+                            Task task = Task.fromJson(jsonTask);
+                            tasks.add(task);
+                        } catch(Exception e ) {
+                            // System.out.println("Problem reading file!");
+                            e.printStackTrace();
+                        }
                     }
                 }
                 
@@ -60,13 +60,12 @@ public class TaskManager {
     }
 
     public String arrayToJson(ArrayList<Task> tasks) {  // converts list of tasks into a big file ready to be written
-        String finalJson, eachTask = "";
+        String finalJson = "";
 
         for (Task task : tasks) {
-            eachTask = eachTask + "{" + task.toJson() + "}";
+            finalJson = finalJson + task.toJson();
         }
 
-        finalJson = "{" + eachTask + "}";
         return finalJson;
     }
 
