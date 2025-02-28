@@ -21,6 +21,7 @@ public class Task {
     }
 
     static DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    // static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy hh:mm:ss");
 
     public int getId() {
         return id;
@@ -49,19 +50,19 @@ public class Task {
         updatedAt = LocalDateTime.now();
     }
 
-    public String parseTime(LocalDateTime time) {
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    /* public String parseTime(LocalDateTime time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy hh:mm:ss");
         return time.format(formatter);
-    }
+    } */
 
     public String toJson() {
         return "{\"id\": " + id + ", \"subject\": \"" + subject + "\", \"status\": \"" +  status + "\", \"createdAt\": \"" + 
-        createdAt + "\", \"lastUpdated\": \"" + updatedAt + "\"}";
+        createdAt.format(formatter) + "\", \"lastUpdated\": \"" + updatedAt.format(formatter) + "\"}";
     }
 
     public static Task fromJson(String jsonTask) {
 
-        jsonTask = jsonTask.replace("{", "").replace("}", "");
+        jsonTask = jsonTask.replace("{", "").replace("}", "").replace("\"", "");
         String[] jsonArray = jsonTask.split(",");
 
         String id = jsonArray[0].split(":")[1].strip();
@@ -74,7 +75,7 @@ public class Task {
 
         task.id = Integer.parseInt(id);
         task.status = status;
-        task.createdAt = parseTime(createdAt);
+        task.createdAt = LocalDateTime.parse(createdAt, formatter);
         task.updatedAt = LocalDateTime.parse(lastUpdated, formatter);
 
         return task;
