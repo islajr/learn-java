@@ -30,7 +30,7 @@ public class TaskManager {
 
                 int start = 0;
                 int stop = 0;
-                for (int i = 0; i <= fileContent.length(); ++i) {
+                for (int i = 0; i <= fileContent.length() - 1; ++i) {
                     if (fileContent.charAt(i) == '{') {
                         start = i;
 

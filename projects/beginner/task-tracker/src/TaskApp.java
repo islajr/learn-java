@@ -14,6 +14,7 @@ public class TaskApp {
                         manager.addTask(args[1]); 
                      }
                      catch (Exception e) {
+                        // e.printStackTrace();
                          System.out.println("Usage: TaskApp [command] id subject");
                      }
                 } else {
