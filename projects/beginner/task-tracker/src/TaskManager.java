@@ -147,6 +147,7 @@ public class TaskManager {
             for (Task task : tasks) {
                 if (task.getId() == id) {
                     tasks.remove(tasks.indexOf(task));
+                    saveTask(tasks);
                     System.out.println("Successfully deleted task #" + id + "! ");
                 }
             }
