@@ -63,10 +63,15 @@ public class TaskManager {
         String finalJson = "";
 
         for (Task task : tasks) {
-            finalJson = finalJson + task.toJson();
+            if (!tasks.getLast().equals(task)) {
+                finalJson += task.toJson() + ",";
+            } else {
+                finalJson += task.toJson();
+            }
+            
         }
 
-        return finalJson;
+        return "[" + finalJson + "]";
     }
 
     public void saveTask(ArrayList<Task> tasks) {   // saves an array list of tasks to json file.
