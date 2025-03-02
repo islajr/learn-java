@@ -15,7 +15,7 @@ public class TaskApp {
                      }
                      catch (Exception e) {
                         // e.printStackTrace();
-                         System.out.println("Usage: TaskApp [command] id subject");
+                         System.out.println("Failed to add task!");
                      }
                 } else {
                     System.out.println("Usage: TaskApp [command] id subject");
@@ -29,8 +29,7 @@ public class TaskApp {
                         int taskId = Integer.parseInt(args[1]);
                         manager.updateTask(taskId, args[2]);
                     } catch (Exception e) {
-                        System.out.println("There was a problem");
-                        System.out.println("Usage: TaskApp [command] id subject");
+                        System.out.println("Update action failed!");
                     }
                 } else{ 
                     System.out.println("Usage: TaskApp [command] id subject");
@@ -45,7 +44,7 @@ public class TaskApp {
                     } catch (NumberFormatException e) {
                         System.out.println("Please provide a number.");
                     } catch (Exception e) {
-                        System.out.println("Could not delete non-existent task.");
+                        System.out.println("Could not delete non-existent task!");
                     }
                 } else {
                     System.out.println("Usage: TaskApp [command] id subject");
@@ -59,7 +58,7 @@ public class TaskApp {
                     try {
                         manager.listByStatus(args[1]);
                     } catch (Exception e) {
-                        System.out.println("Something went wrong! ");
+                        System.out.println("Failed to list tasks!");
                     }
                 } else {
                     System.out.println("Usage: TaskApp [command] id subject");
@@ -74,7 +73,7 @@ public class TaskApp {
                     } catch (NumberFormatException e) {
                         System.out.println("Please provide a task id");
                     } catch (Exception e) {
-                        System.out.println("Something went wrong!");
+                        System.out.println("Failed to mark as in-progress!");
                     }
                 } else {
                     System.out.println("Usage: TaskApp [command] id subject");
@@ -90,7 +89,7 @@ public class TaskApp {
                     } catch (NumberFormatException e) {
                         System.out.println("Please provide a task id");
                     } catch (Exception e) {
-                        System.out.println("Something went wrong!");
+                        System.out.println("Failed to mark as done!");
                     }
                 } else {
                     System.out.println("Usage: TaskApp [command] id subject");
