@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class TaskManager {
 
     final Path jsonFile = Path.of("./tasks.json");
-    private ArrayList<Task> tasks;
+    // private ArrayList<Task> tasks;
     
 
     // no args constructor
@@ -217,6 +217,11 @@ public class TaskManager {
         } else {
             System.out.println("There is no such task! ");
         }
+    }
+
+    public void clear() {
+        saveTask(new ArrayList<Task>());
+        System.out.println("Successfully cleared storage!");
     }
 
 }

@@ -97,6 +97,14 @@ public class TaskApp {
                 
             }
 
+            case "clear" -> {
+                if (args.length == 1 && args[0].equals("clear")) {
+                    manager.clear();
+                } else {
+                    System.out.println("Usage: TaskApp [command] id subject");
+                }
+            }
+
             default -> {
                 System.out.println("Usage: TaskApp [command] id subject");
             }
