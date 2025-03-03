@@ -50,10 +50,10 @@ public class Task {
         updatedAt = LocalDateTime.now();
     }
 
-    /* public String parseTime(LocalDateTime time) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-mm-yyyy hh:mm:ss");
-        return time.format(formatter);
-    } */
+    public String parseTime(LocalDateTime time) {
+        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-mm-yyyy hh:mm:ss");
+        return time.format(parser);
+    }
 
     public String toJson() {
         return "{\"id\": " + id + ", \"subject\": \"" + subject + "\", \"status\": \"" +  status + "\", \"createdAt\": \"" + 
@@ -85,7 +85,7 @@ public class Task {
     @Override
     public String toString() {
         return "id: " + id + " subject: " + subject + " status: " + status + " createdAt: " 
-        + createdAt.format(formatter) + " lastUpdated: " + updatedAt.format(formatter) + ".";
+        + parseTime(createdAt) + " lastUpdated: " + parseTime(updatedAt) + ".";
     }
 
     
