@@ -28,6 +28,8 @@ public class TaskApp {
                     try {
                         int taskId = Integer.parseInt(args[1]);
                         manager.updateTask(taskId, args[2]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Please provide a valid task id!");
                     } catch (Exception e) {
                         System.out.println("Update action failed!");
                     }
@@ -52,17 +54,23 @@ public class TaskApp {
             }
 
             case "list" -> {
-                if (args.length == 1 && args[0].equals("list")) {
-                    manager.listAll();
-                } else if (args.length == 2) {
+            switch (args.length) {
+                case 1 -> {
+                    if (args[0].equals("list")) {
+                        manager.listAll();
+                    } else {
+                        System.out.println("Usage: TaskApp [command] id subject");
+                    }
+                }
+                case 2 -> {
                     try {
                         manager.listByStatus(args[1]);
                     } catch (Exception e) {
                         System.out.println("Failed to list tasks!");
                     }
-                } else {
-                    System.out.println("Usage: TaskApp [command] id subject");
                 }
+                default -> System.out.println("Usage: TaskApp [command] id subject");
+            }
             }
 
             case "mark-in-progress" -> {
