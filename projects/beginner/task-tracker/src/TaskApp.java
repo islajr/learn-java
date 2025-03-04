@@ -4,7 +4,7 @@ public class TaskApp {
         TaskManager manager = new TaskManager();
 
         if (args.length < 1) {
-            System.out.println("Usage: TaskApp [command] id subject");
+            System.out.println("Usage: TaskApp <command> [arguments]");
         }
         
         switch (args[0]) {
@@ -18,7 +18,7 @@ public class TaskApp {
                          System.out.println("Failed to add task!");
                      }
                 } else {
-                    System.out.println("Usage: TaskApp [command] id subject");
+                    System.out.println("Usage: TaskApp <command> [arguments]");
                 }
                
             }
@@ -34,7 +34,7 @@ public class TaskApp {
                         System.out.println("Update action failed!");
                     }
                 } else{ 
-                    System.out.println("Usage: TaskApp [command] id subject");
+                    System.out.println("Usage: TaskApp <command> [arguments]");
                 }
             }
 
@@ -49,7 +49,7 @@ public class TaskApp {
                         System.out.println("Could not delete non-existent task!");
                     }
                 } else {
-                    System.out.println("Usage: TaskApp [command] id subject");
+                    System.out.println("Usage: TaskApp <command> [arguments]");
                 }
             }
 
@@ -59,7 +59,7 @@ public class TaskApp {
                     if (args[0].equals("list")) {
                         manager.listAll();
                     } else {
-                        System.out.println("Usage: TaskApp [command] id subject");
+                        System.out.println("Usage: TaskApp <command> [arguments]");
                     }
                 }
                 case 2 -> {
@@ -69,7 +69,7 @@ public class TaskApp {
                         System.out.println("Failed to list tasks!");
                     }
                 }
-                default -> System.out.println("Usage: TaskApp [command] id subject");
+                default -> System.out.println("Usage: TaskApp <command> [arguments]");
             }
             }
 
@@ -84,7 +84,7 @@ public class TaskApp {
                         System.out.println("Failed to mark as in-progress!");
                     }
                 } else {
-                    System.out.println("Usage: TaskApp [command] id subject");
+                    System.out.println("Usage: TaskApp <command> [arguments]");
                 }
                 
             }
@@ -100,7 +100,7 @@ public class TaskApp {
                         System.out.println("Failed to mark as done!");
                     }
                 } else {
-                    System.out.println("Usage: TaskApp [command] id subject");
+                    System.out.println("Usage: TaskApp <command> [arguments]");
                 }
                 
             }
@@ -109,12 +109,12 @@ public class TaskApp {
                 if (args.length == 1 && args[0].equals("clear")) {
                     manager.clear();
                 } else {
-                    System.out.println("Usage: TaskApp [command] id subject");
+                    System.out.println("Usage: TaskApp <command> [arguments]");
                 }
             }
 
             default -> {
-                System.out.println("Usage: TaskApp [command] id subject");
+                System.out.println("Usage: TaskApp <command> [arguments]");
             }
         }
 
