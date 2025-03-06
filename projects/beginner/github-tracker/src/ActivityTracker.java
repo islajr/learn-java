@@ -1,11 +1,12 @@
+import java.net.http.HttpClient;
 import java.util.Optional;
 
 public class ActivityTracker {
 
-    private static final String GITHUB_API_URL = "";
-
     public Optional<String> track(String username) {
+        String GITHUB_URL = "https://api.github.com/users" + username + "/events";
 
+        HttpClient httpClient = HttpClient.newHttpClient();
     }
 
 }
