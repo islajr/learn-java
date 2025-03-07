@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -16,6 +17,10 @@ public class ActivityTracker {
             HttpResponse response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
