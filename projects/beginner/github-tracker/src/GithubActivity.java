@@ -5,7 +5,7 @@ public class GithubActivity {
             System.out.println("Usage GithubActivity <username>");
         else {
             try {
-                tracker.track(args[0]);
+                tracker.fetchData(args[0]);
             } catch (Exception e) {
                 System.out.println("I'll tend to you later");
             }
