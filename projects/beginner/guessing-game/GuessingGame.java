@@ -11,49 +11,96 @@ public class GuessingGame{
 
         while (true) {
             int number = generate();
-
+            int difficulty, guess;
             Scanner scanner = new Scanner(System.in);
-            System.out.print("I have thought of a number; what is it? ");
-            int guess = 0;
+
+            System.out.println("Welcome to the Guessing Game!");
+            System.out.println("I have thought of a number between 1 - 10\n");
+            System.out.println("Please select the difficulty level:\n1. Easy (10 chances)\n2. Medium (5 chances)\n3. Hard (3 chances)");
+            System.out.print("Enter your choice: ");
 
             while (true) {
                 
                 try {
-                    guess = scanner.nextInt();
+                    difficulty = scanner.nextInt();
+                    int chances = difficultyChoice(difficulty); 
+                    int counter = chances;
+                    boolean isCorrect;
+
+                    while (counter > 0) {
+                        System.out.println("Guesses left: " + chances);
+                        System.out.print("Enter your guess: ");
+                        guess = scanner.nextInt();
+                        isCorrect = check(number, guess, counter);
+                        if (isCorrect) {
+                            System.out.println("Congratulations! You guessed the correct numer in " + (chances - counter) + " attempts!");
+                            scanner.close();
+                            System.exit(0);
+                        }
+                        else if (isCorrect == false && guess < number) {
+                            System.out.println("Incorrect! The number is less than " + guess + ".\n");
+                        }
+                        else if (isCorrect == false && guess > number) {
+                            System.out.println("Incorrect! The number is greater than " + guess + ".\n");
+                        }
+                        counter -= 1;
+                    }
+                    if (counter <= 0) {
+                        System.out.println("You've run out of guesses. Try again later!");
+                        scanner.close();
+                        System.exit(0);
+                    }
+
+                    
                 }
                 catch(InputMismatchException e) {
                     System.out.println("Please input a proper whole number ");
                     break;
                 }
 
-                check(number, guess);
-
             }
-            
-
         }
 
     }
 
     static int generate() {
         // generates and returns a random number
-        double raw = Math.random() * 100;
+        double raw = Math.random() * 1000;
         return (int)raw;
 
     }
-    private static void check(int number, int guess){
-        while (true) {
-            if(guess == number){
-                System.out.print("You got it right! ");
-                System.exit(0);
+    private static boolean check(int number, int guess, int counter){
+
+        if(guess == number && counter > 0){
+            return true;
+        }
+        else if(guess > number && counter > 0) {
+            return false;
+        }
+        else if(guess < number && counter > 0) {
+            return false;
+        }
+
+        return false;
+    }
+
+    static int difficultyChoice(int difficulty) {
+        switch (difficulty) {
+            case 1 -> {
+                System.out.println("You have selected the Easy difficulty level.\nLet's start the game!");
+                return 10;
             }
-            else if(guess > number) {
-                System.out.print("Try lower! ");
-                break;
+
+            case 2 -> {
+                System.out.println("You have selected the Medium difficulty level.\nLet's start the game!");
+                return 5;
             }
-            else if(guess < number) {
-                System.out.print("Try higher! ");
-                break;
+            case 3 -> {
+                System.out.println("You have selected the Hard difficulty level.\nLet's start the game!");
+                return 3;
+            }
+            default -> {
+                return 0;
             }
         }
     }
