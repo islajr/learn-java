@@ -28,7 +28,7 @@ public class GuessingGame{
                     boolean isCorrect;
 
                     while (counter > 0) {
-                        System.out.println("Guesses left: " + chances);
+                        System.out.println("Guesses left: " + counter);
                         System.out.print("Enter your guess: ");
                         guess = scanner.nextInt();
                         isCorrect = check(number, guess, counter);
@@ -39,11 +39,13 @@ public class GuessingGame{
                         }
                         else if (isCorrect == false && guess < number) {
                             System.out.println("Incorrect! The number is less than " + guess + ".\n");
+                            counter -= 1;
                         }
                         else if (isCorrect == false && guess > number) {
                             System.out.println("Incorrect! The number is greater than " + guess + ".\n");
+                            counter -= 1;
                         }
-                        counter -= 1;
+                        // counter -= 1;
                     }
                     if (counter <= 0) {
                         System.out.println("You've run out of guesses. Try again later!");
@@ -65,7 +67,7 @@ public class GuessingGame{
 
     static int generate() {
         // generates and returns a random number
-        double raw = Math.random() * 1000;
+        double raw = Math.random() * 100000;
         return (int)raw;
 
     }
