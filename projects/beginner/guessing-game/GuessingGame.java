@@ -11,7 +11,8 @@ public class GuessingGame{
 
         while (true) {
             int number = generate();
-            int difficulty, guess;
+            int difficulty;
+            int guess = 0;
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Welcome to the Guessing Game!");
@@ -30,18 +31,24 @@ public class GuessingGame{
                     while (counter > 0) {
                         System.out.println("Guesses left: " + counter);
                         System.out.print("Enter your guess: ");
-                        guess = scanner.nextInt();
+                        try {
+                            guess = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println(e);
+                        }
+                        
                         isCorrect = check(number, guess, counter);
                         if (isCorrect) {
                             System.out.println("Congratulations! You guessed the correct numer in " + (chances - counter) + " attempts!");
                             scanner.close();
                             System.exit(0);
                         }
-                        else if (isCorrect == false && guess < number) {
+                        else if (!isCorrect && guess < number) {
                             System.out.println("Incorrect! The number is less than " + guess + ".\n");
+                            System.out.println(number);
                             counter -= 1;
                         }
-                        else if (isCorrect == false && guess > number) {
+                        else if (!isCorrect && guess > number) {
                             System.out.println("Incorrect! The number is greater than " + guess + ".\n");
                             counter -= 1;
                         }
@@ -67,8 +74,8 @@ public class GuessingGame{
 
     static int generate() {
         // generates and returns a random number
-        double raw = Math.random() * 100000;
-        return (int)raw;
+        double raw = Math.random() * 10;
+        return (int)Math.round(raw);
 
     }
     private static boolean check(int number, int guess, int counter){
