@@ -96,16 +96,16 @@ public class GuessingGame{
     static int difficultyChoice(int difficulty) {
         switch (difficulty) {
             case 1 -> {
-                System.out.println("You have selected the Easy difficulty level.\nLet's start the game!");
+                System.out.println("You have selected the Easy difficulty level.\nLet's start the game!\n");
                 return 10;
             }
 
             case 2 -> {
-                System.out.println("You have selected the Medium difficulty level.\nLet's start the game!");
+                System.out.println("You have selected the Medium difficulty level.\nLet's start the game!\n");
                 return 5;
             }
             case 3 -> {
-                System.out.println("You have selected the Hard difficulty level.\nLet's start the game!");
+                System.out.println("You have selected the Hard difficulty level.\nLet's start the game!\n");
                 return 3;
             }
             default -> {
