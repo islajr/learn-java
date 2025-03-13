@@ -42,7 +42,6 @@ public class GuessingGame{
                             }
                             else if (!isCorrect && guess > number) {
                                 System.out.println("Incorrect! The number is less than " + guess + ".\n");
-                                System.out.println(number);
                                 counter -= 1;
                             }
                             else if (!isCorrect && guess < number) {
@@ -51,6 +50,8 @@ public class GuessingGame{
                             }
                         } catch (InputMismatchException e) {
                             System.out.println(e);
+                        } catch (Exception e) {
+                            System.out.println("Something went wrong!");
                         }
                         
                         // counter -= 1;
@@ -87,9 +88,6 @@ public class GuessingGame{
         else if(guess > number || guess < number && counter > 0) {
             return false;
         }
-        /* else if(guess < number) {
-            return false;
-        } */
         else {
             return false;
         }
