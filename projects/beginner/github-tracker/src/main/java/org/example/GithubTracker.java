@@ -1,6 +1,8 @@
 package org.example;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
@@ -21,7 +23,8 @@ public class GithubTracker {
                 fetchData(args[0]);
 
             } catch (Exception e) {
-                System.out.println("Please, input a proper username!");
+//                System.out.println("Please, input a proper username!");
+                e.printStackTrace();
             }
         }
     }
@@ -49,5 +52,28 @@ public class GithubTracker {
     }
 
     private static void displayData(JsonArray jsonArray) {
+        for (JsonElement element : jsonArray) {
+            JsonObject object = element.getAsJsonObject();
+            String type = object.get("type").getAsString();
+
+            switch (type) {
+                case "PushEvent" -> {
+                    int commits = object.get("payload").getAsJsonObject().get("commits").getAsJsonArray().size();
+                    System.out.println("Pushed " + commits + " commits to " + object.get("repo").getAsJsonObject().get("name").getAsString() + ".");
+                }
+                case "IssuesEvent" -> System.out.println(object.get("payload").getAsJsonObject().get("Action").getAsString().toUpperCase().charAt(0) + object.get("payload").getAsJsonObject().get("Action").getAsString() + " an issue in " + object.get("repo").getAsJsonObject().get("name").getAsString());
+
+                case "WatchEvent" -> {
+                    if (object.get("payload").getAsJsonObject().get("action").getAsString().equals("started")) {
+                        System.out.println("Watching " + object.get("repo").getAsJsonObject().get("name"));
+                    }
+                }
+                case "ForkEvent" -> System.out.println("Forked " + object.get("repo").getAsJsonObject().get("name").getAsString());
+
+                case "CreateEvent" -> System.out.println("Created " + object.get("payload").getAsJsonObject().get("ref_type").getAsString() + " in " + object.get("repo").getAsJsonObject().get("name"));
+
+                default -> throw new IllegalStateException("Unexpected value: " + type);
+            }
+        }
     }
 }
