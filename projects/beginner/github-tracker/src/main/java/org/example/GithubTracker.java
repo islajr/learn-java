@@ -75,7 +75,7 @@ public class GithubTracker {
 
                 case "CreateEvent" -> System.out.println("Created " + object.get("payload").getAsJsonObject().get("ref_type").getAsString() + " in " + object.get("repo").getAsJsonObject().get("name"));
 
-                case "PullRequestEvent" -> System.out.println("Couldn't get this as of yet.");
+                case "PullRequestEvent" -> System.out.println("Opened a pull request in " + object.get("repo").getAsJsonObject().get("name").getAsString() + ".");
 
 
                 default -> throw new IllegalStateException("Unexpected value: " + type);
