@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -23,7 +24,7 @@ public class GithubTracker {
                 fetchData(args[0]);
 
             } catch (Exception e) {
-//                System.out.println("Please, input a proper username!");
+                System.out.println("Something went wrong!");
                 e.printStackTrace();
             }
         }
@@ -46,6 +47,8 @@ public class GithubTracker {
                 System.out.println("Something went wrong!");
             }
 
+        } catch (ConnectException e) {
+            System.out.println("Connection Error! Check your connection.");
         } catch (URISyntaxException | IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -72,7 +75,11 @@ public class GithubTracker {
 
                 case "CreateEvent" -> System.out.println("Created " + object.get("payload").getAsJsonObject().get("ref_type").getAsString() + " in " + object.get("repo").getAsJsonObject().get("name"));
 
+                case "PullRequestEvent" -> System.out.println("Couldn't get this as of yet.");
+
+
                 default -> throw new IllegalStateException("Unexpected value: " + type);
+
             }
         }
     }
