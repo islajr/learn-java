@@ -16,8 +16,8 @@ public class BlogController {
     }
 
     @PostMapping()
-    public BlogPost createPost(@RequestBody BlogPost) {
-        return blogService.createPost();
+    public BlogPost createPost(@RequestBody BlogPost blogPost) {
+        return blogService.createPost(blogPost);
     }
 
     @GetMapping()
@@ -27,16 +27,16 @@ public class BlogController {
 
     @GetMapping("/{id}")
     public BlogPost getPost(@PathVariable Long id) {
-        return blogService.getPost();
+        return blogService.getPost(id);
     }
 
     @PutMapping("/{id}")
-    public BlogPost updatePost(@PathVariable Long id) {
-        return blogService.updatePost();
+    public BlogPost updatePost(@PathVariable Long id, @RequestBody BlogPost blogPost) {
+        return blogService.updatePost(id, blogPost);
     }
 
     @DeleteMapping("/{id}")
     public void deletePost(@PathVariable Long id) {
-        blogService.deletePost();
+        blogService.deletePost(id);
     }
 }

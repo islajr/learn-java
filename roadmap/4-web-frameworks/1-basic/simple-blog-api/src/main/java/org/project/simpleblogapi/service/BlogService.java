@@ -9,19 +9,18 @@ import java.util.List;
 public class BlogService {
 
     public BlogPost createPost() {
-
     }
 
     public List<BlogPost> getPosts() {
     }
 
-    public BlogPost getPost() {
+    public BlogPost getPost(Long id) {
         return null;
     }
 
-    public BlogPost updatePost() {
+    public BlogPost updatePost(Long id, BlogPost blogPost) {
     }
 
-    public void deletePost() {
+    public void deletePost(Long id) {
     }
 }
