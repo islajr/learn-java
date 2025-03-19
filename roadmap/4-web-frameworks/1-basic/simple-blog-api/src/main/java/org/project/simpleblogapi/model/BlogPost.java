@@ -15,16 +15,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "blog_posts")
 public class BlogPost {
 
     @Id
-   private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     String title;
     String content;
     String category;
 
-    @Transient
+    @ElementCollection
     List<String> tags;
 
     private LocalDateTime createdAt;

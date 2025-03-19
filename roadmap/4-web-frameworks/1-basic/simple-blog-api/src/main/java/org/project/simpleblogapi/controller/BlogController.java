@@ -5,8 +5,10 @@ import org.project.simpleblogapi.service.BlogService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/")
 public class BlogController {
 
     private final BlogService blogService;
@@ -26,7 +28,7 @@ public class BlogController {
     }
 
     @GetMapping("/{id}")
-    public BlogPost getPost(@PathVariable Long id) {
+    public Optional<BlogPost> getPost(@PathVariable Long id) {
         return blogService.getPost(id);
     }
 
