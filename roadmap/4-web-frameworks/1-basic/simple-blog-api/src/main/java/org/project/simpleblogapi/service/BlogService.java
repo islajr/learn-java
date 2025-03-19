@@ -3,9 +3,11 @@ package org.project.simpleblogapi.service;
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.repository.BlogRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -29,17 +31,34 @@ public class BlogService {
     }
 
     public Optional<BlogPost> getPost(Long id) {
-        return blogRepository.findById(id);
+        Optional<BlogPost> post = blogRepository.findById(id);
+
+        if (post.isPresent()) {
+            return post;
+        } else {
+            throw new RuntimeException("There is no such post!");
+        }
     }
 
     public BlogPost updatePost(Long id, BlogPost blogPost) {
-        Optional<BlogPost> formerPost = blogRepository.findById(id);
+        BlogPost formerPost = blogRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("There is no such student!"));
 
-        if (formerPost.isPresent()) {
-            blogRepository.save(blogPost);
-            return blogPost;
+        if (blogPost.getTitle() != null && !blogPost.getTitle().isEmpty() && !blogPost.getTitle().equals(formerPost.getTitle())) {
+            formerPost.setTitle(blogPost.getTitle());
         }
-        throw new RuntimeException("No user with such id!");
+
+        if (blogPost.getCategory() != null && !blogPost.getCategory().isEmpty() && !blogPost.getCategory().equals(formerPost.getCategory())) {
+            formerPost.setCategory(blogPost.getCategory());
+        }
+
+        if (blogPost.getContent() != null && !blogPost.getContent().isEmpty() && !blogPost.getContent().equals(formerPost.getContent())) {
+            formerPost.setContent(blogPost.getContent());
+        }
+
+        formerPost.setUpdatedAt(LocalDateTime.now());
+        blogRepository.save(formerPost);
+        return formerPost;
     }
 
     public void deletePost(Long id) {
