@@ -20,6 +20,7 @@ public class BlogService {
 
     public BlogPost createPost(BlogPost blogPost) {
         blogPost.setCreatedAt(LocalDateTime.now());
+        blogPost.setUpdatedAt(LocalDateTime.now());
         return blogRepository.save(blogPost);
     }
 
