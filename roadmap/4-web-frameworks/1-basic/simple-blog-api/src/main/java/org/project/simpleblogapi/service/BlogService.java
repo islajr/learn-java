@@ -2,9 +2,9 @@ package org.project.simpleblogapi.service;
 
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.repository.BlogRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +19,7 @@ public class BlogService {
 
 
     public BlogPost createPost(BlogPost blogPost) {
+        blogPost.setCreatedAt(LocalDateTime.now());
         return blogRepository.save(blogPost);
     }
 
