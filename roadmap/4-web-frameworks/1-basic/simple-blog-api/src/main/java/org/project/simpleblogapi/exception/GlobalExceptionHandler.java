@@ -32,4 +32,10 @@ public class GlobalExceptionHandler {
     public @ResponseBody ErrorResponse handleException(UserDoesNotExistException e) {
         return new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage());
     }
+
+    @ExceptionHandler(value = AuthenticationFailedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public @ResponseBody ErrorResponse handleException(AuthenticationFailedException e) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+    }
 }
