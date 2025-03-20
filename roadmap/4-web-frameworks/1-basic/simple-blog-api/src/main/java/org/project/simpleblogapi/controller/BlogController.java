@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/post")
+@RequestMapping("/blogapi/post")
 public class BlogController {
 
     private final BlogService blogService;
