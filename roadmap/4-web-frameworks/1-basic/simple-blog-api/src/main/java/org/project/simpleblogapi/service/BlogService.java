@@ -1,5 +1,7 @@
 package org.project.simpleblogapi.service;
 
+import org.project.simpleblogapi.exception.PostAlreadyExistsException;
+import org.project.simpleblogapi.exception.PostDoesNotExistException;
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.repository.BlogRepository;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,10 @@ public class BlogService {
     public BlogPost createPost(BlogPost blogPost) {
         blogPost.setCreatedAt(LocalDateTime.now());
         blogPost.setUpdatedAt(LocalDateTime.now());
+
+        if (blogRepository.existsById(blogPost.getId()))
+            throw new PostAlreadyExistsException("There is already a post with that id.");
+
         return blogRepository.save(blogPost);
     }
 
@@ -42,7 +48,7 @@ public class BlogService {
 
     public BlogPost updatePost(Long id, BlogPost blogPost) {
         BlogPost formerPost = blogRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("There is no such student!"));
+                () -> new PostDoesNotExistException("There is no such post!"));
 
         if (blogPost.getTitle() != null && !blogPost.getTitle().isEmpty() && !blogPost.getTitle().equals(formerPost.getTitle())) {
             formerPost.setTitle(blogPost.getTitle());
@@ -62,6 +68,11 @@ public class BlogService {
     }
 
     public void deletePost(Long id) {
-        blogRepository.deleteById(id);
+        try {
+            blogRepository.deleteById(id);
+        } catch (PostDoesNotExistException e) {
+            throw new PostDoesNotExistException("Cannot delete non-existent post.");
+        }
+
     }
 }

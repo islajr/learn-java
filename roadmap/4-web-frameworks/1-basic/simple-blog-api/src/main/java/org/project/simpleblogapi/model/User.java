@@ -3,7 +3,7 @@ package org.project.simpleblogapi.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "blog_db")
 public class User {
 
     @Id
