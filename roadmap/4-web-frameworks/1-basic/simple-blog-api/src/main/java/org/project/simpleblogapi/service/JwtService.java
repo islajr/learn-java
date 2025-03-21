@@ -1,6 +1,7 @@
 package org.project.simpleblogapi.service;
 
 import io.jsonwebtoken.Jwts;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -26,5 +27,11 @@ public class JwtService {
                 .expiration(new Date(System.currentTimeMillis() * 60 * 60 * 1000))
                 .and()
                 .signWith(secretKey).compact();
+    }
+
+    public String extractUsername(String token) {
+    }
+
+    public boolean validateToken(String token, UserDetails userDetails) {
     }
 }
