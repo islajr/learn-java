@@ -1,11 +1,14 @@
 package org.project.simpleblogapi.service;
 
+import io.jsonwebtoken.lang.Objects;
 import org.project.simpleblogapi.exception.AuthenticationFailedException;
+import org.project.simpleblogapi.exception.NullUserException;
 import org.project.simpleblogapi.model.User;
 import org.project.simpleblogapi.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +27,15 @@ public class UserService {
     }
 
     public void register(User user) {
-        user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
-        System.out.println("Successfully registered new user " + user.getUsername());
+
+        if (!Objects.isEmpty(user) || user != null) {
+            user.setPassword(encoder.encode(user.getPassword()));
+            userRepository.save(user);
+            System.out.println("Successfully registered new user " + user.getUsername());
+        } else {
+            throw new NullUserException("There is no user provided!");
+        }
+
     }
 
     public String login(User user) {

@@ -38,4 +38,10 @@ public class GlobalExceptionHandler {
     public @ResponseBody ErrorResponse handleException(AuthenticationFailedException e) {
         return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), e.getMessage());
     }
+
+    @ExceptionHandler(value = NullUserException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public @ResponseBody ErrorResponse handleException(NullUserException e) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+    }
 }
