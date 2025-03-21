@@ -1,5 +1,6 @@
 package org.project.simpleblogapi.service;
 
+import org.project.simpleblogapi.exception.UserDoesNotExistException;
 import org.project.simpleblogapi.model.User;
 import org.project.simpleblogapi.repository.UserRepository;
 import org.project.simpleblogapi.model.UserPrincipal;
@@ -24,10 +25,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         if (!(username == null) && !username.isEmpty()) {
             System.out.println("Please provide a valid username");
+            throw new UsernameNotFoundException("Please provide a valid Username");
         }
         if (user == null) {
             System.out.println("User does not exist!");
-            // throw a user-defined exception
+            throw new UserDoesNotExistException("User does not exist!");
         }
 
         return new UserPrincipal(user);
