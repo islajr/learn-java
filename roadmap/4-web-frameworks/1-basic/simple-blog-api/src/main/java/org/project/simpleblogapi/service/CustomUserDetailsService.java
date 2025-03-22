@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         User user = userRepository.findByUsername(username);
 
-        if (!(username == null) && !username.isEmpty()) {
+        if (username == null || username.isEmpty()) {
             System.out.println("Please provide a valid username");
             throw new UsernameNotFoundException("Please provide a valid Username");
         }
