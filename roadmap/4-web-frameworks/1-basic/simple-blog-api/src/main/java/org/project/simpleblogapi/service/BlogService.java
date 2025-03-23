@@ -24,9 +24,6 @@ public class BlogService {
         blogPost.setCreatedAt(LocalDateTime.now());
         blogPost.setUpdatedAt(LocalDateTime.now());
 
-        if (blogRepository.existsById(blogPost.getId()))
-            throw new PostAlreadyExistsException("There is already a post with that id.");
-
         return blogRepository.save(blogPost);
     }
 
