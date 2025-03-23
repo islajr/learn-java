@@ -1,6 +1,5 @@
 package org.project.simpleblogapi.service;
 
-import org.project.simpleblogapi.exception.PostAlreadyExistsException;
 import org.project.simpleblogapi.exception.PostDoesNotExistException;
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.repository.BlogRepository;
