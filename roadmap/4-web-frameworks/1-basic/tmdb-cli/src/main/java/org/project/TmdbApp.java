@@ -48,11 +48,51 @@ public class TmdbApp {
                 }
 
                 case "popular" -> {
+                    try {
+                        JsonArray jsonResponse = fetchResponse("/popular");
 
+                        for (JsonElement element : jsonResponse) {
+                            JsonArray resultsArray = element.getAsJsonObject().get("results").getAsJsonArray();
+
+                            for (JsonElement result : resultsArray) {
+                                JsonObject resultObject = result.getAsJsonObject();
+                                String name = resultObject.get("title").getAsString();
+                                int popularity = resultObject.get("popularity").getAsInt();
+                                String releaseDate = resultObject.get("release_date").getAsString();
+
+                                System.out.println("Name: "+ name + "\nPopularity: " + popularity + "\nRelease Date: " + releaseDate + "\n\n");
+                            }
+                        }
+
+                    } catch (URISyntaxException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 case "top" -> {
+                    try {
+                        JsonArray jsonResponse = fetchResponse("/top_rated");
 
+                        for (JsonElement element : jsonResponse) {
+                            JsonArray resultsArray = element.getAsJsonObject().get("results").getAsJsonArray();
+
+                            for (JsonElement result : resultsArray) {
+                                JsonObject resultObject = result.getAsJsonObject();
+                                int voteCount = resultObject.get("vote_count").getAsInt();
+                                int voteAverage = resultObject.get("vote_average").getAsInt();
+
+                                if (voteCount > voteAverage) {
+                                    String releaseDate = resultObject.get("release_date").getAsString();
+                                    String name = resultObject.get("title").getAsString();
+
+                                    System.out.println("Name: "+ name + "\nRelease Date: " + releaseDate + "\nVote Count: " + voteCount + "\nVote Average: " + voteAverage + "\n\n");
+                                }
+                            }
+                        }
+
+                    } catch (URISyntaxException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
 
                 case "upcoming" -> {
