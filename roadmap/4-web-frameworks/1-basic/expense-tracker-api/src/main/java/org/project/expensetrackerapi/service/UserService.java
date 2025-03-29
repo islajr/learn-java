@@ -3,6 +3,8 @@ package org.project.expensetrackerapi.service;
 import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.model.User;
 import org.project.expensetrackerapi.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,14 +33,17 @@ public class UserService {
         throw new RuntimeException("User is null.");
     }
 
-    public String register(User user) {
+    public ResponseEntity<String> register(User user) {
 
         if (user != null) {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             userRepository.save(user);
-            return "Successfully registered new user " + user.getUsername() + ".";
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body("Successfully registered new user " + user.getUsername() + ".");
         }
-
-        throw new RuntimeException("User is null.");
+        return ResponseEntity
+                .badRequest()
+                .body("User is null!");
     }
 }
