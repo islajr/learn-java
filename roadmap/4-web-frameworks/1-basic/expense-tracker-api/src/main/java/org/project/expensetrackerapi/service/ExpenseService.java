@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.repository.ExpenseRepository;
 import org.project.expensetrackerapi.repository.UserRepository;
-import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
