@@ -18,13 +18,14 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
-    public String login(User user) {
+    public ResponseEntity<String> login(User user) {
 
         if (user != null) {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 
             if (authentication.isAuthenticated()) {
-                return jwtService.generateToken(user.getUsername());
+                return ResponseEntity.ok()
+                        .body(jwtService.generateToken(user.getUsername()));
             }
 
             throw new RuntimeException("Authentication Failed!");
