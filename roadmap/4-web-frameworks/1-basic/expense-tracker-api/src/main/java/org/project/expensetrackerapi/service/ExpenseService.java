@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.repository.ExpenseRepository;
 import org.project.expensetrackerapi.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -16,18 +19,22 @@ public class ExpenseService {
     private final ExpenseRepository expenseRepository;
     private final UserRepository userRepository;
 
-    public String addExpense(Expense expense) {
+    public ResponseEntity<Expense> addExpense(Expense expense) {
 
         if (expense != null) {
             try {
                 expenseRepository.save(expense);
-                return "Successfully added expense.";
+                return ResponseEntity
+                        .status(HttpStatus.CREATED)
+                        .body(expense);
+
             } catch (Exception e) {
                 System.out.println("Failed to add expense");
                 throw new RuntimeException("Failed to add expense.");
             }
         } else {
-            throw new RuntimeException("Expense is null.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+//            throw new RuntimeException("Expense is null.");
         }
     }
 
@@ -35,18 +42,19 @@ public class ExpenseService {
         return expenseRepository.findAll();
     }
 
-    public Expense getExpense(Long id) {
+    public ResponseEntity<Expense> getExpense(Long id) {
         Expense expense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
-            return expense;
+            return ResponseEntity.ok(expense);
         } else {
-            throw new NoSuchElementException("No such expense!");
+//            throw new NoSuchElementException("No such expense!");
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
-    public String updateExpense(Long id, Expense expense) {
-        Expense storedExpense = getExpense(id);
+    public ResponseEntity<Expense> updateExpense(Long id, Expense expense) {
+        Expense storedExpense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
             if (expense.getCategory() != null && !expense.getCategory().equals(storedExpense.getCategory())) {
@@ -59,21 +67,25 @@ public class ExpenseService {
                 storedExpense.setDate(expense.getDate());
             }
 
-            return "Successfully updated expense!";
+            System.out.println("Successfully updated expense!");
+            return ResponseEntity.ok(storedExpense);
         }
         else {
-            throw new NoSuchElementException("Could not find expense to update.");
+//            throw new NoSuchElementException("Could not find expense to update.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
-    public String deleteExpense(Long id) {
-        Expense expense = getExpense(id);
+    public ResponseEntity<String> deleteExpense(Long id) {
+        Expense expense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
             userRepository.deleteById(id);
-            return "Successfully deleted expense.";
+            System.out.println("Successfully deleted expense.");
+            return ResponseEntity.ok("Successfully deleted expense.");
         } else {
-            throw new NoSuchElementException("Could not find expense to delete.");
+//            throw new NoSuchElementException("Could not find expense to delete.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Could not find expense to delete.");
         }
     }
 }
