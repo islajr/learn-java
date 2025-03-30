@@ -24,7 +24,8 @@ public class Expense {
     private String username;
     private Category category;
     private int cost;
-    private LocalDate date = LocalDate.now();
+    private LocalDate date;
+    private LocalDate updatedDate;
 
     public Expense(Category category, int cost, LocalDate date) {
         this.category = category;

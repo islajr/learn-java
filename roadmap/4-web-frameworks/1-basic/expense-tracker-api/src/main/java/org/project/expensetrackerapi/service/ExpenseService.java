@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class ExpenseService {
             }
 
             try {
+                expense.setUpdatedDate(LocalDate.now());
                 expenseRepository.save(expense);
                 return ResponseEntity
                         .status(HttpStatus.CREATED)
@@ -89,9 +91,10 @@ public class ExpenseService {
             if (expense.getDate() != null && expense.getDate() != storedExpense.getDate()) {
                 storedExpense.setDate(expense.getDate());
             }
+            storedExpense.setUpdatedDate(LocalDate.now());  // updated "last updated" field
 
             System.out.println("Successfully updated expense!");
-            return ResponseEntity.ok(ExpenseDTO.fromEntity(expense));
+            return ResponseEntity.ok(ExpenseDTO.fromEntity(storedExpense));
         }
         else {
 
