@@ -7,10 +7,8 @@ import org.project.expensetrackerapi.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @AllArgsConstructor
@@ -38,8 +36,10 @@ public class ExpenseService {
         }
     }
 
-    public List<Expense> getExpenses() {
-        return expenseRepository.findAll();
+    public ResponseEntity<List<Expense>> getExpenses() {
+        List<Expense> expenses = expenseRepository.findAll();
+
+        return ResponseEntity.ok(expenses);
     }
 
     public ResponseEntity<Expense> getExpense(Long id) {
