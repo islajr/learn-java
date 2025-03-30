@@ -3,6 +3,7 @@ package org.project.expensetrackerapi.controller;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.dto.ExpenseDTO;
+import org.project.expensetrackerapi.model.Category;
 import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.service.ExpenseService;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,9 @@ public class ExpenseController {
         return expenseService.addExpense(expenseDTO);
     }
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<ExpenseDTO> getExpense(@PathVariable Long id) {
-        return expenseService.getExpense(id);
+    @GetMapping("/get/{category}")
+    public ResponseEntity<ExpenseDTO> getExpense(@PathVariable Category category) {
+        return expenseService.getExpense(category);
     }
 
     @GetMapping("/get")
@@ -32,13 +33,13 @@ public class ExpenseController {
         return expenseService.getExpenses();
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<ExpenseDTO> updateExpense(@PathVariable Long id, @RequestBody Expense expense) {
-        return expenseService.updateExpense(id, expense);
+    @PutMapping("/update/{category}")
+    public ResponseEntity<ExpenseDTO> updateExpense(@PathVariable Category category, @RequestBody Expense expense) {
+        return expenseService.updateExpense(category, expense);
     }
 
-    @DeleteMapping("/del/{id}")
-    public ResponseEntity<String> deleteExpense(@PathVariable Long id) {
-        return expenseService.deleteExpense(id);
+    @DeleteMapping("/del/{category}")
+    public ResponseEntity<String> deleteExpense(@PathVariable Category category) {
+        return expenseService.deleteExpense(category);
     }
 }

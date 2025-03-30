@@ -2,6 +2,7 @@ package org.project.expensetrackerapi.service;
 
 import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.dto.ExpenseDTO;
+import org.project.expensetrackerapi.model.Category;
 import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.repository.ExpenseRepository;
 import org.project.expensetrackerapi.repository.UserRepository;
@@ -19,7 +20,6 @@ import java.util.List;
 public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
-    private final UserRepository userRepository;
 
     public ResponseEntity<ExpenseDTO> addExpense(ExpenseDTO expenseDTO) {
 
@@ -66,8 +66,8 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<ExpenseDTO> getExpense(Long id) {
-        Expense expense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+    public ResponseEntity<ExpenseDTO> getExpense(Category category) {
+        Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
 
@@ -78,13 +78,13 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<ExpenseDTO> updateExpense(Long id, Expense expense) {
-        Expense storedExpense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+    public ResponseEntity<ExpenseDTO> updateExpense(Category category, Expense expense) {
+        Expense storedExpense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
-            if (expense.getCategory() != null && !expense.getCategory().equals(storedExpense.getCategory())) {
+            /*if (expense.getCategory() != null && !expense.getCategory().equals(storedExpense.getCategory())) {
                 storedExpense.setCategory(expense.getCategory());
-            }
+            }*/
             if (expense.getCost() != storedExpense.getCost()) {
                 storedExpense.setCost(expense.getCost());
             }
@@ -102,11 +102,11 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<String> deleteExpense(Long id) {
-        Expense expense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+    public ResponseEntity<String> deleteExpense(Category category) {
+        Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
-            userRepository.deleteById(id);
+            expenseRepository.deleteByCategory(category);
             System.out.println("Successfully deleted expense.");
             return ResponseEntity.ok("Successfully deleted expense.");
         } else {
