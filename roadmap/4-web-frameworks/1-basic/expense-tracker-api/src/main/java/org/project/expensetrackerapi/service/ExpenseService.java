@@ -1,13 +1,16 @@
 package org.project.expensetrackerapi.service;
 
 import lombok.AllArgsConstructor;
+import org.project.expensetrackerapi.dto.ExpenseDTO;
 import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.repository.ExpenseRepository;
 import org.project.expensetrackerapi.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,43 +20,63 @@ public class ExpenseService {
     private final ExpenseRepository expenseRepository;
     private final UserRepository userRepository;
 
-    public ResponseEntity<Expense> addExpense(Expense expense) {
+    public ResponseEntity<ExpenseDTO> addExpense(ExpenseDTO expenseDTO) {
 
-        if (expense != null) {
+        if (expenseDTO != null) {
+
+            Expense expense = ExpenseDTO.toEntity(expenseDTO);
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+            if (username != null) {
+                expense.setUsername(username);
+            } else {
+                System.out.println("Please login first!");
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+            }
+
             try {
                 expenseRepository.save(expense);
                 return ResponseEntity
                         .status(HttpStatus.CREATED)
-                        .body(expense);
+                        .body(expenseDTO);
 
             } catch (Exception e) {
                 System.out.println("Failed to add expense");
-                throw new RuntimeException("Failed to add expense.");
+                return ResponseEntity.internalServerError().body(null);
             }
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//            throw new RuntimeException("Expense is null.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);    // expense is null
         }
     }
 
-    public ResponseEntity<List<Expense>> getExpenses() {
+    public ResponseEntity<List<ExpenseDTO>> getExpenses() {
         List<Expense> expenses = expenseRepository.findAll();
+        List<ExpenseDTO> expensesDTO = new ArrayList<>();
 
-        return ResponseEntity.ok(expenses);
+        if (expenses.isEmpty()) {
+            return ResponseEntity.ok(null);
+        } else {
+            for (Expense expense : expenses) {
+                expensesDTO.add(ExpenseDTO.fromEntity(expense));
+            }
+
+            return ResponseEntity.ok(expensesDTO);
+        }
     }
 
-    public ResponseEntity<Expense> getExpense(Long id) {
+    public ResponseEntity<ExpenseDTO> getExpense(Long id) {
         Expense expense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
-            return ResponseEntity.ok(expense);
+
+            return ResponseEntity.ok(ExpenseDTO.fromEntity(expense));
         } else {
-//            throw new NoSuchElementException("No such expense!");
-            return ResponseEntity.badRequest().body(null);
+
+            return ResponseEntity.badRequest().body(null);  // no such expense
         }
     }
 
-    public ResponseEntity<Expense> updateExpense(Long id, Expense expense) {
+    public ResponseEntity<ExpenseDTO> updateExpense(Long id, Expense expense) {
         Expense storedExpense = expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
@@ -68,11 +91,11 @@ public class ExpenseService {
             }
 
             System.out.println("Successfully updated expense!");
-            return ResponseEntity.ok(storedExpense);
+            return ResponseEntity.ok(ExpenseDTO.fromEntity(expense));
         }
         else {
-//            throw new NoSuchElementException("Could not find expense to update.");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // no expense to update
         }
     }
 
@@ -84,7 +107,6 @@ public class ExpenseService {
             System.out.println("Successfully deleted expense.");
             return ResponseEntity.ok("Successfully deleted expense.");
         } else {
-//            throw new NoSuchElementException("Could not find expense to delete.");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Could not find expense to delete.");
         }
     }

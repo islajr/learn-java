@@ -1,6 +1,8 @@
 package org.project.expensetrackerapi.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.project.expensetrackerapi.dto.ExpenseDTO;
 import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.service.ExpenseService;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +18,22 @@ public class ExpenseController {
     private final ExpenseService expenseService;
 
     @PostMapping("/add")
-    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense) {
-        return expenseService.addExpense(expense);
+    public ResponseEntity<ExpenseDTO> addExpense(@Valid @RequestBody ExpenseDTO expenseDTO) {
+        return expenseService.addExpense(expenseDTO);
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Expense> getExpense(@PathVariable Long id) {
+    public ResponseEntity<ExpenseDTO> getExpense(@PathVariable Long id) {
         return expenseService.getExpense(id);
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<Expense>> getExpenses() {
+    public ResponseEntity<List<ExpenseDTO>> getExpenses() {
         return expenseService.getExpenses();
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Expense> updateExpense(@PathVariable Long id, @RequestBody Expense expense) {
+    public ResponseEntity<ExpenseDTO> updateExpense(@PathVariable Long id, @RequestBody Expense expense) {
         return expenseService.updateExpense(id, expense);
     }
 

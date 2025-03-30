@@ -21,8 +21,14 @@ public class Expense {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
+    private String username;
     private Category category;
     private int cost;
     private LocalDate date = LocalDate.now();
 
+    public Expense(Category category, int cost, LocalDate date) {
+        this.category = category;
+        this.cost = cost;
+        this.date = date;
+    }
 }
