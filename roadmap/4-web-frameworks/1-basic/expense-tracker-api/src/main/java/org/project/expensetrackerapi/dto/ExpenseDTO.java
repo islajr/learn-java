@@ -1,13 +1,12 @@
 package org.project.expensetrackerapi.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
 import org.project.expensetrackerapi.model.Category;
 import org.project.expensetrackerapi.model.Expense;
 
 import java.time.LocalDate;
 
-@Getter
+
 public record ExpenseDTO(
 
         @NotBlank(message = "You must provide an expense category")
