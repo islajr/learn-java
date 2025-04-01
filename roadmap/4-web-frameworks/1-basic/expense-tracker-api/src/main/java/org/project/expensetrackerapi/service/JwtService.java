@@ -17,6 +17,9 @@ import java.util.Objects;
 @AllArgsConstructor
 public class JwtService {
 
+
+    private final SecretKey signingKey = Jwts.SIG.HS256.key().build();
+
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
         return Jwts.builder()
@@ -26,19 +29,19 @@ public class JwtService {
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + (10 * 60 * 1000)))
                 .and()
-                .signWith(generateKey())
+                .signWith(signingKey)
                 .compact();
 
     }
 
-    private SecretKey generateKey() {
+   /*  private SecretKey generateKey() {
         return Jwts.SIG.HS256.key().build();
-    }
+    } */
 
     private Claims extractClaims(String token) {
         try {
            return Jwts.parser()
-                    .verifyWith(generateKey())
+                    .verifyWith(signingKey)
                     .build()
                     .parseSignedClaims(token)
                     .getPayload();
@@ -57,6 +60,6 @@ public class JwtService {
     }
 
     private boolean isTokenExpired(String token) {
-        return extractClaims(token).getExpiration().before(new Date());
+        return extractClaims(token).getExpiration().before(new Date(System.currentTimeMillis()));
     }
 }
