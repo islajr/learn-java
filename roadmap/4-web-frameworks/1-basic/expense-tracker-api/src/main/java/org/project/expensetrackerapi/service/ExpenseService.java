@@ -5,7 +5,6 @@ import org.project.expensetrackerapi.dto.ExpenseDTO;
 import org.project.expensetrackerapi.model.Category;
 import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.repository.ExpenseRepository;
-import org.project.expensetrackerapi.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +23,9 @@ public class ExpenseService {
     public ResponseEntity<ExpenseDTO> addExpense(ExpenseDTO expenseDTO) {
 
         if (expenseDTO != null) {
+            if (!isCategoryValid(expenseDTO.category())) {
+                return ResponseEntity.badRequest().body(null);
+            }
 
             Expense expense = ExpenseDTO.toEntity(expenseDTO);
             String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -82,9 +84,14 @@ public class ExpenseService {
         Expense storedExpense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
-            /*if (expense.getCategory() != null && !expense.getCategory().equals(storedExpense.getCategory())) {
+
+            if (!isCategoryValid(expense.getCategory())) {
+                return ResponseEntity.badRequest().body(null);
+            }
+
+            if (expense.getCategory() != null && !expense.getCategory().equals(storedExpense.getCategory())) {
                 storedExpense.setCategory(expense.getCategory());
-            }*/
+            }
             if (expense.getCost() != storedExpense.getCost()) {
                 storedExpense.setCost(expense.getCost());
             }
@@ -112,5 +119,14 @@ public class ExpenseService {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Could not find expense to delete.");
         }
+    }
+
+    private boolean isCategoryValid(Category category) {
+        for (Category category1 : Category.values()) {
+            if (category.equals(category1)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

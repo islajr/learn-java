@@ -1,11 +1,11 @@
 package org.project.expensetrackerapi.model;
 
 public enum Category {
-    GROCERIES,
-    LEISURE,
-    ELECTRONICS,
-    UTILITIES,
-    CLOTHING,
-    HEALTH,
-    OTHERS
+    Groceries,
+    Leisure,
+    Electronics,
+    Utilities,
+    Clothing,
+    Health,
+    Others
 }
