@@ -69,7 +69,9 @@ public class ExpenseService {
     }
 
     public ResponseEntity<ExpenseDTO> getExpense(Category category) {
-        Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        // Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+        Expense expense = expenseRepository.findByUsernameAndCategory(username, category);
 
         if (expense != null) {
 

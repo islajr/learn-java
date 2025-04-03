@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     Optional<Expense> findByCategory(Category category);
     void deleteByCategory(Category category);
+    Expense findByUsernameAndCategory(String username, Category category);
 }
