@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.AllArgsConstructor;
+import org.project.expensetrackerapi.exception.InvalidTokenException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +47,7 @@ public class JwtService {
                     .parseSignedClaims(token)
                     .getPayload();
         } catch (JwtException e) {
-            throw new RuntimeException("This is not a valid JWT token");
+            throw new InvalidTokenException("The provided token has probably expired.");
         }
     }
 
