@@ -1,11 +1,6 @@
 package org.project.expensetrackerapi.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -25,8 +20,13 @@ public class Expense {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "category")
+    @ManyToOne
+    @JoinColumn(name = "category")
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private User user;
 
     @Column(name = "cost")
     private double cost;
