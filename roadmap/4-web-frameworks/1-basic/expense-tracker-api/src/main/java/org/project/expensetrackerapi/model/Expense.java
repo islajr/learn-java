@@ -29,7 +29,7 @@ public class Expense {
     private Category category;
 
     @Column(name = "cost")
-    private int cost;
+    private double cost;
 
     @Column(name = "date")
     private LocalDate date;
