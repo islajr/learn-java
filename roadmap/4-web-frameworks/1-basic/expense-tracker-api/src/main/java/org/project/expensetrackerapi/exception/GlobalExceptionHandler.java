@@ -1,5 +1,6 @@
 package org.project.expensetrackerapi.exception;
 
+import org.project.expensetrackerapi.exception.exceptions.InvalidTokenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

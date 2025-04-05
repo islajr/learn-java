@@ -1,4 +1,4 @@
-package org.project.expensetrackerapi.exception;
+package org.project.expensetrackerapi.exception.exceptions;
 
 public class InvalidTokenException extends RuntimeException {
 
