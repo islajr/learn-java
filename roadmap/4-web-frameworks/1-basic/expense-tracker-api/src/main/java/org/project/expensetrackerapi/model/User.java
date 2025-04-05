@@ -1,12 +1,11 @@
 package org.project.expensetrackerapi.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,9 +19,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     public String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     public String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Nullable
+    private List<Expense> expenses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Category> categories = new ArrayList<>();
+
 }
