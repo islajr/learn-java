@@ -29,7 +29,8 @@ public class User {
     @Nullable
     private List<Expense> expenses = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Category> categories = new ArrayList<>();
-
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }
