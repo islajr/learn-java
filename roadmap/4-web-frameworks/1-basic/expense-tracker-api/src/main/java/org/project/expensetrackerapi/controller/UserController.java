@@ -19,11 +19,11 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserDTO userDTO) {
-        return userService.register(user);
+        return userService.register(userDTO);
     }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
-        return userService.login(user);
+        return userService.login(userDTO);
     }
 }
