@@ -37,7 +37,7 @@ public class Expense {
     @Column(name = "updated_date")
     private LocalDate updatedDate;
 
-    public Expense(Category category, int cost, LocalDate date) {
+    public Expense(Category category, double cost, LocalDate date) {
         this.category = category;
         this.cost = cost;
         this.date = date;
