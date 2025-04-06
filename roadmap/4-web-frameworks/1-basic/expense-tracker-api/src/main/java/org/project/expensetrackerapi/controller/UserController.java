@@ -1,6 +1,7 @@
 package org.project.expensetrackerapi.controller;
 
 import lombok.AllArgsConstructor;
+import org.project.expensetrackerapi.dto.UserDTO;
 import org.project.expensetrackerapi.model.User;
 import org.project.expensetrackerapi.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +18,12 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User user) {
+    public ResponseEntity<String> register(@RequestBody UserDTO userDTO) {
         return userService.register(user);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
         return userService.login(user);
     }
 }

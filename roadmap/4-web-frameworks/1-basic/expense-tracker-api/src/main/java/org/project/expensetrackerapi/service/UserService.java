@@ -1,6 +1,7 @@
 package org.project.expensetrackerapi.service;
 
 import lombok.AllArgsConstructor;
+import org.project.expensetrackerapi.dto.UserDTO;
 import org.project.expensetrackerapi.model.User;
 import org.project.expensetrackerapi.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -18,14 +19,14 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
-    public ResponseEntity<String> login(User user) {
+    public ResponseEntity<String> login(UserDTO userDTO) {
 
-        if (user != null) {
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+        if (userDTO != null) {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.username(), userDTO.password()));
 
             if (authentication.isAuthenticated()) {
                 return ResponseEntity.ok()
-                        .body(jwtService.generateToken(user.getUsername()));
+                        .body(jwtService.generateToken(userDTO.username()));
             }
 
             throw new RuntimeException("Authentication Failed!");
@@ -34,10 +35,12 @@ public class UserService {
         throw new RuntimeException("User is null.");
     }
 
-    public ResponseEntity<String> register(User user) {
+    public ResponseEntity<String> register(UserDTO userDTO) {
 
-        if (user != null) {
+        if (userDTO != null) {
+            User user = UserDTO.toEntity(userDTO);
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            user.setExpenses(null);
             userRepository.save(user);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
