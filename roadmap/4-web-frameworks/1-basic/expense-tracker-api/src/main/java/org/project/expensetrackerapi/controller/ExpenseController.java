@@ -24,8 +24,8 @@ public class ExpenseController {
     }
 
     @GetMapping("/get/{category}")
-    public ResponseEntity<ExpenseDTO> getExpense(@PathVariable Category category) {
-        return expenseService.getExpense(category);
+    public ResponseEntity<ExpenseDTO> getExpenseByCategory(@PathVariable Category category) {
+        return expenseService.getExpenseByCategory(category);
     }
 
     @GetMapping("/get")

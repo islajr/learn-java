@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.dto.ExpenseDTO;
 import org.project.expensetrackerapi.model.Category;
 import org.project.expensetrackerapi.model.Expense;
+import org.project.expensetrackerapi.model.User;
 import org.project.expensetrackerapi.repository.ExpenseRepository;
+import org.project.expensetrackerapi.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import java.util.List;
 public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
+    private final UserRepository userRepository;
 
     public ResponseEntity<ExpenseDTO> addExpense(ExpenseDTO expenseDTO) {
 
@@ -31,14 +34,16 @@ public class ExpenseService {
             String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
             if (username != null) {
-                expense.setUsername(username);
+                User user = userRepository.findByUsername(username).orElseThrow(() ->  new UsernameNotFoundException("There is no such user!"));
+
+                expense.setUser(user);
+
             } else {
-                System.out.println("Please login first!");
+                System.out.println("You cannot create this expense. Please login first!");
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
             }
 
             try {
-                expense.setUpdatedDate(LocalDate.now());
                 expenseRepository.save(expense);
                 return ResponseEntity
                         .status(HttpStatus.CREATED)
@@ -56,19 +61,22 @@ public class ExpenseService {
     public ResponseEntity<List<ExpenseDTO>> getExpenses() {
         List<Expense> expenses = expenseRepository.findAll();
         List<ExpenseDTO> expensesDTO = new ArrayList<>();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         if (expenses.isEmpty()) {
             return ResponseEntity.ok(null);
         } else {
             for (Expense expense : expenses) {
-                expensesDTO.add(ExpenseDTO.fromEntity(expense));
+                if (expense.getUser().getUsername().equals(username)) { // if expense belongs to user
+                    expensesDTO.add(ExpenseDTO.fromEntity(expense));
+                }
             }
 
             return ResponseEntity.ok(expensesDTO);
         }
     }
 
-    public ResponseEntity<ExpenseDTO> getExpense(Category category) {
+    public ResponseEntity<ExpenseDTO> getExpenseByCategory(Category category) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         // Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
         Expense expense = expenseRepository.findByUsernameAndCategory(username, category);
@@ -100,7 +108,6 @@ public class ExpenseService {
             if (expense.getDate() != null && expense.getDate() != storedExpense.getDate()) {
                 storedExpense.setDate(expense.getDate());
             }
-            storedExpense.setUpdatedDate(LocalDate.now());  // updated "last updated" field
 
             System.out.println("Successfully updated expense!");
             return ResponseEntity.ok(ExpenseDTO.fromEntity(storedExpense));
