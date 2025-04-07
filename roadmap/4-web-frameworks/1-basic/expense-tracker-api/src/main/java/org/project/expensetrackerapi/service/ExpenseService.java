@@ -138,4 +138,16 @@ public class ExpenseService {
         }
         return false;
     }
+
+    public ResponseEntity<List<ExpenseDTO>> getExpensePastWeek() {
+    }
+
+    public ResponseEntity<List<ExpenseDTO>> getExpensePastMonth() {
+    }
+
+    public ResponseEntity<List<ExpenseDTO>> getExpenseCustom() {
+    }
+
+    public ResponseEntity<List<ExpenseDTO>> getExpensePastThreeMonths() {
+    }
 }
