@@ -51,7 +51,7 @@ public class ExpenseController {
 
     @GetMapping("/")
     public ResponseEntity<List<ExpenseDTO>> getExpenseCustom(@RequestParam LocalDate start, @RequestParam LocalDate end) {
-        return expenseService.getExpenseCustom();
+        return expenseService.getExpenseCustom(start, end);
     }
 
     @PutMapping("/{category}")

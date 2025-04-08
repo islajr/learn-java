@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,8 +79,7 @@ public class ExpenseService {
 
     public ResponseEntity<ExpenseDTO> getExpenseByCategory(Category category) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        // Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
-        Expense expense = expenseRepository.findByUsernameAndCategory(username, category);
+         Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
 
@@ -140,14 +140,97 @@ public class ExpenseService {
     }
 
     public ResponseEntity<List<ExpenseDTO>> getExpensePastWeek() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        LocalDate end = LocalDate.now();
+        LocalDate start = end.minusWeeks(1);
+
+        List<Expense> expenses = expenseRepository.findByDateBetween(start, end);
+        List<ExpenseDTO> expensesDTO = new ArrayList<>();
+
+        if (expenses != null) {
+
+            for (Expense expense : expenses) {
+                if (expense.getUser().getUsername().equals(username)) {
+                    expensesDTO.add(ExpenseDTO.fromEntity(expense));
+                }
+            }
+
+            return ResponseEntity.ok(expensesDTO);
+
+        } else {
+            return ResponseEntity.ok(null);
+        }
+
     }
 
     public ResponseEntity<List<ExpenseDTO>> getExpensePastMonth() {
-    }
 
-    public ResponseEntity<List<ExpenseDTO>> getExpenseCustom() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        LocalDate end = LocalDate.now();
+        LocalDate start = end.minusMonths(1);
+
+        List<Expense> monthlyExpenses = expenseRepository.findByDateBetween(start, end);
+        List<ExpenseDTO> expensesDTO = new ArrayList<>();
+
+        if (monthlyExpenses != null) {
+
+            for (Expense expense : monthlyExpenses) {
+                if (expense.getUser().getUsername().equals(username)) {
+                    expensesDTO.add(ExpenseDTO.fromEntity(expense));
+                }
+            }
+
+            return ResponseEntity.ok(expensesDTO);
+
+        } else {
+            return ResponseEntity.ok(null);
+        }
     }
 
     public ResponseEntity<List<ExpenseDTO>> getExpensePastThreeMonths() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        LocalDate end = LocalDate.now();
+        LocalDate start = end.minusMonths(3);
+
+        List<Expense> expenses = expenseRepository.findByDateBetween(start, end);
+        List<ExpenseDTO> expensesDTO = new ArrayList<>();
+
+        if (expenses != null) {
+
+            for (Expense expense : expenses) {
+                if (expense.getUser().getUsername().equals(username)) {
+                    expensesDTO.add(ExpenseDTO.fromEntity(expense));
+                }
+            }
+
+            return ResponseEntity.ok(expensesDTO);
+
+        } else {
+            return ResponseEntity.ok(null);
+        }
     }
+    public ResponseEntity<List<ExpenseDTO>> getExpenseCustom(LocalDate start, LocalDate end) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<ExpenseDTO> expensesDTO = new ArrayList<>();
+
+        try {
+            List<Expense> expenses = expenseRepository.findByDateBetween(start, end);
+
+            if (expenses != null) {
+                for (Expense expense : expenses) {
+                    if (expense.getUser().getUsername().equals(username)) {
+                        expensesDTO.add(ExpenseDTO.fromEntity(expense));
+                    }
+                }
+
+                return ResponseEntity.ok(expensesDTO);
+
+            } else {
+                return ResponseEntity.ok(null);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
 }
