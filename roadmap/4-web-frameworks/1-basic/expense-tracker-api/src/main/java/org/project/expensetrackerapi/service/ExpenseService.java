@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class ExpenseService {
                 User user = userRepository.findByUsername(username).orElseThrow(() ->  new UsernameNotFoundException("There is no such user!"));
 
                 expense.setUser(user);
+                expense.setUpdatedAt(LocalDateTime.now());
 
             } else {
                 System.out.println("You cannot create this expense. Please login first!");
@@ -90,32 +92,31 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<ExpenseDTO> updateExpense(Category category, Expense expense) {
-        Expense storedExpense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+    public ResponseEntity<ExpenseDTO> updateExpense(Category category, LocalDate date, ExpenseDTO expenseDTO) {
+        Expense myExpense = ExpenseDTO.toEntity(expenseDTO);
+        List<Expense> storedExpenses = expenseRepository.findByCategoryAndDate(category, date);
+        Expense storedExpense = new Expense();
 
-        if (expense != null) {
-
-            if (!isCategoryValid(expense.getCategory())) {
-                return ResponseEntity.badRequest().body(null);
+        for (Expense expense : storedExpenses) {
+            if (expense.getUser().getUsername().equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
+                storedExpense = expense;
             }
-
-            if (expense.getCategory() != null && !expense.getCategory().equals(storedExpense.getCategory())) {
-                storedExpense.setCategory(expense.getCategory());
-            }
-            if (expense.getCost() != storedExpense.getCost()) {
-                storedExpense.setCost(expense.getCost());
-            }
-            if (expense.getDate() != null && expense.getDate() != storedExpense.getDate()) {
-                storedExpense.setDate(expense.getDate());
-            }
-
-            System.out.println("Successfully updated expense!");
-            return ResponseEntity.ok(ExpenseDTO.fromEntity(storedExpense));
         }
-        else {
 
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // no expense to update
+        if (myExpense.getDescription() != null && !myExpense.getDescription().equals(storedExpense.getDescription())) {
+            storedExpense.setDescription(myExpense.getDescription());
         }
+        if (myExpense.getCost() != 0 && myExpense.getCost() != storedExpense.getCost()) {
+            storedExpense.setCost(myExpense.getCost());
+        }
+        if (myExpense.getDate() != null && myExpense.getDate() != storedExpense.getDate()) {
+            storedExpense.setDate(expenseDTO.date());
+        }
+
+        expenseRepository.save(storedExpense);
+
+        System.out.println("Successfully updated expense!");
+        return ResponseEntity.ok(ExpenseDTO.fromEntity(storedExpense));
     }
 
     public ResponseEntity<String> deleteExpense(Category category) {
