@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.dto.ExpenseDTO;
 import org.project.expensetrackerapi.model.Category;
-import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.service.ExpenseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,47 +18,47 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public ResponseEntity<ExpenseDTO> addExpense(@Valid @RequestBody ExpenseDTO expenseDTO) {
         return expenseService.addExpense(expenseDTO);
     }
 
-    @GetMapping("/{category}")
+    @GetMapping("/get/{category}")
     public ResponseEntity<ExpenseDTO> getExpenseByCategory(@PathVariable Category category) {
         return expenseService.getExpenseByCategory(category);
     }
 
-    @GetMapping("/")
+    @GetMapping("/getAll")
     public ResponseEntity<List<ExpenseDTO>> getExpenses() {
         return expenseService.getExpenses();
     }
 
-    @GetMapping("/pw")
+    @GetMapping("/get/pw")
     public ResponseEntity<List<ExpenseDTO>> getExpensePastWeek() {
         return expenseService.getExpensePastWeek();
     }
 
-    @GetMapping("/pm")
+    @GetMapping("get/pm")
     public ResponseEntity<List<ExpenseDTO>> getExpensePastMonth() {
         return expenseService.getExpensePastMonth();
     }
 
-    @GetMapping("/p3m")
+    @GetMapping("get/p3m")
     public ResponseEntity<List<ExpenseDTO>> getExpensePastThreeMonths() {
         return expenseService.getExpensePastThreeMonths();
     }
 
-    @GetMapping("/")
+    @GetMapping("/get/custom")
     public ResponseEntity<List<ExpenseDTO>> getExpenseCustom(@RequestParam LocalDate start, @RequestParam LocalDate end) {
         return expenseService.getExpenseCustom(start, end);
     }
 
-    @PutMapping("/{category}")
-    public ResponseEntity<ExpenseDTO> updateExpense(@PathVariable Category category, @RequestBody Expense expense) {
-        return expenseService.updateExpense(category, expense);
+    @PutMapping("/update")
+    public ResponseEntity<ExpenseDTO> updateExpense(@RequestParam Category category, @RequestParam LocalDate date, @RequestBody ExpenseDTO expenseDTO) {
+        return expenseService.updateExpense(category, date, expenseDTO);
     }
 
-    @DeleteMapping("/{category}")
+    @DeleteMapping("/delete/{category}")
     public ResponseEntity<String> deleteExpense(@PathVariable Category category) {
         return expenseService.deleteExpense(category);
     }
