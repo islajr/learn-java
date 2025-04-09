@@ -81,11 +81,13 @@ public class ExpenseService {
 
     public ResponseEntity<ExpenseDTO> getExpenseByCategory(Category category) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-         Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+        Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
         if (expense != null) {
-
-            return ResponseEntity.ok(ExpenseDTO.fromEntity(expense));
+            if (expense.getUser().getUsername().equals(username)) {
+                return ResponseEntity.ok(ExpenseDTO.fromEntity(expense));
+            }
+            return ResponseEntity.ok(null); // expense does not belong to user
         } else {
 
             return ResponseEntity.badRequest().body(null);  // no such expense
@@ -121,11 +123,16 @@ public class ExpenseService {
 
     public ResponseEntity<String> deleteExpense(Category category) {
         Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         if (expense != null) {
-            expenseRepository.deleteByCategory(category);
-            System.out.println("Successfully deleted expense.");
-            return ResponseEntity.ok("Successfully deleted expense.");
+
+            if (expense.getUser().getUsername().equals(username)) {
+                expenseRepository.deleteByCategory(category);
+                System.out.println("Successfully deleted expense.");
+                return ResponseEntity.ok("Successfully deleted expense.");
+            }
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Could not find expense to delete.");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Could not find expense to delete.");
         }

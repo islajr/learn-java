@@ -2,6 +2,7 @@ package org.project.expensetrackerapi.dto;
 
 import org.project.expensetrackerapi.model.Category;
 import org.project.expensetrackerapi.model.Expense;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -27,6 +28,13 @@ public record ExpenseDTO(
 
     public ExpenseDTO(LocalDate date) {
         this(null, "", 0, date);
+    }
+
+    public ExpenseDTO(Category category, String description, double cost, LocalDate date) {
+        this.category = category;
+        this.description = description;
+        this.cost = cost;
+        this.date = date;
     }
 
     public static ExpenseDTO fromEntity(Expense expense) {
