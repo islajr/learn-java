@@ -24,7 +24,7 @@ public class ExpenseController {
     }
 
     @GetMapping("/get/{category}")
-    public ResponseEntity<ExpenseDTO> getExpenseByCategory(@PathVariable Category category) {
+    public ResponseEntity<ExpenseDTO> getExpenseByCategory(@PathVariable String category) {
         return expenseService.getExpenseByCategory(category);
     }
 
@@ -54,12 +54,12 @@ public class ExpenseController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ExpenseDTO> updateExpense(@RequestParam Category category, @RequestParam LocalDate date, @RequestBody ExpenseDTO expenseDTO) {
+    public ResponseEntity<ExpenseDTO> updateExpense(@RequestParam String category, @RequestParam LocalDate date, @RequestBody ExpenseDTO expenseDTO) {
         return expenseService.updateExpense(category, date, expenseDTO);
     }
 
     @DeleteMapping("/delete/{category}")
-    public ResponseEntity<String> deleteExpense(@PathVariable Category category) {
+    public ResponseEntity<String> deleteExpense(@PathVariable String category) {
         return expenseService.deleteExpense(category);
     }
 }

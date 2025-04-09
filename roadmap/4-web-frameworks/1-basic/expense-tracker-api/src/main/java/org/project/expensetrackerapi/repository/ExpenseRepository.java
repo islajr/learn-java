@@ -11,8 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
-    Optional<Expense> findByCategory(Category category);
-    List<Expense> findByCategoryAndDate(Category category, LocalDate date);
-    void deleteByCategory(Category category);
+    Optional<Expense> findByCategory(String category);
+    List<Expense> findByCategoryAndDate(String category, LocalDate date);
+    void deleteByCategory(String category);
     List<Expense> findByDateBetween(LocalDate start, LocalDate end);
 }

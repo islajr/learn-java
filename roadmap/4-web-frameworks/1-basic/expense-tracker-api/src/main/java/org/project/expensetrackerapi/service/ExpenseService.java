@@ -29,7 +29,7 @@ public class ExpenseService {
 
         if (expenseDTO != null) {
             if (!isCategoryValid(expenseDTO.category())) {
-                return ResponseEntity.badRequest().body(null);
+                return ResponseEntity.badRequest().body(new ExpenseDTO("Category provided is not valid!"));
             }
 
             Expense expense = ExpenseDTO.toEntity(expenseDTO);
@@ -79,7 +79,7 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<ExpenseDTO> getExpenseByCategory(Category category) {
+    public ResponseEntity<ExpenseDTO> getExpenseByCategory(String category) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
 
@@ -94,7 +94,7 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<ExpenseDTO> updateExpense(Category category, LocalDate date, ExpenseDTO expenseDTO) {
+    public ResponseEntity<ExpenseDTO> updateExpense(String category, LocalDate date, ExpenseDTO expenseDTO) {
         Expense myExpense = ExpenseDTO.toEntity(expenseDTO);
         List<Expense> storedExpenses = expenseRepository.findByCategoryAndDate(category, date);
         Expense storedExpense = new Expense();
@@ -121,7 +121,7 @@ public class ExpenseService {
         return ResponseEntity.ok(ExpenseDTO.fromEntity(storedExpense));
     }
 
-    public ResponseEntity<String> deleteExpense(Category category) {
+    public ResponseEntity<String> deleteExpense(String category) {
         Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -138,9 +138,9 @@ public class ExpenseService {
         }
     }
 
-    private boolean isCategoryValid(Category category) {
+    private boolean isCategoryValid(String category) {
         for (Category category1 : Category.values()) {
-            if (category.equals(category1)) {
+            if (category.equals(category1.name())) {
                 return true;
             }
         }

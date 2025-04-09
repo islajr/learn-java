@@ -19,7 +19,7 @@ public class Expense {
     private Long id;
 
     @Column(name = "category")
-    private Category category;
+    private String category;
 
     @Column(name = "description")
     private String description;
@@ -41,7 +41,7 @@ public class Expense {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Expense(Category category, String description, double cost, LocalDate date) {
+    public Expense(String category, String description, double cost, LocalDate date) {
         this.category = category;
         this.description = description;
         this.cost = cost;
