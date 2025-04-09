@@ -128,7 +128,7 @@ public class ExpenseService {
         if (expense != null) {
 
             if (expense.getUser().getUsername().equals(username)) {
-                expenseRepository.deleteByCategory(category);
+                expenseRepository.delete(expense);
                 System.out.println("Successfully deleted expense.");
                 return ResponseEntity.ok("Successfully deleted expense.");
             }
