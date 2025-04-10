@@ -2,6 +2,8 @@ package org.project.expensetrackerapi.service;
 
 import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.dto.ExpenseDTO;
+import org.project.expensetrackerapi.exception.exceptions.InvalidCategoryException;
+import org.project.expensetrackerapi.exception.exceptions.NoArgumentProvidedException;
 import org.project.expensetrackerapi.model.Category;
 import org.project.expensetrackerapi.model.Expense;
 import org.project.expensetrackerapi.model.User;
@@ -67,8 +69,8 @@ public class ExpenseService {
             case "":
                 if (!category.isEmpty()) {
                     return getExpenseByCategory(category);
-                } else {
-                    throw new RuntimeException("Please provide a value");  // define custom exception later.
+                } else {    // both fields are empty.
+                    throw new NoArgumentProvidedException("Please provide a value");  // define custom exception later.
                 }
 
             case "all":
@@ -120,8 +122,8 @@ public class ExpenseService {
                 return ResponseEntity.ok(expenseDTOs);
             } return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 
-        } else {
-            return null; // define custom exception later.
+        } else {    // provided category is invalid
+            throw new InvalidCategoryException("Please provide a valid category"); // define custom exception later.
         }
 
     }
