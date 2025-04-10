@@ -124,7 +124,7 @@ public class ExpenseService {
             } return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 
         } else {    // provided category is invalid
-            throw new InvalidCategoryException("Please provide a valid category"); // define custom exception later.
+            throw new InvalidCategoryException("Please provide a valid category");
         }
 
     }

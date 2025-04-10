@@ -47,8 +47,10 @@ public class JwtService {
                     .parseSignedClaims(token)
                     .getPayload();
         } catch (JwtException e) {
+            System.out.println(e.getMessage());
             throw new InvalidTokenException("The provided token has probably expired.");
         }
+
     }
 
     public String extractUsername(String token) {

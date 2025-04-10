@@ -2,7 +2,7 @@ package org.project.expensetrackerapi.exception.exceptions;
 
 public class ArgumentOverflowException extends RuntimeException {
 
-    public String message;
+    String message;
 
     public ArgumentOverflowException(String message) {
         super(message);
