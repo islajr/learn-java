@@ -31,7 +31,8 @@ public class ExpenseService {
 
         if (expenseDTO != null) {
             if (!isCategoryValid(expenseDTO.category())) {
-                return ResponseEntity.badRequest().body(new ExpenseDTO("Category provided is not valid!"));
+//                return ResponseEntity.badRequest().body(new ExpenseDTO("Category provided is not valid!"));
+                throw new InvalidCategoryException("Category provided is not valid");
             }
 
             Expense expense = ExpenseDTO.toEntity(expenseDTO);
@@ -129,6 +130,7 @@ public class ExpenseService {
     }
 
     public ResponseEntity<ExpenseDTO> updateExpense(String category, LocalDate date, ExpenseDTO expenseDTO) {
+
         Expense myExpense = ExpenseDTO.toEntity(expenseDTO);
         List<Expense> storedExpenses = expenseRepository.findByCategoryAndDate(category, date);
         Expense storedExpense = new Expense();
@@ -156,17 +158,21 @@ public class ExpenseService {
     }
 
     public ResponseEntity<String> deleteExpense(String category) {
-        List<Expense> expenses = expenseRepository.findByCategory(category);
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        for (Expense expense : expenses) {
+        if (isCategoryValid(category)) {
+            List<Expense> expenses = expenseRepository.findByCategory(category);
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-            if (expense.getUser().getUsername().equals(username)) {
-                expenseRepository.delete(expense);
-                System.out.println("Successfully deleted expense.");
+            for (Expense expense : expenses) {
+
+                if (expense.getUser().getUsername().equals(username)) {
+                    expenseRepository.delete(expense);
+                    System.out.println("Successfully deleted expense.");
+                }
             }
-        } 
-        return ResponseEntity.ok("Successfully deleted expense(s).");
+            return ResponseEntity.ok("Successfully deleted expense(s).");
+        } throw new InvalidCategoryException("Please provide a valid category.");
+
     }
 
 
