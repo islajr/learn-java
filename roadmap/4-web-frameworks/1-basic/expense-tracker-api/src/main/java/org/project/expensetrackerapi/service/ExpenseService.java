@@ -61,10 +61,17 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<List<ExpenseDTO>> getExpenses(String filter) {
+    public ResponseEntity<List<ExpenseDTO>> getExpenses(String filter, String category) {
 
         switch (filter) {
             case "":
+                if (!category.isEmpty()) {
+                    return getExpenseByCategory(category);
+                } else {
+                    throw new RuntimeException("Please provide a value");  // define custom exception later.
+                }
+
+            case "all":
                 List<ExpenseDTO> expensesDTO = new ArrayList<>();
                 List<Expense> expenses = expenseRepository.findAll();
                 String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -80,41 +87,43 @@ public class ExpenseService {
                 
                     return ResponseEntity.ok(expensesDTO);
                 }
-                
-                // break;
-        
 
             case "pw":
                 return getExpensePastWeek();
-                // break;
 
             case "pm":
                 return getExpensePastMonth();
-                // break;
 
             case "p3m": 
                 return getExpensePastThreeMonths();
-                // break;
             
             default:
                 return ResponseEntity.ok(null);
-                // break;
         }
 
-        
     }
 
     public ResponseEntity<List<ExpenseDTO>> getExpenseByCategory(String category) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        List<Expense> expenses = expenseRepository.findByCategory(category);
-        List<ExpenseDTO> expenseDTOs = new ArrayList<>();
 
-        for (Expense expense : expenses) {
-            if (expense.getUser().getUsername().equals(username)) { // if expense belongs to user
-                expenseDTOs.add(ExpenseDTO.fromEntity(expense));
+        if (isCategoryValid(category)) {
+            List<Expense> expenses = expenseRepository.findByCategory(category);
+            List<ExpenseDTO> expenseDTOs = new ArrayList<>();
+
+            for (Expense expense : expenses) {
+                if (expense.getUser().getUsername().equals(username)) { // if expense belongs to user
+                    expenseDTOs.add(ExpenseDTO.fromEntity(expense));
+                }
             }
+
+            if (!expenseDTOs.isEmpty()) {
+                return ResponseEntity.ok(expenseDTOs);
+            } return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+        } else {
+            return null; // define custom exception later.
         }
-        return ResponseEntity.ok(expenseDTOs);
+
     }
 
     public ResponseEntity<ExpenseDTO> updateExpense(String category, LocalDate date, ExpenseDTO expenseDTO) {

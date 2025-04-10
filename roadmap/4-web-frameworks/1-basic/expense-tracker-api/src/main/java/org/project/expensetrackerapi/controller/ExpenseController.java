@@ -3,7 +3,6 @@ package org.project.expensetrackerapi.controller;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.dto.ExpenseDTO;
-import org.project.expensetrackerapi.model.Category;
 import org.project.expensetrackerapi.service.ExpenseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,29 +23,14 @@ public class ExpenseController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<ExpenseDTO>> getExpenseByCategory(@RequestParam String category) {
-        return expenseService.getExpenseByCategory(category);
-    }
+    public ResponseEntity<List<ExpenseDTO>> getExpenses(@RequestParam(required = false, defaultValue = "") String filter,
+                                                        @RequestParam(required = false, defaultValue = "") String category) {
 
-    @GetMapping("/get")
-    public ResponseEntity<List<ExpenseDTO>> getExpenses(@RequestParam(required = false, defaultValue = "") String filter) {
-        return expenseService.getExpenses(filter);
+        if (!filter.isEmpty() && !category.isEmpty()) { // if both fields are supplied
+            return null;    // define custom exception later.
+        }
+        return expenseService.getExpenses(filter, category);
     }
-
-    /* @GetMapping("/get/pw")
-    public ResponseEntity<List<ExpenseDTO>> getExpensePastWeek() {
-        return expenseService.getExpensePastWeek();
-    }
-
-    @GetMapping("get/pm")
-    public ResponseEntity<List<ExpenseDTO>> getExpensePastMonth() {
-        return expenseService.getExpensePastMonth();
-    }
-
-    @GetMapping("get/p3m")
-    public ResponseEntity<List<ExpenseDTO>> getExpensePastThreeMonths() {
-        return expenseService.getExpensePastThreeMonths();
-    } */
 
     @GetMapping("/get/custom")
     public ResponseEntity<List<ExpenseDTO>> getExpenseCustom(@RequestParam LocalDate start, @RequestParam LocalDate end) {
