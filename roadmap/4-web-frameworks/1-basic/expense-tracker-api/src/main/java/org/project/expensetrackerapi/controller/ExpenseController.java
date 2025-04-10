@@ -23,8 +23,8 @@ public class ExpenseController {
         return expenseService.addExpense(expenseDTO);
     }
 
-    @GetMapping("/get/{category}")
-    public ResponseEntity<List<ExpenseDTO>> getExpenseByCategory(@PathVariable String category) {
+    @GetMapping("/get")
+    public ResponseEntity<List<ExpenseDTO>> getExpenseByCategory(@RequestParam String category) {
         return expenseService.getExpenseByCategory(category);
     }
 
