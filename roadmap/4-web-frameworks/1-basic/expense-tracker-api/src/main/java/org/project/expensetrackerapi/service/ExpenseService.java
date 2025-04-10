@@ -79,19 +79,17 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<ExpenseDTO> getExpenseByCategory(String category) {
+    public ResponseEntity<List<ExpenseDTO>> getExpenseByCategory(String category) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+        List<Expense> expenses = expenseRepository.findByCategory(category);
+        List<ExpenseDTO> expenseDTOs = new ArrayList<>();
 
-        if (expense != null) {
-            if (expense.getUser().getUsername().equals(username)) {
-                return ResponseEntity.ok(ExpenseDTO.fromEntity(expense));
+        for (Expense expense : expenses) {
+            if (expense.getUser().getUsername().equals(username)) { // if expense belongs to user
+                expenseDTOs.add(ExpenseDTO.fromEntity(expense));
             }
-            return ResponseEntity.ok(null); // expense does not belong to user
-        } else {
-
-            return ResponseEntity.badRequest().body(null);  // no such expense
         }
+        return ResponseEntity.ok(expenseDTOs);
     }
 
     public ResponseEntity<ExpenseDTO> updateExpense(String category, LocalDate date, ExpenseDTO expenseDTO) {
@@ -122,21 +120,19 @@ public class ExpenseService {
     }
 
     public ResponseEntity<String> deleteExpense(String category) {
-        Expense expense = expenseRepository.findByCategory(category).orElseThrow(() -> new RuntimeException("Failed to get expense"));
+        List<Expense> expenses = expenseRepository.findByCategory(category);
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        if (expense != null) {
+        for (Expense expense : expenses) {
 
             if (expense.getUser().getUsername().equals(username)) {
                 expenseRepository.delete(expense);
                 System.out.println("Successfully deleted expense.");
-                return ResponseEntity.ok("Successfully deleted expense.");
             }
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Could not find expense to delete.");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Could not find expense to delete.");
-        }
+        } 
+        return ResponseEntity.ok("Successfully deleted expense(s).");
     }
+
 
     private boolean isCategoryValid(String category) {
         for (Category category1 : Category.values()) {
@@ -240,5 +236,4 @@ public class ExpenseService {
             return ResponseEntity.badRequest().body(null);
         }
     }
-
 }
