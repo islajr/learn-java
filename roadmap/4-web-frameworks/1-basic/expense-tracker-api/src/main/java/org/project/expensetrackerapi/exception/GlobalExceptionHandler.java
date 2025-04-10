@@ -1,5 +1,6 @@
 package org.project.expensetrackerapi.exception;
 
+import org.project.expensetrackerapi.exception.exceptions.ArgumentOverflowException;
 import org.project.expensetrackerapi.exception.exceptions.InvalidTokenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,6 +15,12 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public @ResponseBody ErrorResponse handleException(InvalidTokenException e) {
         return new ErrorResponse(HttpStatus.FORBIDDEN.value(), e.getMessage());
+    }
+
+    @ExceptionHandler(value = ArgumentOverflowException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public @ResponseBody ErrorResponse handleException(ArgumentOverflowException e) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), e.message);
     }
 
 }

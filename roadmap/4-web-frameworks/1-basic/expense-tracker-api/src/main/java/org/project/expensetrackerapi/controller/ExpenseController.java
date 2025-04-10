@@ -3,6 +3,7 @@ package org.project.expensetrackerapi.controller;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.project.expensetrackerapi.dto.ExpenseDTO;
+import org.project.expensetrackerapi.exception.exceptions.ArgumentOverflowException;
 import org.project.expensetrackerapi.service.ExpenseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class ExpenseController {
                                                         @RequestParam(required = false, defaultValue = "") String category) {
 
         if (!filter.isEmpty() && !category.isEmpty()) { // if both fields are supplied
-            return null;    // define custom exception later.
+            throw new ArgumentOverflowException("Please provide only one argument");    // define custom exception later.
         }
         return expenseService.getExpenses(filter, category);
     }
