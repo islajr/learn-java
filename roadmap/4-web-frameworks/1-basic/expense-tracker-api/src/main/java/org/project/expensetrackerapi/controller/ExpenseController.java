@@ -28,12 +28,12 @@ public class ExpenseController {
         return expenseService.getExpenseByCategory(category);
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<ExpenseDTO>> getExpenses() {
-        return expenseService.getExpenses();
+    @GetMapping("/get")
+    public ResponseEntity<List<ExpenseDTO>> getExpenses(@RequestParam(required = false, defaultValue = "") String filter) {
+        return expenseService.getExpenses(filter);
     }
 
-    @GetMapping("/get/pw")
+    /* @GetMapping("/get/pw")
     public ResponseEntity<List<ExpenseDTO>> getExpensePastWeek() {
         return expenseService.getExpensePastWeek();
     }
@@ -46,7 +46,7 @@ public class ExpenseController {
     @GetMapping("get/p3m")
     public ResponseEntity<List<ExpenseDTO>> getExpensePastThreeMonths() {
         return expenseService.getExpensePastThreeMonths();
-    }
+    } */
 
     @GetMapping("/get/custom")
     public ResponseEntity<List<ExpenseDTO>> getExpenseCustom(@RequestParam LocalDate start, @RequestParam LocalDate end) {

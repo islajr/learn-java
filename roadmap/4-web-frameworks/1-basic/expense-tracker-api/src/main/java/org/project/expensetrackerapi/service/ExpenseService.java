@@ -61,22 +61,47 @@ public class ExpenseService {
         }
     }
 
-    public ResponseEntity<List<ExpenseDTO>> getExpenses() {
-        List<Expense> expenses = expenseRepository.findAll();
-        List<ExpenseDTO> expensesDTO = new ArrayList<>();
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    public ResponseEntity<List<ExpenseDTO>> getExpenses(String filter) {
 
-        if (expenses.isEmpty()) {
-            return ResponseEntity.ok(null);
-        } else {
-            for (Expense expense : expenses) {
-                if (expense.getUser().getUsername().equals(username)) { // if expense belongs to user
-                    expensesDTO.add(ExpenseDTO.fromEntity(expense));
+        switch (filter) {
+            case "":
+                List<ExpenseDTO> expensesDTO = new ArrayList<>();
+                List<Expense> expenses = expenseRepository.findAll();
+                String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            
+                if (expenses.isEmpty()) {
+                    return ResponseEntity.ok(null);
+                } else {
+                    for (Expense expense : expenses) {
+                        if (expense.getUser().getUsername().equals(username)) { // if expense belongs to user
+                            expensesDTO.add(ExpenseDTO.fromEntity(expense));
+                        }
+                    }
+                
+                    return ResponseEntity.ok(expensesDTO);
                 }
-            }
+                
+                // break;
+        
 
-            return ResponseEntity.ok(expensesDTO);
+            case "pw":
+                return getExpensePastWeek();
+                // break;
+
+            case "pm":
+                return getExpensePastMonth();
+                // break;
+
+            case "p3m": 
+                return getExpensePastThreeMonths();
+                // break;
+            
+            default:
+                return ResponseEntity.ok(null);
+                // break;
         }
+
+        
     }
 
     public ResponseEntity<List<ExpenseDTO>> getExpenseByCategory(String category) {
