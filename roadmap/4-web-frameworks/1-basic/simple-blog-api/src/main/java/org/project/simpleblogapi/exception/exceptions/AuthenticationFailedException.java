@@ -1,4 +1,4 @@
-package org.project.simpleblogapi.exception;
+package org.project.simpleblogapi.exception.exceptions;
 
 public class AuthenticationFailedException extends RuntimeException {
     private String message;

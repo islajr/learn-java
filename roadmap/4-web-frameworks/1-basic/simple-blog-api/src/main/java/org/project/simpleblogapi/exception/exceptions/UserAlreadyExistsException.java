@@ -1,4 +1,4 @@
-package org.project.simpleblogapi.exception;
+package org.project.simpleblogapi.exception.exceptions;
 
 public class UserAlreadyExistsException extends RuntimeException {
 

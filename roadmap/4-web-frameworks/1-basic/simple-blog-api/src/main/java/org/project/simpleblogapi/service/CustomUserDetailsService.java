@@ -1,6 +1,6 @@
 package org.project.simpleblogapi.service;
 
-import org.project.simpleblogapi.exception.UserDoesNotExistException;
+import org.project.simpleblogapi.exception.exceptions.UserDoesNotExistException;
 import org.project.simpleblogapi.model.User;
 import org.project.simpleblogapi.repository.UserRepository;
 import org.project.simpleblogapi.model.UserPrincipal;

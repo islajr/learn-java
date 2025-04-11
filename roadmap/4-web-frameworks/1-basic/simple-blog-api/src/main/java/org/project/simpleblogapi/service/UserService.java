@@ -1,8 +1,8 @@
 package org.project.simpleblogapi.service;
 
 import io.jsonwebtoken.lang.Objects;
-import org.project.simpleblogapi.exception.AuthenticationFailedException;
-import org.project.simpleblogapi.exception.NullUserException;
+import org.project.simpleblogapi.exception.exceptions.AuthenticationFailedException;
+import org.project.simpleblogapi.exception.exceptions.NullUserException;
 import org.project.simpleblogapi.model.User;
 import org.project.simpleblogapi.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
