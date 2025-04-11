@@ -2,6 +2,7 @@ package org.project.simpleblogapi.controller;
 
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.service.BlogService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,8 @@ public class BlogController {
 
     @GetMapping("/")
     public ResponseEntity<List<BlogPost>> getPosts(@RequestParam (defaultValue = "all") String type,
-                                                   @RequestParam (defaultValue = "", required = false) Long id) {
-        return blogService.getPosts();
+                                                   @RequestParam (defaultValue = "0", required = false) Long id) {
+        return blogService.getPosts(type, id);
     }
 
     /*@GetMapping("/{id}")
@@ -35,7 +36,7 @@ public class BlogController {
     }*/
 
     @PutMapping("/")
-    public ResponseEntity<BlogPost> updatePost(@RequestParam (defaultValue = "") Long id, @RequestBody BlogPost blogPost) {
+    public ResponseEntity<BlogPost> updatePost(@RequestParam (defaultValue = "0") Long id, @RequestBody BlogPost blogPost) {
         return blogService.updatePost(id, blogPost);
     }
 

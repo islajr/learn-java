@@ -1,11 +1,16 @@
 package org.project.simpleblogapi.service;
 
+import org.apache.coyote.Response;
 import org.project.simpleblogapi.exception.exceptions.PostDoesNotExistException;
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.repository.BlogRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,28 +24,31 @@ public class BlogService {
     }
 
 
-    public BlogPost createPost(BlogPost blogPost) {
+    public ResponseEntity<BlogPost> createPost(BlogPost blogPost) {
         blogPost.setCreatedAt(LocalDateTime.now());
         blogPost.setUpdatedAt(LocalDateTime.now());
 
-        return blogRepository.save(blogPost);
+        blogRepository.save(blogPost);
+        return ResponseEntity.status(HttpStatus.CREATED).body(blogPost);
     }
 
-    public List<BlogPost> getPosts() {
+    public ResponseEntity<List<BlogPost>> getPosts(String type, Long id) {
+
+        if (type.equals("all")) {
+            return ResponseEntity.ok(blogRepository.findAll());
+        } else if (type.equals("") && id != 0) {
+            return getPost(id);
+        }
         return blogRepository.findAll();
     }
 
-    public Optional<BlogPost> getPost(Long id) {
-        Optional<BlogPost> post = blogRepository.findById(id);
-
-        if (post.isPresent()) {
-            return post;
-        } else {
-            throw new RuntimeException("There is no such post!");
-        }
+    public ResponseEntity<List<BlogPost>> getPost(Long id) {
+        BlogPost post = blogRepository.findById(id).orElseThrow(() -> new PostDoesNotExistException("Said post does not exist"));
+        List<BlogPost> posts = new ArrayList<>();
+        return ResponseEntity.ok(posts.add(post));
     }
 
-    public BlogPost updatePost(Long id, BlogPost blogPost) {
+    public ResponseEntity<BlogPost> updatePost(Long id, BlogPost blogPost) {
         BlogPost formerPost = blogRepository.findById(id).orElseThrow(
                 () -> new PostDoesNotExistException("There is no such post!"));
 
@@ -58,12 +66,13 @@ public class BlogService {
 
         formerPost.setUpdatedAt(LocalDateTime.now());
         blogRepository.save(formerPost);
-        return formerPost;
+        return ResponseEntity.ok(formerPost);
     }
 
-    public void deletePost(Long id) {
+    public ResponseEntity<String> deletePost(Long id) {
         try {
             blogRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("");
         } catch (PostDoesNotExistException e) {
             throw new PostDoesNotExistException("Cannot delete non-existent post.");
         }
