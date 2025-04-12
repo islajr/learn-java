@@ -17,7 +17,7 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<BlogPost> createPost(@RequestBody BlogPost blogPost) {
         return blogService.createPost(blogPost);
     }
@@ -27,17 +27,17 @@ public class BlogController {
         return blogService.getPosts();
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<BlogPost> getPost(@RequestParam Long id) {
         return blogService.getPost(id);
     }
 
-    @PutMapping("/")
+    @PutMapping()
     public ResponseEntity<BlogPost> updatePost(@RequestParam (defaultValue = "0") Long id, @RequestBody BlogPost blogPost) {
         return blogService.updatePost(id, blogPost);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping()
     public ResponseEntity<String> deletePost(@RequestParam Long id) {
         return blogService.deletePost(id);
     }
