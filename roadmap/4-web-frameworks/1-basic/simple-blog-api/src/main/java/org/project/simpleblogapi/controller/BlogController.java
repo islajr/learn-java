@@ -2,12 +2,10 @@ package org.project.simpleblogapi.controller;
 
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.service.BlogService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/blog/api/post")
