@@ -32,20 +32,13 @@ public class BlogService {
         return ResponseEntity.status(HttpStatus.CREATED).body(blogPost);
     }
 
-    public ResponseEntity<List<BlogPost>> getPosts(String type, Long id) {
-
-        if (type.equals("all")) {
-            return ResponseEntity.ok(blogRepository.findAll());
-        } else if (type.equals("") && id != 0) {
-            return getPost(id);
-        }
-        return blogRepository.findAll();
+    public ResponseEntity<List<BlogPost>> getPosts() {
+        return ResponseEntity.ok(blogRepository.findAll());
     }
 
-    public ResponseEntity<List<BlogPost>> getPost(Long id) {
+    public ResponseEntity<BlogPost> getPost(Long id) {
         BlogPost post = blogRepository.findById(id).orElseThrow(() -> new PostDoesNotExistException("Said post does not exist"));
-        List<BlogPost> posts = new ArrayList<>();
-        return ResponseEntity.ok(posts.add(post));
+        return ResponseEntity.ok(post);
     }
 
     public ResponseEntity<BlogPost> updatePost(Long id, BlogPost blogPost) {

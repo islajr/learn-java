@@ -24,16 +24,15 @@ public class BlogController {
         return blogService.createPost(blogPost);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<BlogPost>> getPosts(@RequestParam (defaultValue = "all") String type,
-                                                   @RequestParam (defaultValue = "0", required = false) Long id) {
-        return blogService.getPosts(type, id);
+    @GetMapping("/all")
+    public ResponseEntity<List<BlogPost>> getPosts() {
+        return blogService.getPosts();
     }
 
-    /*@GetMapping("/{id}")
+    @GetMapping("/")
     public ResponseEntity<BlogPost> getPost(@RequestParam Long id) {
         return blogService.getPost(id);
-    }*/
+    }
 
     @PutMapping("/")
     public ResponseEntity<BlogPost> updatePost(@RequestParam (defaultValue = "0") Long id, @RequestBody BlogPost blogPost) {
