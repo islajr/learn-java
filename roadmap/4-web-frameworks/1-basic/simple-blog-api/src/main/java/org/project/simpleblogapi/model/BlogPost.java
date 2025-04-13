@@ -13,18 +13,28 @@ public class BlogPost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "title")
     String title;
+
+    @Column(name = "content")
     String content;
+
+    @Column(name = "category")
     String category;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    User user;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public BlogPost(Long id, String title, String content, String category, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public BlogPost(Long id, String title, String content, String category, User user, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.category = category;
+        this.user = user;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -58,6 +68,14 @@ public class BlogPost {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getCreatedAt() {

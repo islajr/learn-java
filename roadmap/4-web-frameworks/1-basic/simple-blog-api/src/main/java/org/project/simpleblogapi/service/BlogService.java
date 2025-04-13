@@ -3,8 +3,10 @@ package org.project.simpleblogapi.service;
 import org.project.simpleblogapi.exception.exceptions.PostDoesNotExistException;
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.repository.BlogRepository;
+import org.project.simpleblogapi.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,13 +16,16 @@ import java.util.List;
 public class BlogService {
 
     private final BlogRepository blogRepository;
+    private final UserRepository userRepository;
 
-    public BlogService(BlogRepository blogRepository) {
+    public BlogService(BlogRepository blogRepository, UserRepository userRepository) {
         this.blogRepository = blogRepository;
+        this.userRepository = userRepository;
     }
 
 
     public ResponseEntity<BlogPost> createPost(BlogPost blogPost) {
+        blogPost.setUser(userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));  // handle this properly later
         blogPost.setCreatedAt(LocalDateTime.now());
         blogPost.setUpdatedAt(LocalDateTime.now());
 
