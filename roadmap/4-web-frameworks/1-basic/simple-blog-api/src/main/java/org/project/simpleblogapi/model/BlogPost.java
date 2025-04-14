@@ -39,6 +39,12 @@ public class BlogPost {
         this.updatedAt = updatedAt;
     }
 
+    public BlogPost(String title, String content, String category) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
+
     public BlogPost() {
     }
 
