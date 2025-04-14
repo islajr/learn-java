@@ -1,6 +1,6 @@
 package org.project.simpleblogapi.controller;
 
-import org.project.simpleblogapi.model.BlogPost;
+import org.project.simpleblogapi.BlogPostDTO;
 import org.project.simpleblogapi.service.BlogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,23 +18,23 @@ public class BlogController {
     }
 
     @PostMapping()
-    public ResponseEntity<BlogPost> createPost(@RequestBody BlogPost blogPost) {
-        return blogService.createPost(blogPost);
+    public ResponseEntity<BlogPostDTO> createPost(@RequestBody BlogPostDTO blogPostDTO) {
+        return blogService.createPost(blogPostDTO);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<BlogPost>> getPosts() {
+    public ResponseEntity<List<BlogPostDTO>> getPosts() {
         return blogService.getPosts();
     }
 
     @GetMapping()
-    public ResponseEntity<BlogPost> getPost(@RequestParam Long id) {
+    public ResponseEntity<BlogPostDTO> getPost(@RequestParam Long id) {
         return blogService.getPost(id);
     }
 
     @PutMapping()
-    public ResponseEntity<BlogPost> updatePost(@RequestParam (defaultValue = "0") Long id, @RequestBody BlogPost blogPost) {
-        return blogService.updatePost(id, blogPost);
+    public ResponseEntity<BlogPostDTO> updatePost(@RequestParam (defaultValue = "0") Long id, @RequestBody BlogPostDTO blogPostDTO) {
+        return blogService.updatePost(id, blogPostDTO);
     }
 
     @DeleteMapping()

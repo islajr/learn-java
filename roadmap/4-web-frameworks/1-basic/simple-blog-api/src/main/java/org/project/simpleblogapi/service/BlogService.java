@@ -1,5 +1,6 @@
 package org.project.simpleblogapi.service;
 
+import org.project.simpleblogapi.BlogPostDTO;
 import org.project.simpleblogapi.exception.exceptions.PostDoesNotExistException;
 import org.project.simpleblogapi.model.BlogPost;
 import org.project.simpleblogapi.repository.BlogRepository;
@@ -10,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,27 +26,38 @@ public class BlogService {
     }
 
 
-    public ResponseEntity<BlogPost> createPost(BlogPost blogPost) {
+    public ResponseEntity<BlogPostDTO> createPost(BlogPostDTO blogPostDTO) {
+
+        BlogPost blogPost = BlogPostDTO.toEntity(blogPostDTO);
+
         blogPost.setUser(userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));  // handle this properly later
         blogPost.setCreatedAt(LocalDateTime.now());
         blogPost.setUpdatedAt(LocalDateTime.now());
 
         blogRepository.save(blogPost);
-        return ResponseEntity.status(HttpStatus.CREATED).body(blogPost);
+        return ResponseEntity.status(HttpStatus.CREATED).body(BlogPostDTO.fromEntity(blogPost));
     }
 
-    public ResponseEntity<List<BlogPost>> getPosts() {
-        return ResponseEntity.ok(blogRepository.findAll());
+    public ResponseEntity<List<BlogPostDTO>> getPosts() {
+        List<BlogPost> posts = blogRepository.findAll();
+        List<BlogPostDTO> postDTOS = new ArrayList<>();
+
+        for (BlogPost post : posts) {
+            postDTOS.add(BlogPostDTO.fromEntity(post));
+        }
+
+        return ResponseEntity.ok(postDTOS);
     }
 
-    public ResponseEntity<BlogPost> getPost(Long id) {
+    public ResponseEntity<BlogPostDTO> getPost(Long id) {
         BlogPost post = blogRepository.findById(id).orElseThrow(() -> new PostDoesNotExistException("Said post does not exist"));
-        return ResponseEntity.ok(post);
+        return ResponseEntity.ok(BlogPostDTO.fromEntity(post));
     }
 
-    public ResponseEntity<BlogPost> updatePost(Long id, BlogPost blogPost) {
+    public ResponseEntity<BlogPostDTO> updatePost(Long id, BlogPostDTO blogPostDTO) {
         BlogPost formerPost = blogRepository.findById(id).orElseThrow(
                 () -> new PostDoesNotExistException("There is no such post!"));
+        BlogPost blogPost = BlogPostDTO.toEntity(blogPostDTO);
 
         if (blogPost.getTitle() != null && !blogPost.getTitle().isEmpty() && !blogPost.getTitle().equals(formerPost.getTitle())) {
             formerPost.setTitle(blogPost.getTitle());
@@ -60,7 +73,7 @@ public class BlogService {
 
         formerPost.setUpdatedAt(LocalDateTime.now());
         blogRepository.save(formerPost);
-        return ResponseEntity.ok(formerPost);
+        return ResponseEntity.ok(BlogPostDTO.fromEntity(formerPost));
     }
 
     public ResponseEntity<String> deletePost(Long id) {
