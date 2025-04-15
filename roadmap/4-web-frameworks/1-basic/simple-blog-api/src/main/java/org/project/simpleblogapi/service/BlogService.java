@@ -43,7 +43,9 @@ public class BlogService {
         List<BlogPostDTO> postDTOS = new ArrayList<>();
 
         for (BlogPost post : posts) {
-            postDTOS.add(BlogPostDTO.fromEntity(post));
+
+            if (isPostForUser(post, SecurityContextHolder.getContext().getAuthentication().getName()))
+                postDTOS.add(BlogPostDTO.fromEntity(post));
         }
 
         return ResponseEntity.ok(postDTOS);
@@ -51,12 +53,20 @@ public class BlogService {
 
     public ResponseEntity<BlogPostDTO> getPost(Long id) {
         BlogPost post = blogRepository.findById(id).orElseThrow(() -> new PostDoesNotExistException("Said post does not exist"));
-        return ResponseEntity.ok(BlogPostDTO.fromEntity(post));
+
+        if (isPostForUser(post, SecurityContextHolder.getContext().getAuthentication().getName()))
+            return ResponseEntity.ok(BlogPostDTO.fromEntity(post));
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
     }
 
     public ResponseEntity<BlogPostDTO> updatePost(Long id, BlogPostDTO blogPostDTO) {
         BlogPost formerPost = blogRepository.findById(id).orElseThrow(
                 () -> new PostDoesNotExistException("There is no such post!"));
+
+        if (!isPostForUser(formerPost, SecurityContextHolder.getContext().getAuthentication().getName()))
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+
         BlogPost blogPost = BlogPostDTO.toEntity(blogPostDTO);
 
         if (blogPost.getTitle() != null && !blogPost.getTitle().isEmpty() && !blogPost.getTitle().equals(formerPost.getTitle())) {
@@ -77,6 +87,15 @@ public class BlogService {
     }
 
     public ResponseEntity<String> deletePost(Long id) {
+
+        // check if post belongs to user
+        BlogPost post = blogRepository.findById(id).orElseThrow(
+                () -> new PostDoesNotExistException("There is no such post!"));
+
+        if (!isPostForUser(post, SecurityContextHolder.getContext().getAuthentication().getName()))
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You cannot delete this post!");
+
+
         try {
             blogRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("");
@@ -84,5 +103,9 @@ public class BlogService {
             throw new PostDoesNotExistException("Cannot delete non-existent post.");
         }
 
+    }
+
+    private boolean isPostForUser(BlogPost blogPost, String username) {
+        return (blogPost.getUser().getUsername().equals(username));
     }
 }
