@@ -3,15 +3,16 @@ package org.project.simpleblogapi;
 import org.project.simpleblogapi.model.BlogPost;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public record BlogPostDTO(
     String title,
     String content,
     String category,
-    ArrayList<String> tags
+    List<String> tags
 ) {
 
-    public BlogPostDTO(String title, String content, String category, ArrayList<String> tags) {
+    public BlogPostDTO(String title, String content, String category, List<String> tags) {
         this.title = title;
         this.content = content;
         this.category = category;

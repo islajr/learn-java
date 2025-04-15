@@ -2,8 +2,9 @@ package org.project.simpleblogapi.model;
 
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -31,9 +32,9 @@ public class BlogPost {
     private LocalDateTime updatedAt;
 
     @ElementCollection
-    ArrayList<String> tags;
+    List<String> tags;
 
-    public BlogPost(Long id, String title, String content, String category, User user, LocalDateTime createdAt, LocalDateTime updatedAt, ArrayList<String> tags) {
+    public BlogPost(Long id, String title, String content, String category, User user, LocalDateTime createdAt, LocalDateTime updatedAt, List<String> tags) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -44,7 +45,7 @@ public class BlogPost {
         this.tags = tags;
     }
 
-    public BlogPost(String title, String content, String category, ArrayList<String> tags) {
+    public BlogPost(String title, String content, String category, List<String> tags) {
         this.title = title;
         this.content = content;
         this.category = category;
@@ -106,11 +107,11 @@ public class BlogPost {
         this.updatedAt = updatedAt;
     }
 
-    public ArrayList<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 }
