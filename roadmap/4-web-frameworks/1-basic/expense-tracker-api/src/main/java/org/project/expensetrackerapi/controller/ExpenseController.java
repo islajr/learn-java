@@ -18,12 +18,12 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<ExpenseDTO> addExpense(@Valid @RequestBody ExpenseDTO expenseDTO) {
         return expenseService.addExpense(expenseDTO);
     }
 
-    @GetMapping("/get")
+    @GetMapping()
     public ResponseEntity<List<ExpenseDTO>> getExpenses(@RequestParam(required = false, defaultValue = "") String filter,
                                                         @RequestParam(required = false, defaultValue = "") String category) {
 
@@ -33,18 +33,18 @@ public class ExpenseController {
         return expenseService.getExpenses(filter, category);
     }
 
-    @GetMapping("/get/custom")
+    @GetMapping("/custom")
     public ResponseEntity<List<ExpenseDTO>> getExpenseCustom(@RequestParam LocalDate start, @RequestParam LocalDate end) {
         return expenseService.getExpenseCustom(start, end);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public ResponseEntity<ExpenseDTO> updateExpense(@RequestParam String category, @RequestParam LocalDate date, @RequestBody ExpenseDTO expenseDTO) {
         return expenseService.updateExpense(category, date, expenseDTO);
     }
 
-    @DeleteMapping("/delete/{category}")
-    public ResponseEntity<String> deleteExpense(@PathVariable String category) {
+    @DeleteMapping()
+    public ResponseEntity<String> deleteExpense(@RequestParam String category) {
         return expenseService.deleteExpense(category);
     }
 }
