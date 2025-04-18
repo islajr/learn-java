@@ -2,6 +2,7 @@ package org.project.todoapp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,6 @@ public class Todo {
     private Long id;
     private String title;
     private String description;
+    @ManyToOne
     private User user;
 }
