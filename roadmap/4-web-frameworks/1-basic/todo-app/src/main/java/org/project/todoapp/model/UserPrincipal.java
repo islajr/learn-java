@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+
 @AllArgsConstructor
 public class UserPrincipal implements UserDetails {
 
@@ -26,6 +27,10 @@ public class UserPrincipal implements UserDetails {
     @Override
     public String getUsername() {
         return user.getName();
+    }
+
+    public String getEmail() {
+        return user.getEmail();
     }
 
     @Override
