@@ -21,4 +21,10 @@ public class Todo {
     private String description;
     @ManyToOne
     private User user;
+
+    public Todo(Long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
 }
