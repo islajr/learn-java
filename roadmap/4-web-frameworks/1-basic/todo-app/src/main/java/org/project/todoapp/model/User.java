@@ -25,4 +25,8 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    public boolean isValid() {
+        return !name.isEmpty() || !email.isEmpty() || !password.isEmpty();
+    }
 }

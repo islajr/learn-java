@@ -19,9 +19,9 @@ public record UserDTO(
         this("", email, password);
     }
 
-   /* public static UserDTO fromEntity(User user) {
+    public static UserDTO fromEntity(User user) {
         return new UserDTO(user.getName(), user.getEmail(), user.getPassword());
-    }*/
+    }
 
     public static User toEntity(UserDTO userDTO) {
         return new User(
