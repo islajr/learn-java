@@ -17,10 +17,6 @@ public record TodoDTO(
         this(null, title, description);
     }
 
-    public TodoDTO(String placeholder) {
-        this(placeholder, "");
-    }
-
     public static TodoDTO fromEntity(Todo todo) {
         return new TodoDTO(todo.getId(), todo.getTitle(), todo.getDescription());
     }

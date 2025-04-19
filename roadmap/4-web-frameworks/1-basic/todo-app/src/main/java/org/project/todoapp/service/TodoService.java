@@ -1,20 +1,47 @@
 package org.project.todoapp.service;
 
+import lombok.AllArgsConstructor;
 import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.model.Todo;
+import org.project.todoapp.repository.TodoRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
+@AllArgsConstructor
 @Service
 public class TodoService {
 
-    public ResponseEntity<TodoDTO> createTodo(Todo todo) {
+    private final TodoRepository todoRepository;
+
+
+    public ResponseEntity<TodoDTO> createTodo(TodoDTO todoDTO) {
+        Todo todo = TodoDTO.toEntity(todoDTO);
+
+        if (todo.isValid()) {
+            todoRepository.save(todo);
+            return ResponseEntity.status(HttpStatus.CREATED).body(TodoDTO.fromEntity(todo));
+        } throw new RuntimeException("Input Error. Please fill all fields.");   // customize exception later.
     }
 
-    public ResponseEntity<TodoDTO> updateTodo(Long id, Todo todo) {
+    public ResponseEntity<TodoDTO> updateTodo(Long id, TodoDTO todoDTO) {
+        Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no item with this id!"));   // customize exception later
+
+        if (!todoDTO.title().isEmpty() && !todoDTO.title().equals(todo.getTitle())) {
+            todo.setTitle(todoDTO.title());
+        } if (!todoDTO.description().isEmpty() && !todoDTO.description().equals(todo.getDescription())) {
+            todo.setDescription(todoDTO.description());
+        }
+        todoRepository.save(todo);
+        return ResponseEntity.ok(TodoDTO.fromEntity(todo));
+
     }
 
-    public ResponseStatus deleteTodo(Long id) {
+    public ResponseEntity<String> deleteTodo(Long id) {
+
+        todoRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no item with this id!"));  // customize exception later
+        todoRepository.deleteById(id);
+        return ResponseEntity.status(204).body(null);
+
     }
 }

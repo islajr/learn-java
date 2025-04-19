@@ -27,4 +27,8 @@ public class Todo {
         this.title = title;
         this.description = description;
     }
+
+    public boolean isValid() {
+        return !title.isEmpty() || !description.isEmpty();
+    }
 }
