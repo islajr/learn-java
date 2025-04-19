@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("todo/api/user")
+@RequestMapping("api/todo/user")
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 public class UserController {
