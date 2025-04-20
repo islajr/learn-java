@@ -1,8 +1,6 @@
 package org.project.todoapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "todo")
 public class Todo {
 
     @Id
@@ -20,6 +19,7 @@ public class Todo {
     private String title;
     private String description;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Todo(Long id, String title, String description) {
