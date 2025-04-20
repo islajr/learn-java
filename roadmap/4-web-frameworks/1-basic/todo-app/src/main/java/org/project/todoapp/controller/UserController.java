@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/todo/user")
+@RequestMapping("/api/todo/user")
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 public class UserController {
@@ -27,4 +27,6 @@ public class UserController {
     public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
         return userService.login(userDTO);
     }
+
+    /* set up /register and /login input validation */
 }
