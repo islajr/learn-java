@@ -1,7 +1,6 @@
 package org.project.todoapp.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.project.todoapp.dto.UserDTO;
 import org.project.todoapp.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/todo/user")
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
 public class UserController {
 
     private final UserService userService;

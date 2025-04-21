@@ -29,8 +29,8 @@ public class SecurityConfig {
 
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers(
-                        "/todo/api/user/register",
-                        "/todo/api/user/login"
+                        "/api/todo/user/register",
+                        "/api/todo/user/login"
                 ).permitAll().anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
