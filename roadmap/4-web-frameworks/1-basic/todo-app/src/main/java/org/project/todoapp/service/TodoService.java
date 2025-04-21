@@ -3,9 +3,13 @@ package org.project.todoapp.service;
 import lombok.AllArgsConstructor;
 import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.model.Todo;
+import org.project.todoapp.model.User;
+import org.project.todoapp.model.UserPrincipal;
 import org.project.todoapp.repository.TodoRepository;
+import org.project.todoapp.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
@@ -13,12 +17,15 @@ import org.springframework.stereotype.Service;
 public class TodoService {
 
     private final TodoRepository todoRepository;
-
+    private final UserRepository userRepository;
 
     public ResponseEntity<TodoDTO> createTodo(TodoDTO todoDTO) {
         Todo todo = TodoDTO.toEntity(todoDTO);
 
         if (todo.isValid()) {
+            String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
+            User user = userRepository.findByEmail(email);
+            todo.setUser(user);
             todoRepository.save(todo);
             return ResponseEntity.status(HttpStatus.CREATED).body(TodoDTO.fromEntity(todo));
         } throw new RuntimeException("Input Error. Please fill all fields.");   // customize exception later.

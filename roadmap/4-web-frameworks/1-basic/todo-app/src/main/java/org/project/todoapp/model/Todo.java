@@ -20,7 +20,7 @@ public class Todo {
     private String title;
     private String description;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Todo(Long id, String title, String description) {
