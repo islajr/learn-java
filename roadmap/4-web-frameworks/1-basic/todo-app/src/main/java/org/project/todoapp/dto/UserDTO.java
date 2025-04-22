@@ -7,8 +7,6 @@ import org.project.todoapp.model.User;
 
 public record UserDTO(
 
-        @NotNull(message = "Name field cannot be null")
-        @NotBlank(message = "Name field cannot be blank")
         String name,
 
         @NotBlank(message = "Email field cannot be blank")
