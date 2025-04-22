@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Entity
 @Getter
@@ -31,5 +32,10 @@ public class Todo {
 
     public boolean isValid() {
         return !title.isEmpty() || !description.isEmpty();
+    }
+
+    public boolean belongsToUser() {
+        String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
+        return user.getEmail().equals(email);
     }
 }

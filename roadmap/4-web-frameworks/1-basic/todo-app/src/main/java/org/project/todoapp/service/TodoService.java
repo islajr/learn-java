@@ -34,6 +34,9 @@ public class TodoService {
     public ResponseEntity<TodoDTO> updateTodo(Long id, TodoDTO todoDTO) {
         Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no item with this id!"));   // customize exception later
 
+        if (!todo.belongsToUser())
+            throw new RuntimeException("You are not authorized to do this");    // customize exception later.
+
         if (!todoDTO.title().isEmpty() && !todoDTO.title().equals(todo.getTitle())) {
             todo.setTitle(todoDTO.title());
         } if (!todoDTO.description().isEmpty() && !todoDTO.description().equals(todo.getDescription())) {
@@ -46,7 +49,11 @@ public class TodoService {
 
     public ResponseEntity<String> deleteTodo(Long id) {
 
-        todoRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no item with this id!"));  // customize exception later
+        Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no item with this id!"));  // customize exception later
+
+        if (!todo.belongsToUser())
+            throw new RuntimeException("You are not authorized to do this");    // customize exception later
+
         todoRepository.deleteById(id);
         return ResponseEntity.status(204).body(null);
 
