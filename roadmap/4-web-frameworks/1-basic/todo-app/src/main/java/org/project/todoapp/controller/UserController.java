@@ -1,5 +1,6 @@
 package org.project.todoapp.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.project.todoapp.dto.UserDTO;
 import org.project.todoapp.service.UserService;
@@ -17,12 +18,12 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<String> register(@RequestBody @Valid UserDTO userDTO) {
         return userService.register(userDTO);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<String> login(@RequestBody @Valid UserDTO userDTO) {
         return userService.login(userDTO);
     }
 

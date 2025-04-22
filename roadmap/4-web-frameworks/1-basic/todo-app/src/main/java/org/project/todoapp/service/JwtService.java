@@ -24,6 +24,8 @@ import java.util.Map;
 public class JwtService {
 
     final String secret;
+
+    @Value("${jwt.security.expiration}")
     long expiration;
 
    /* public JwtService(@Value("${jwt.security.secret}") String secret,
@@ -44,6 +46,7 @@ public class JwtService {
 
     private SecretKey generateKey() {
         byte[] keyByte = Decoders.BASE64.decode(secret);
+        System.out.println(secret);
         return Keys.hmacShaKeyFor(keyByte);
     }
 

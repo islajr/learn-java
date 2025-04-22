@@ -1,10 +1,23 @@
 package org.project.todoapp.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.project.todoapp.model.User;
 
 public record UserDTO(
+
+        @NotNull(message = "Name field cannot be null")
+        @NotBlank(message = "Name field cannot be blank")
         String name,
+
+        @NotBlank(message = "Email field cannot be blank")
+        @NotNull(message = "Email field cannot be null")
+        @Email(message = "Please provide a valid email")
         String email,
+
+        @NotNull(message = "Password field cannot be null")
+        @NotBlank(message = "Password field cannot be blank")
         String password
         ) {
 
