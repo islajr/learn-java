@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,10 @@ import org.project.todoapp.model.UserPrincipal;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,13 +23,28 @@ import java.util.Map;
 @Service
 public class JwtService {
 
-    private final SecretKey secretKey;
-    private final long expiration;
+    final String secret;
+    long expiration;
 
-    public JwtService(@Value("${jwt.security.secret}") String secret,
+   /* public JwtService(@Value("${jwt.security.secret}") String secret,
                       @Value("${jwt.security.expiration}") long expiration) {
         this.secretKey = Keys.hmacShaKeyFor(secret.getBytes());
         this.expiration = expiration;
+    }*/
+
+    public JwtService() {
+        try {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
+            SecretKey secretKey = keyGenerator.generateKey();
+            secret = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private SecretKey generateKey() {
+        byte[] keyByte = Decoders.BASE64.decode(secret);
+        return Keys.hmacShaKeyFor(keyByte);
     }
 
     public String generateToken(String email) {
@@ -36,7 +55,7 @@ public class JwtService {
                 .claims(claims)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(secretKey)
+                .signWith(generateKey())
                 .compact();
 
     }
@@ -44,7 +63,7 @@ public class JwtService {
     private Claims extractClaims(String token) {
         try {
             return Jwts.parser()
-                    .verifyWith(secretKey)
+                    .verifyWith(generateKey())
                     .build()
                     .parseSignedClaims(token)
                     .getPayload();
