@@ -1,6 +1,7 @@
 package org.project.todoapp.service;
 
 import org.project.todoapp.dto.UserDTO;
+import org.project.todoapp.model.Role;
 import org.project.todoapp.model.User;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,8 @@ public class UserService {
         if (!user.isValid()) {
             throw new RuntimeException("Please provide a valid user");  // customize exception later
         }
-        user.setPassword(new BCryptPasswordEncoder(12).encode(user.getPassword()));     // encode password
+        user.setPassword(new BCryptPasswordEncoder(12).encode(user.getPassword())); // encode password
+        user.setRole(Role.USER.name());
         userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body("Successfully created user");
     }
