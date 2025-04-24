@@ -2,11 +2,9 @@ package org.project.todoapp.model;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 
 
 @AllArgsConstructor
@@ -15,7 +13,7 @@ public class UserPrincipal implements UserDetails {
     private final User user;
 
     public Role getRole() {
-        return Role.USER;
+        return user.getRole();
     }
 
     @Override

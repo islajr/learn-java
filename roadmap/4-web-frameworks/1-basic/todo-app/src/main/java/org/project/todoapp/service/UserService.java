@@ -1,7 +1,6 @@
 package org.project.todoapp.service;
 
 import org.project.todoapp.dto.UserDTO;
-import org.project.todoapp.model.Role;
 import org.project.todoapp.model.User;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.http.HttpStatus;

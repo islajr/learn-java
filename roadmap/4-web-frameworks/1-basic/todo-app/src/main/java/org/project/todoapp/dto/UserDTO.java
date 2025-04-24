@@ -6,8 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import org.project.todoapp.model.Role;
 import org.project.todoapp.model.User;
 
-import java.util.Arrays;
-
 public record UserDTO(
 
         String name,
