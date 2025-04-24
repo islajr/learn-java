@@ -2,6 +2,7 @@ package org.project.todoapp.service;
 
 import lombok.AllArgsConstructor;
 import org.project.todoapp.dto.TodoDTO;
+import org.project.todoapp.dto.TodoUpdateDTO;
 import org.project.todoapp.model.Todo;
 import org.project.todoapp.model.User;
 import org.project.todoapp.model.UserPrincipal;
@@ -31,16 +32,16 @@ public class TodoService {
         } throw new RuntimeException("Input Error. Please fill all fields.");   // customize exception later.
     }
 
-    public ResponseEntity<TodoDTO> updateTodo(Long id, TodoDTO todoDTO) {
+    public ResponseEntity<TodoDTO> updateTodo(Long id, TodoUpdateDTO updateDTO) {
         Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no item with this id!"));   // customize exception later
 
         if (!todo.belongsToUser())
             throw new RuntimeException("You are not authorized to do this");    // customize exception later.
 
-        if (!todoDTO.title().isEmpty() && !todoDTO.title().equals(todo.getTitle())) {
-            todo.setTitle(todoDTO.title());
-        } if (!todoDTO.description().isEmpty() && !todoDTO.description().equals(todo.getDescription())) {
-            todo.setDescription(todoDTO.description());
+        if (!updateDTO.title().isEmpty() && !updateDTO.title().equals(todo.getTitle())) {
+            todo.setTitle(updateDTO.title());
+        } if (!updateDTO.description().isEmpty() && !updateDTO.description().equals(todo.getDescription())) {
+            todo.setDescription(updateDTO.description());
         }
         todoRepository.save(todo);
         return ResponseEntity.ok(TodoDTO.fromEntity(todo));
