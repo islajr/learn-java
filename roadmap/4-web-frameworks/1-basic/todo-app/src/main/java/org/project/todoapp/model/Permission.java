@@ -1,5 +1,8 @@
 package org.project.todoapp.model;
 
+import lombok.Getter;
+
+@Getter
 public enum Permission {
     USER_CREATE("user:create_todo"),
     USER_GET("user:get_todo"),
@@ -9,13 +12,10 @@ public enum Permission {
     ADMIN_DELETE("admin:delete_user"),
     ADMIN_GET("admin:get_all_users");
 
-    private String permission;
+    private final String permission;
 
     Permission(String permission) {
         this.permission = permission;
     }
 
-    public String getPermission() {
-        return permission;
-    }
 }

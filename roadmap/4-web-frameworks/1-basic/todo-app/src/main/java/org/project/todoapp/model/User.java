@@ -28,7 +28,7 @@ public class User {
     @Column(name = "password")
     private String password;
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     public User(String name, String email, String password) {
         this.name = name;
