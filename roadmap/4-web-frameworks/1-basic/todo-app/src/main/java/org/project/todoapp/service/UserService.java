@@ -32,7 +32,6 @@ public class UserService {
             throw new RuntimeException("Please provide a valid user");  // customize exception later
         }
         user.setPassword(new BCryptPasswordEncoder(12).encode(user.getPassword())); // encode password
-        user.setRole(Role.USER.name());
         userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body("Successfully created user");
     }

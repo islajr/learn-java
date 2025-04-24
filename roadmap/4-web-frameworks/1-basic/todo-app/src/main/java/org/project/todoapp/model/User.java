@@ -30,11 +30,13 @@ public class User {
     @Column(name = "role")
     private Role role;
 
-    public User(String name, String email, String password) {
+    public User(String name, String email, String password, Role role) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
+
 
     public boolean isValid() {
         return !name.isEmpty() || !email.isEmpty() || !password.isEmpty();
