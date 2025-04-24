@@ -1,6 +1,7 @@
 package org.project.todoapp.service;
 
 import org.project.todoapp.dto.UserDTO;
+import org.project.todoapp.dto.UserLoginDTO;
 import org.project.todoapp.model.User;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -35,12 +36,12 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.CREATED).body("Successfully created user");
     }
 
-    public ResponseEntity<String> login(UserDTO userDTO) {
+    public ResponseEntity<String> login(UserLoginDTO loginDTO) {
 
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password()));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.email(), loginDTO.password()));
 
         if (authentication.isAuthenticated()) {
-            return ResponseEntity.ok(jwtService.generateToken(userDTO.email()));
+            return ResponseEntity.ok(jwtService.generateToken(loginDTO.email()));
         } throw new RuntimeException("Authentication failed. Please provide valid credentials.");
 
     }

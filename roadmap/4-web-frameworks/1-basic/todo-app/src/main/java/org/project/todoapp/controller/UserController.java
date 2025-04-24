@@ -3,6 +3,7 @@ package org.project.todoapp.controller;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.project.todoapp.dto.UserDTO;
+import org.project.todoapp.dto.UserLoginDTO;
 import org.project.todoapp.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +24,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Valid UserDTO userDTO) {
-        return userService.login(userDTO);
+    public ResponseEntity<String> login(@RequestBody @Valid UserLoginDTO userloginDTO) {
+        return userService.login(userloginDTO);
     }
 
     /* fix jwt invalid signature issue */
