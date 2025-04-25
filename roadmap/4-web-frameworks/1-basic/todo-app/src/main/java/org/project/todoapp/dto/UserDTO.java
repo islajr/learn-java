@@ -38,7 +38,7 @@ public record UserDTO(
 
     public static User toEntity(UserDTO userDTO) {
         return new User(
-                userDTO.name(), userDTO.email(), userDTO.password(), toRole(userDTO.role()));
+                userDTO.name(), userDTO.email(), userDTO.password(), toRole(userDTO.role()), userDTO.role());
     }
 
     private static Role toRole(String role) {

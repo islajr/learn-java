@@ -20,18 +20,32 @@ public class User {
 
     @Column(name = "name")
     private String name;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "role")
     private Role role;
 
-    public User(String name, String email, String password, Role role) {
+    @Column(name = "role_str")
+    private String roleString;
+
+    public User(String name, String email, String password, Role role, String roleString) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.roleString = roleString;
+    }
+
+    public User(String name, String email, String password, String roleString) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roleString = roleString;
     }
 
 
