@@ -1,6 +1,7 @@
 package org.project.todoapp.security;
 
 import lombok.AllArgsConstructor;
+import org.project.todoapp.model.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,12 +29,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers(
+                .authorizeHttpRequests(request ->
+                        request.requestMatchers(
                         "/api/todo/user/register",
                         "/api/todo/user/login"
-                ).permitAll().anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
+                ).permitAll()
+                                .requestMatchers("/admin/api/**").hasRole(Role.ADMIN.name())
+                                .anyRequest().authenticated())
+                .formLogin(Customizer.withDefaults())   // form-based authentication
+                .httpBasic(Customizer.withDefaults())   // basic authentication
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(Customizer.withDefaults())
                 .build();
