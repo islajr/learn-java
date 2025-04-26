@@ -34,9 +34,12 @@ public class SecurityConfig {
                         "/api/todo/user/register",
                         "/api/todo/user/login"
                 ).permitAll()
+                                .requestMatchers(
+                                        "/css/**", "/js/**", "/images/**", "/login"
+                                ).permitAll()
                                 .requestMatchers("/admin/api/**").hasRole(Role.ADMIN.name())
                                 .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults())   // form-based authentication
+                .formLogin(form -> form.loginPage("/login").permitAll())   // form-based authentication
                 .httpBasic(Customizer.withDefaults())   // basic authentication
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(Customizer.withDefaults())
