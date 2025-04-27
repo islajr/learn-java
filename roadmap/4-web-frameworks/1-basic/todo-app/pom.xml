@@ -99,9 +99,9 @@
             <version>3.1.2.RELEASE</version>
         </dependency>-->
         <dependency>
-            <groupId>com.github.vladimir-bukhtoyarov</groupId>
+            <groupId>com.bucket4j</groupId>
             <artifactId>bucket4j-core</artifactId>
-<!--            <version>8.2.0</version>-->
+            <version>8.1.0</version>
         </dependency>
     </dependencies>
     <repositories>
