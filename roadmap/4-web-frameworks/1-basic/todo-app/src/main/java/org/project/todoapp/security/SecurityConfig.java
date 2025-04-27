@@ -24,6 +24,7 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final JwtFilter jwtFilter;
+    private final RateLimiter rateLimiter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -43,6 +44,7 @@ public class SecurityConfig {
                         .successForwardUrl("/success"))   // form-based authentication
 //                .httpBasic(Customizer.withDefaults())   // basic authentication
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(rateLimiter, JwtFilter.class)
                 .logout(Customizer.withDefaults())
                 .build();
     }
