@@ -12,4 +12,9 @@ public class TemplateController {
     public String login() {
         return "login";
     }
+
+    @GetMapping("/success")
+    public String success() {
+        return "success";
+    }
 }

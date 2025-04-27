@@ -39,8 +39,9 @@ public class SecurityConfig {
                                 ).permitAll()
                                 .requestMatchers("/admin/api/**").hasRole(Role.ADMIN.name())
                                 .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").permitAll())   // form-based authentication
-                .httpBasic(Customizer.withDefaults())   // basic authentication
+                .formLogin(form -> form.loginPage("/login").permitAll()
+                        .successForwardUrl("/success"))   // form-based authentication
+//                .httpBasic(Customizer.withDefaults())   // basic authentication
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(Customizer.withDefaults())
                 .build();
