@@ -43,7 +43,7 @@ public class RateLimiter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String validator = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail() != null ? ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail() : request.getRemoteAddr();
+        String validator = SecurityContextHolder.getContext().getAuthentication() != null ? ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail() : request.getRemoteAddr();
 
         Bucket bucket = storage.computeIfAbsent(validator, b -> createBucket());
 

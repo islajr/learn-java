@@ -37,4 +37,5 @@ public class UserController {
     /* refresh token, unit testing, filtering and sorting */
     /* proper custom error handling */
     /* user not found error */
+    /* username - password mismatch */
 }
