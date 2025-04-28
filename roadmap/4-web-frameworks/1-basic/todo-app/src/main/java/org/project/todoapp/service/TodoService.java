@@ -8,10 +8,16 @@ import org.project.todoapp.model.User;
 import org.project.todoapp.model.UserPrincipal;
 import org.project.todoapp.repository.TodoRepository;
 import org.project.todoapp.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @AllArgsConstructor
 @Service
@@ -57,6 +63,14 @@ public class TodoService {
 
         todoRepository.deleteById(id);
         return ResponseEntity.status(204).body(null);
+
+    }
+
+    public ResponseEntity<Page<TodoDTO>> getTodos(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TodoDTO> pagesDTO = todoRepository.findAll(pageable).map(TodoDTO::fromEntity);
+
+        return ResponseEntity.ok(pagesDTO);
 
     }
 }
