@@ -18,6 +18,15 @@ public class RateLimiter extends OncePerRequestFilter {
 
     private final Bucket bucket;
 
+    /*
+    * Bandwidth type variable - limit - .classic() sets the capacity of requests per minute to 10, and the refill value to ten tokens per minute with the Refill.
+    *
+    * The Bucket builder class adds the limit of Bandwidth type with addLimit() and is initialized with .build().
+    * Bucket.tryConsume()
+    *
+    * bucket4j also allows us to set multiple limits to enable finer-grain access control of the rate limits.
+    * */
+
     public RateLimiter() {
         Bandwidth limit = Bandwidth.classic(10, Refill.intervally(10, Duration.ofMinutes(1)));
 
