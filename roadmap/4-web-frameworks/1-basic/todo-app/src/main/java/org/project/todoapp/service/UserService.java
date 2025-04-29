@@ -8,6 +8,8 @@ import org.project.todoapp.model.Todo;
 import org.project.todoapp.model.User;
 import org.project.todoapp.repository.TodoRepository;
 import org.project.todoapp.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -62,11 +64,8 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Successfully delete user.");
     }
 
-    public ResponseEntity<List<Todo>> getAllTodos() {
-        return ResponseEntity.ok(todoRepository.findAll());
-    }
-
-    public ResponseEntity<List<User>> getAllUsers() {
-        return ResponseEntity.ok(userRepository.findAll());
+    public ResponseEntity<Page<Todo>> getAllTodos() {
+        Page<Todo> page = new PageImpl<>(todoRepository.findAll());
+        return ResponseEntity.ok(page);
     }
 }

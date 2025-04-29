@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.project.todoapp.model.Todo;
 import org.project.todoapp.model.User;
 import org.project.todoapp.service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,13 +23,8 @@ public class AdminController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Todo>> getAllTodos() {
+    public ResponseEntity<Page<Todo>> getAllTodos() {
         return userService.getAllTodos();
-    }
-
-    @GetMapping("/user")
-    public ResponseEntity<List<User>> getAllUsers() {
-        return userService.getAllUsers();
     }
 
 }
