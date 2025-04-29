@@ -39,7 +39,7 @@ public class UserService {
         }
         user.setPassword(new BCryptPasswordEncoder(12).encode(user.getPassword())); // encode password
         userRepository.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Successfully created user");
+        return ResponseEntity.status(HttpStatus.CREATED).body(jwtService.generateToken(user.getEmail()));
     }
 
     public ResponseEntity<String> login(UserLoginDTO loginDTO) {
