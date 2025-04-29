@@ -29,13 +29,10 @@ public class UserController {
     }
 
     /* fix jwt invalid signature issue */
-    /* set up /register and /login input validation */
     /* ensure that each user's todos are independent of one another */
     /* implement pagination, rate-limiting, etc */
     /* more security features - complete amigoscode security video */
     /* complete get method */
     /* refresh token, unit testing, filtering and sorting */
     /* proper custom error handling */
-    /* user not found error */
-    /* username - password mismatch */
 }
