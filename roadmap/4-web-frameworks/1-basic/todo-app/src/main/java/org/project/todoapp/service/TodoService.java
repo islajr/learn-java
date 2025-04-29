@@ -3,21 +3,21 @@ package org.project.todoapp.service;
 import lombok.AllArgsConstructor;
 import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.dto.TodoUpdateDTO;
+import org.project.todoapp.exception.exceptions.InvalidCredentialsException;
+import org.project.todoapp.exception.exceptions.UnauthorizedException;
+import org.project.todoapp.exception.exceptions.UserNotFoundException;
 import org.project.todoapp.model.Todo;
 import org.project.todoapp.model.User;
 import org.project.todoapp.model.UserPrincipal;
 import org.project.todoapp.repository.TodoRepository;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @AllArgsConstructor
 @Service
@@ -35,14 +35,14 @@ public class TodoService {
             todo.setUser(user);
             todoRepository.save(todo);
             return ResponseEntity.status(HttpStatus.CREATED).body(TodoDTO.fromEntity(todo));
-        } throw new RuntimeException("Input Error. Please fill all fields.");   // customize exception later.
+        } throw new InvalidCredentialsException("Input Error. Please fill all fields.");
     }
 
     public ResponseEntity<TodoDTO> updateTodo(Long id, TodoUpdateDTO updateDTO) {
-        Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no item with this id!"));   // customize exception later
+        Todo todo = todoRepository.findById(id).orElseThrow(() -> new UserNotFoundException("There is no item with this id!"));
 
         if (!todo.belongsToUser())
-            throw new RuntimeException("You are not authorized to do this");    // customize exception later.
+            throw new UnauthorizedException("You do not have access to this todo.");
 
         if (!updateDTO.title().isEmpty() && !updateDTO.title().equals(todo.getTitle())) {
             todo.setTitle(updateDTO.title());
@@ -56,10 +56,10 @@ public class TodoService {
 
     public ResponseEntity<String> deleteTodo(Long id) {
 
-        Todo todo = todoRepository.findById(id).orElseThrow(() -> new RuntimeException("There is no item with this id!"));  // customize exception later
+        Todo todo = todoRepository.findById(id).orElseThrow(() -> new UserNotFoundException("There is no item with this id!"));
 
         if (!todo.belongsToUser())
-            throw new RuntimeException("You are not authorized to do this");    // customize exception later
+            throw new UnauthorizedException("You are not authorized to do this");
 
         todoRepository.deleteById(id);
         return ResponseEntity.status(204).body(null);

@@ -27,6 +27,7 @@ public class SecurityConfig {
     private final JwtFilter jwtFilter;
     private final RateLimiter rateLimiter;
     private final SecurityExceptionHandler securityExceptionHandler;
+    private final AuthEntryPoint authEntryPoint;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -42,6 +43,7 @@ public class SecurityConfig {
                                 ).permitAll()
                                 .requestMatchers("/admin/api/**").hasRole(Role.ADMIN.name())
                                 .anyRequest().authenticated())
+                .exceptionHandling(config -> config.authenticationEntryPoint(authEntryPoint))
                 .formLogin(Customizer.withDefaults())   // form-based authentication
                 .httpBasic(Customizer.withDefaults())   // basic authentication
                 .addFilterBefore(rateLimiter, UsernamePasswordAuthenticationFilter.class)

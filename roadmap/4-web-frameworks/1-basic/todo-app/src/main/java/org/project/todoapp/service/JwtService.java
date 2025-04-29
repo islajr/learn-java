@@ -50,14 +50,18 @@ public class JwtService {
     public String generateToken(String email) {
         Map<String, Object> claims = new HashMap<>();
 
-        return Jwts.builder()
-                .subject(email)
-                .claims(claims)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(generateKey())
-                .compact();
+        try {
 
+            return Jwts.builder()
+                    .subject(email)
+                    .claims(claims)
+                    .issuedAt(new Date(System.currentTimeMillis()))
+                    .expiration(new Date(System.currentTimeMillis() + expiration))
+                    .signWith(generateKey())
+                    .compact();
+        } catch (JwtException e) {
+            throw new JwtException("Failed to generate token");
+        }
     }
 
     private Claims extractClaims(String token) {
@@ -68,7 +72,7 @@ public class JwtService {
                     .parseSignedClaims(token)
                     .getPayload();
         } catch (JwtException e) {
-            throw new RuntimeException("This is an invalid token");
+            throw new JwtException("This is an invalid token");
         }
     }
 
