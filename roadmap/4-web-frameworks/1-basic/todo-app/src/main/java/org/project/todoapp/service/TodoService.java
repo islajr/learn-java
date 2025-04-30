@@ -1,6 +1,7 @@
 package org.project.todoapp.service;
 
 import lombok.AllArgsConstructor;
+import org.project.todoapp.dto.PageResponse;
 import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.dto.TodoUpdateDTO;
 import org.project.todoapp.exception.exceptions.InvalidCredentialsException;
@@ -66,12 +67,13 @@ public class TodoService {
 
     }
 
-    public ResponseEntity<Page<TodoDTO>> getTodos(int page, int size) {
+    public ResponseEntity<PageResponse<TodoDTO>> getTodos(int page, int size) {
         String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
         Pageable pageable = PageRequest.of(page, size);
         Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
+        PageResponse<TodoDTO> response = new PageResponse<>(pagesDTO);
 
-        return ResponseEntity.ok(pagesDTO);
+        return ResponseEntity.ok(response);
 
     }
 }

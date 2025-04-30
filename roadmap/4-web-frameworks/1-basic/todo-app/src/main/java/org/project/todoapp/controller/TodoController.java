@@ -2,6 +2,7 @@ package org.project.todoapp.controller;
 
 import lombok.AllArgsConstructor;
 import org.apache.coyote.Response;
+import org.project.todoapp.dto.PageResponse;
 import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.dto.TodoUpdateDTO;
 import org.project.todoapp.service.TodoService;
@@ -32,7 +33,7 @@ public class TodoController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<TodoDTO>> getTodos(
+    public ResponseEntity<PageResponse<TodoDTO>> getTodos(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size
     ) {

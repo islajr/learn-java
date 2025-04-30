@@ -2,13 +2,10 @@ package org.project.todoapp.controller;
 
 import lombok.AllArgsConstructor;
 import org.project.todoapp.model.Todo;
-import org.project.todoapp.model.User;
 import org.project.todoapp.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @AllArgsConstructor
 @RestController
