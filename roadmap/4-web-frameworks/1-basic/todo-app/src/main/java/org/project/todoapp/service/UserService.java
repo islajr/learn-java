@@ -1,5 +1,6 @@
 package org.project.todoapp.service;
 
+import org.project.todoapp.dto.PageResponse;
 import org.project.todoapp.dto.UserDTO;
 import org.project.todoapp.dto.UserLoginDTO;
 import org.project.todoapp.exception.exceptions.InvalidCredentialsException;
@@ -62,10 +63,5 @@ public class UserService {
 
         userRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Successfully delete user.");
-    }
-
-    public ResponseEntity<Page<Todo>> getAllTodos() {
-        Page<Todo> page = new PageImpl<>(todoRepository.findAll());
-        return ResponseEntity.ok(page);
     }
 }

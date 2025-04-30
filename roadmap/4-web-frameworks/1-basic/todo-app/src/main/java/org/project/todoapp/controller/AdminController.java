@@ -1,7 +1,9 @@
 package org.project.todoapp.controller;
 
 import lombok.AllArgsConstructor;
+import org.project.todoapp.dto.PageResponse;
 import org.project.todoapp.model.Todo;
+import org.project.todoapp.service.TodoService;
 import org.project.todoapp.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 
     private final UserService userService;
+    private final TodoService todoService;
 
     @DeleteMapping("/user")
     public ResponseEntity<String> deleteUser(@RequestParam Long id) {
@@ -20,8 +23,8 @@ public class AdminController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Todo>> getAllTodos() {
-        return userService.getAllTodos();
+    public ResponseEntity<PageResponse<Todo>> getAllTodos() {
+        return todoService.getAllTodos();
     }
 
 }

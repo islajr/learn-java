@@ -13,6 +13,7 @@ import org.project.todoapp.model.UserPrincipal;
 import org.project.todoapp.repository.TodoRepository;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -71,9 +72,13 @@ public class TodoService {
         String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
         Pageable pageable = PageRequest.of(page, size);
         Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
-        PageResponse<TodoDTO> response = new PageResponse<>(pagesDTO);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new PageResponse<>(pagesDTO));
 
+    }
+
+    public ResponseEntity<PageResponse<Todo>> getAllTodos() {
+        Page<Todo> page = new PageImpl<>(todoRepository.findAll());
+        return ResponseEntity.ok(new PageResponse<>(page));
     }
 }

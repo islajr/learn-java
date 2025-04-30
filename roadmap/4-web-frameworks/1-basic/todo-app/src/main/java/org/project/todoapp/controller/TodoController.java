@@ -1,12 +1,10 @@
 package org.project.todoapp.controller;
 
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.project.todoapp.dto.PageResponse;
 import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.dto.TodoUpdateDTO;
 import org.project.todoapp.service.TodoService;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
