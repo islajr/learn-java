@@ -39,7 +39,12 @@ public class UserService {
         }
         user.setPassword(new BCryptPasswordEncoder(12).encode(user.getPassword())); // encode password
         userRepository.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(jwtService.generateToken(user.getEmail()));
+        return ResponseEntity.status(HttpStatus.CREATED).body("""
+                {
+                    "access token": "%s",
+                    "refresh token": "%s
+                }
+                """.formatted(jwtService.generateToken(user.getEmail()), jwtService.generateRefreshToken(user.getEmail())));
     }
 
     public ResponseEntity<String> login(UserLoginDTO loginDTO) {
@@ -47,7 +52,12 @@ public class UserService {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.email(), loginDTO.password()));
 
         if (authentication.isAuthenticated()) {
-            return ResponseEntity.ok(jwtService.generateToken(loginDTO.email()));
+            return ResponseEntity.ok("""
+                    {
+                        "access token": "%s",
+                        "refresh token": "%s"
+                    }
+                    """.formatted(jwtService.generateToken(loginDTO.email()), jwtService.generateRefreshToken(loginDTO.email())));
         } throw new BadCredentialsException("Error: Invalid credentials.");
 
     }

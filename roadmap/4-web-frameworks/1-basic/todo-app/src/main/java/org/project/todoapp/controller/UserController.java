@@ -30,6 +30,5 @@ public class UserController {
 
     /* fix jwt invalid signature issue */
     /* more security features - complete amigoscode security video */
-    /* complete get method */
     /* refresh token, unit testing, filtering and sorting */
 }

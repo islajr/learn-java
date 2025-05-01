@@ -25,6 +25,9 @@ public class JwtService {
     @Value("${jwt.security.expiration}")
     long expiration;
 
+    @Value("${jwt.security.refresh.expiration}")
+    long refreshExpiration;
+
    /* public JwtService(@Value("${jwt.security.secret}") String secret,
                       @Value("${jwt.security.expiration}") long expiration) {
         this.secretKey = Keys.hmacShaKeyFor(secret.getBytes());
@@ -57,6 +60,23 @@ public class JwtService {
                     .claims(claims)
                     .issuedAt(new Date(System.currentTimeMillis()))
                     .expiration(new Date(System.currentTimeMillis() + expiration))
+                    .signWith(generateKey())
+                    .compact();
+        } catch (JwtException e) {
+            throw new JwtException("Failed to generate token");
+        }
+    }
+
+    public String generateRefreshToken(String email) {
+        Map<String, Object> claims = new HashMap<>();
+
+        try {
+
+            return Jwts.builder()
+                    .subject(email)
+                    .claims(claims)
+                    .issuedAt(new Date(System.currentTimeMillis()))
+                    .expiration(new Date(System.currentTimeMillis() + refreshExpiration))
                     .signWith(generateKey())
                     .compact();
         } catch (JwtException e) {
