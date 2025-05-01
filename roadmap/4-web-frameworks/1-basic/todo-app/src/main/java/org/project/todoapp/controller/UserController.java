@@ -6,10 +6,7 @@ import org.project.todoapp.dto.UserDTO;
 import org.project.todoapp.dto.UserLoginDTO;
 import org.project.todoapp.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/todo/user")
@@ -27,6 +24,12 @@ public class UserController {
     public ResponseEntity<String> login(@RequestBody @Valid UserLoginDTO userloginDTO) {
         return userService.login(userloginDTO);
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<String> refresh(@RequestBody String refreshToken) {
+        return userService.refresh(refreshToken);
+    }
+
 
     /* fix jwt invalid signature issue */
     /* more security features - complete amigoscode security video */

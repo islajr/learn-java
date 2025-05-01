@@ -1,11 +1,12 @@
 package org.project.todoapp.service;
 
+import lombok.AllArgsConstructor;
 import org.project.todoapp.dto.UserDTO;
 import org.project.todoapp.dto.UserLoginDTO;
 import org.project.todoapp.exception.exceptions.InvalidCredentialsException;
 import org.project.todoapp.exception.exceptions.UserNotFoundException;
 import org.project.todoapp.model.User;
-import org.project.todoapp.repository.TodoRepository;
+import org.project.todoapp.model.UserPrincipal;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,20 +17,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private final TodoRepository todoRepository;
+    private final MyUserDetailsService myUserDetailsService;
 
-    public UserService(UserRepository userRepository, AuthenticationManager authenticationManager, JwtService jwtService, TodoRepository todoRepository) {
-        this.userRepository = userRepository;
-        this.authenticationManager = authenticationManager;
-        this.jwtService = jwtService;
-        this.todoRepository = todoRepository;
-    }
 
     public ResponseEntity<String> register(UserDTO userDTO) {
         User user = UserDTO.toEntity(userDTO);
@@ -67,5 +63,25 @@ public class UserService {
 
         userRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Successfully delete user.");
+    }
+
+    public ResponseEntity<String> refresh(String refreshToken) {
+
+        String email = jwtService.extractEmail(refreshToken);
+        UserPrincipal userPrincipal = myUserDetailsService.loadUserByUsername(email);
+
+        if (jwtService.validateToken(refreshToken, userPrincipal)) {
+            return ResponseEntity.status(HttpStatus.OK).body("""
+                    {
+                         "access token": "%s",
+                         "refresh token": "%s"
+                    }
+                    """.formatted(jwtService.generateToken(email), jwtService.generateRefreshToken(email)));
+        }
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("""
+                {
+                    "message": "This is not a valid refresh token"
+                }
+                """);
     }
 }

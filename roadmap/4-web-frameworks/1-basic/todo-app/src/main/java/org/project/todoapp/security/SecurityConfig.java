@@ -35,8 +35,8 @@ public class SecurityConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
-                        "/api/todo/user/register",
-                        "/api/todo/user/login"
+//                        "/api/todo/user/register",
+                        "/api/todo/user/**"
                 ).permitAll()
                                 .requestMatchers(
                                         "/css/**", "/js/**", "/images/**", "/login"
