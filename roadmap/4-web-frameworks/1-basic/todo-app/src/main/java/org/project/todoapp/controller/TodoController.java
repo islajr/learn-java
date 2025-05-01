@@ -1,10 +1,10 @@
 package org.project.todoapp.controller;
 
 import lombok.AllArgsConstructor;
-import org.project.todoapp.dto.PageResponse;
 import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.dto.TodoUpdateDTO;
 import org.project.todoapp.service.TodoService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +31,7 @@ public class TodoController {
     }
 
     @GetMapping("")
-    public ResponseEntity<PageResponse<TodoDTO>> getTodos(
+    public ResponseEntity<Page<TodoDTO>> getTodos(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size
     ) {

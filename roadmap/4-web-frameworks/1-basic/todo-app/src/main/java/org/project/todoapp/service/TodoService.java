@@ -68,17 +68,18 @@ public class TodoService {
 
     }
 
-    public ResponseEntity<PageResponse<TodoDTO>> getTodos(int page, int size) {
+    public ResponseEntity<Page<TodoDTO>> getTodos(int page, int size) {
         String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
         Pageable pageable = PageRequest.of(page, size);
         Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
 
-        return ResponseEntity.ok(new PageResponse<>(pagesDTO));
+        return ResponseEntity.ok(pagesDTO);
 
     }
 
-    public ResponseEntity<PageResponse<Todo>> getAllTodos() {
+    public ResponseEntity<Page<Todo>> getAllTodos() {
         Page<Todo> page = new PageImpl<>(todoRepository.findAll());
-        return ResponseEntity.ok(new PageResponse<>(page));
+//        return ResponseEntity.ok(new PageResponse<>(page));
+        return ResponseEntity.ok(page);
     }
 }

@@ -23,7 +23,7 @@ public class AdminController {
     }
 
     @GetMapping
-    public ResponseEntity<PageResponse<Todo>> getAllTodos() {
+    public ResponseEntity<Page<Todo>> getAllTodos() {
         return todoService.getAllTodos();
     }
 
