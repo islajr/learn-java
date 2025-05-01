@@ -11,10 +11,7 @@ import org.project.todoapp.model.User;
 import org.project.todoapp.model.UserPrincipal;
 import org.project.todoapp.repository.TodoRepository;
 import org.project.todoapp.repository.UserRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -67,18 +64,19 @@ public class TodoService {
 
     }
 
-    public ResponseEntity<Page<TodoDTO>> getTodos(int page, int size) {
+    public ResponseEntity<Page<TodoDTO>> getTodos(int page, int size, String sortBy) {
         String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
         Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
 
         return ResponseEntity.ok(pagesDTO);
 
     }
 
-    public ResponseEntity<Page<Todo>> getAllTodos() {
-        Page<Todo> page = new PageImpl<>(todoRepository.findAll());
+    public ResponseEntity<Page<TodoDTO>> getAllTodos(int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        Page<TodoDTO> pageTodos = new PageImpl<>(todoRepository.findAll()).map(TodoDTO::fromEntity);
 //        return ResponseEntity.ok(new PageResponse<>(page));
-        return ResponseEntity.ok(page);
+        return ResponseEntity.ok(pageTodos);
     }
 }

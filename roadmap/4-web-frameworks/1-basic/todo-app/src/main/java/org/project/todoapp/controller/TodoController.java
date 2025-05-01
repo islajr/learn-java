@@ -5,6 +5,7 @@ import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.dto.TodoUpdateDTO;
 import org.project.todoapp.service.TodoService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,8 +34,14 @@ public class TodoController {
     @GetMapping("")
     public ResponseEntity<Page<TodoDTO>> getTodos(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size
-    ) {
-        return todoService.getTodos(page, size);
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy
+            ) {
+        // some validation
+        if (size > 100)
+            size = 100;
+        if (page < 0)
+            page = 0;
+        return todoService.getTodos(page, size, sortBy);
     }
 }

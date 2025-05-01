@@ -1,6 +1,7 @@
 package org.project.todoapp.controller;
 
 import lombok.AllArgsConstructor;
+import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.model.Todo;
 import org.project.todoapp.service.TodoService;
 import org.project.todoapp.service.UserService;
@@ -22,8 +23,12 @@ public class AdminController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Todo>> getAllTodos() {
-        return todoService.getAllTodos();
+    public ResponseEntity<Page<TodoDTO>> getAllTodos(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy
+    ) {
+        return todoService.getAllTodos(page, size, sortBy);
     }
 
 }
