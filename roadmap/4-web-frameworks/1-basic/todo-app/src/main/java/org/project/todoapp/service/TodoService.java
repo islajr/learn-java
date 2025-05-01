@@ -1,7 +1,6 @@
 package org.project.todoapp.service;
 
 import lombok.AllArgsConstructor;
-import org.project.todoapp.dto.PageResponse;
 import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.dto.TodoUpdateDTO;
 import org.project.todoapp.exception.exceptions.InvalidCredentialsException;

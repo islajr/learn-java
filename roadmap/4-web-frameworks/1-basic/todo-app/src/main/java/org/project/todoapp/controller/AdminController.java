@@ -1,7 +1,6 @@
 package org.project.todoapp.controller;
 
 import lombok.AllArgsConstructor;
-import org.project.todoapp.dto.PageResponse;
 import org.project.todoapp.model.Todo;
 import org.project.todoapp.service.TodoService;
 import org.project.todoapp.service.UserService;
