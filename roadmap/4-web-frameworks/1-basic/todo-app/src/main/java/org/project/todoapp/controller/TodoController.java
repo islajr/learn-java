@@ -38,13 +38,14 @@ public class TodoController {
     public ResponseEntity<Page<TodoDTO>> getTodos(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "id") String sortBy
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(required = false) String status
             ) {
         // some validation
         if (size > 100)
             size = 100;
         if (page < 0)
             page = 0;
-        return todoService.getTodos(page, size, sortBy);
+        return todoService.getTodos(page, size, sortBy, status);
     }
 }

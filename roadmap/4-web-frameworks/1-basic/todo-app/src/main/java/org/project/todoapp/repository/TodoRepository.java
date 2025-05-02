@@ -1,5 +1,7 @@
 package org.project.todoapp.repository;
 
+import org.project.todoapp.dto.TodoDTO;
+import org.project.todoapp.model.Status;
 import org.project.todoapp.model.Todo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,4 +14,6 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     @Override
     Page<Todo> findAll(Pageable pageable);
+
+    Page<TodoDTO> findTodoByUser_EmailAndStatus(String email, Pageable pageable, Status status);
 }

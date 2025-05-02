@@ -67,12 +67,20 @@ public class TodoService {
 
     }
 
-    public ResponseEntity<Page<TodoDTO>> getTodos(int page, int size, String sortBy) {
+    public ResponseEntity<Page<TodoDTO>> getTodos(int page, int size, String sortBy, String status) {
         String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
 
+        if (status != null) {   // if filtering is enabled
+            Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
+            return ResponseEntity.ok(pagesDTO);
+        }
+        // otherwise
+        Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_EmailAndStatus(email, pageable, Status.toStatus(status));
         return ResponseEntity.ok(pagesDTO);
+
+
+
 
     }
 
