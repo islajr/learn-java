@@ -6,6 +6,7 @@ import org.project.todoapp.dto.TodoUpdateDTO;
 import org.project.todoapp.exception.exceptions.InvalidCredentialsException;
 import org.project.todoapp.exception.exceptions.UnauthorizedException;
 import org.project.todoapp.exception.exceptions.UserNotFoundException;
+import org.project.todoapp.model.Status;
 import org.project.todoapp.model.Todo;
 import org.project.todoapp.model.User;
 import org.project.todoapp.model.UserPrincipal;
@@ -46,6 +47,8 @@ public class TodoService {
             todo.setTitle(updateDTO.title());
         } if (!updateDTO.description().isEmpty() && !updateDTO.description().equals(todo.getDescription())) {
             todo.setDescription(updateDTO.description());
+        } if (!updateDTO.status().isEmpty() && !updateDTO.status().equals(todo.getStatus().name())) {
+            todo.setStatus(Status.valueOf(updateDTO.status()));
         }
         todoRepository.save(todo);
         return ResponseEntity.ok(TodoDTO.fromEntity(todo));
