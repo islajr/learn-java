@@ -20,14 +20,17 @@ public class Todo {
     private Long id;
     private String title;
     private String description;
+    private Status status;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Todo(Long id, String title, String description) {
+    public Todo(Long id, String title, String description, Status status) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.status = status;
     }
 
     public boolean isValid() {
@@ -37,5 +40,9 @@ public class Todo {
     public boolean belongsToUser() {
         String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
         return user.getEmail().equals(email);
+    }
+
+    public boolean isComplete() {
+        return this.status.name().equals("COMPLETE");
     }
 }

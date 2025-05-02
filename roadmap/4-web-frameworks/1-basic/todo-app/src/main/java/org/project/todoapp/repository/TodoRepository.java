@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
     Page<Todo> findTodoByUser_Email(String userEmail, Pageable pageable);
+
+    @Override
+    Page<Todo> findAll(Pageable pageable);
 }

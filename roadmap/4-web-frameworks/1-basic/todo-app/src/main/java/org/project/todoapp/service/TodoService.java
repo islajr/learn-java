@@ -75,7 +75,7 @@ public class TodoService {
 
     public ResponseEntity<Page<TodoDTO>> getAllTodos(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        Page<TodoDTO> pageTodos = new PageImpl<>(todoRepository.findAll()).map(TodoDTO::fromEntity);
+        Page<TodoDTO> pageTodos = todoRepository.findAll(pageable).map(TodoDTO::fromEntity);
 //        return ResponseEntity.ok(new PageResponse<>(page));
         return ResponseEntity.ok(pageTodos);
     }

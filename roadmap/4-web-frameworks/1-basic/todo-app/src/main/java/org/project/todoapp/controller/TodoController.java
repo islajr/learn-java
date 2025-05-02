@@ -22,7 +22,10 @@ public class TodoController {
     }
 
     @PutMapping("")
-    public ResponseEntity<TodoDTO> updateTodo(@RequestParam Long id, @RequestBody TodoUpdateDTO updateDTO) {
+    public ResponseEntity<TodoDTO> updateTodo(
+            @RequestParam Long id,
+            @RequestBody TodoUpdateDTO updateDTO
+    ) {
         return todoService.updateTodo(id, updateDTO);
     }
 
