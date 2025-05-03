@@ -72,11 +72,11 @@ public class TodoService {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 
         if (status != null) {   // if filtering is enabled
-            Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
+            Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_EmailAndStatus(email, pageable, Status.toStatus(status.trim().toUpperCase())).map(TodoDTO::fromEntity);
             return ResponseEntity.ok(pagesDTO);
         }
         // otherwise
-        Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_EmailAndStatus(email, pageable, Status.toStatus(status));
+        Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
         return ResponseEntity.ok(pagesDTO);
 
 

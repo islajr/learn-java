@@ -15,5 +15,5 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
     @Override
     Page<Todo> findAll(Pageable pageable);
 
-    Page<TodoDTO> findTodoByUser_EmailAndStatus(String email, Pageable pageable, Status status);
+    Page<Todo> findTodoByUser_EmailAndStatus(String email, Pageable pageable, Status status);
 }

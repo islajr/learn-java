@@ -7,7 +7,7 @@ public enum Status {
 
     public static Status toStatus(String stat) {
         for (Status status : Status.values()) {
-            if (Status.valueOf(stat).name().equals(status.name()))
+            if (Status.valueOf(stat).equals(status))
                 return status;
         } return null;
     }
