@@ -14,8 +14,8 @@ import java.util.List;
 public interface TodoRepository extends JpaRepository<Todo, Long> {
     List<Todo> findTodoByUser_Email(String userEmail, Pageable pageable);
 
-    @Override
-    Page<Todo> findAll(Pageable pageable);
+
+//    List<Todo> findAll(Pageable pageable);
 
     Page<Todo> findTodoByUser_EmailAndStatus(String email, Pageable pageable, Status status);
     Page<Todo> findTodoByStatus(Status status, Pageable pageable);

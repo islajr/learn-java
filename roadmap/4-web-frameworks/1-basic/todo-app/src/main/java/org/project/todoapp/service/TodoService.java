@@ -84,14 +84,10 @@ public class TodoService {
 
     public ResponseEntity<Page<TodoDTO>> getAllTodos(int page, int size, String sortBy, String status) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        List<TodoDTO> pageTodos = todoRepository.findAll(pageable).stream().map(TodoDTO::fromEntity).collect(Collectors.toList());
 
         if (status != null) {   // if filtering is enabled
-            Page<TodoDTO> todos = todoRepository.findTodoByStatus(Status.valueOf(status.trim().toUpperCase()), pageable).map(TodoDTO::fromEntity);
-
-            return ResponseEntity.ok(todos);
-        }
-        Page<TodoDTO> pageTodos = todoRepository.findAll(pageable).map(TodoDTO::fromEntity);
-//        return ResponseEntity.ok(new PageResponse<>(page));
-        return ResponseEntity.ok(pageTodos);
+            return ResponseEntity.ok(new PageImpl<>(pageTodos.stream().filter(todoDTO -> todoDTO.status().equals(status.trim().toUpperCase())).collect(Collectors.toList())));
+        } return ResponseEntity.ok(new PageImpl<>(pageTodos));
     }
 }
