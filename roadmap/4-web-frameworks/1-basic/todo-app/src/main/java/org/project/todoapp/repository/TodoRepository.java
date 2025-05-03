@@ -8,9 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
-    Page<Todo> findTodoByUser_Email(String userEmail, Pageable pageable);
+    List<Todo> findTodoByUser_Email(String userEmail, Pageable pageable);
 
     @Override
     Page<Todo> findAll(Pageable pageable);

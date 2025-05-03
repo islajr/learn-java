@@ -18,6 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @AllArgsConstructor
 @Service
 public class TodoService {
@@ -70,14 +73,13 @@ public class TodoService {
     public ResponseEntity<Page<TodoDTO>> getTodos(int page, int size, String sortBy, String status) {
         String email = ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail();
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        List<Todo> pages = todoRepository.findTodoByUser_Email(email, pageable);
 
         if (status != null) {   // if filtering is enabled
-            Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_EmailAndStatus(email, pageable, Status.toStatus(status.trim().toUpperCase())).map(TodoDTO::fromEntity);
-            return ResponseEntity.ok(pagesDTO);
+            return ResponseEntity.ok(new PageImpl<>(pages.stream().filter(todo -> todo.getStatus().equals(Status.valueOf(status.trim().toUpperCase()))).map(TodoDTO::fromEntity).collect(Collectors.toList())));
         }
         // otherwise
-        Page<TodoDTO> pagesDTO = todoRepository.findTodoByUser_Email(email, pageable).map(TodoDTO::fromEntity);
-        return ResponseEntity.ok(pagesDTO);
+        return ResponseEntity.ok(new PageImpl<>(pages.stream().map(TodoDTO::fromEntity).collect(Collectors.toList())));
 
 
 
