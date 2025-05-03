@@ -21,13 +21,14 @@ public class AdminController {
         return userService.deleteUser(id);
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<Page<TodoDTO>> getAllTodos(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "id") String sortBy
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(required = false) String status
     ) {
-        return todoService.getAllTodos(page, size, sortBy);
+        return todoService.getAllTodos(page, size, sortBy, status);
     }
 
 }

@@ -50,8 +50,8 @@ public class UserService {
         if (authentication.isAuthenticated()) {
             return ResponseEntity.ok("""
                     {
-                        "access token": "%s",
-                        "refresh token": "%s"
+                        "access token": %s,
+                        "refresh token": %s
                     }
                     """.formatted(jwtService.generateToken(loginDTO.email()), jwtService.generateRefreshToken(loginDTO.email())));
         } throw new BadCredentialsException("Error: Invalid credentials.");
@@ -73,8 +73,8 @@ public class UserService {
         if (jwtService.validateToken(refreshToken, userPrincipal)) {
             return ResponseEntity.status(HttpStatus.OK).body("""
                     {
-                         "access token": "%s",
-                         "refresh token": "%s"
+                         "access token": %s,
+                         "refresh token": %s
                     }
                     """.formatted(jwtService.generateToken(email), jwtService.generateRefreshToken(email)));
         }
