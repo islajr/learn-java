@@ -1,6 +1,5 @@
 package org.project.todoapp.repository;
 
-import org.project.todoapp.dto.TodoDTO;
 import org.project.todoapp.model.Status;
 import org.project.todoapp.model.Todo;
 import org.springframework.data.domain.Page;
