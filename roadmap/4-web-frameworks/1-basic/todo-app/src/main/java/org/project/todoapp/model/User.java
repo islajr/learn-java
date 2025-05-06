@@ -48,6 +48,11 @@ public class User {
         this.roleString = roleString;
     }
 
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
 
     public boolean isValid() {
         return !name.isEmpty() || !email.isEmpty() || !password.isEmpty();
