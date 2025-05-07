@@ -20,4 +20,6 @@ class UserRepositoryTest {
         testRepo.save(user);
         assertEquals(testRepo.findByEmail(user.getEmail()), user);
     }
+
+
 }
