@@ -2,10 +2,11 @@ package org.project.todoapp.service;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.project.todoapp.dto.UserDTO;
 import org.project.todoapp.dto.UserLoginDTO;
 import org.project.todoapp.model.User;
@@ -15,12 +16,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
     @Mock
@@ -48,13 +49,8 @@ class UserServiceTest {
         userService = new UserService(userRepository, authenticationManager, jwtService, myUserDetailsService);
     }
 
-    @AfterEach
-    void tearDown() throws Exception {
-        autoCloseable.close();
-    }
-
     @Test
-    void register() {
+    void registerTest() {
         UserDTO sample = new UserDTO("Name", "name@email.com", "name@123", "USER");
         User sampleUser = UserDTO.toEntity(sample);
         String token = "token";
@@ -77,7 +73,7 @@ class UserServiceTest {
     }
 
     @Test
-    void login() {
+    void loginTest() {
         UserLoginDTO loginDTO = new UserLoginDTO("login@email.com", "password");
 
         String token = "token";
@@ -99,6 +95,16 @@ class UserServiceTest {
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(responseModel, response.getBody());
+
+    }
+
+    @Test
+    void deleteUser() {
+
+    }
+
+    @Test
+    void refresh() {
 
     }
 }
