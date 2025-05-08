@@ -19,12 +19,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-//@ExtendWith(MockitoExtension.class)
+@ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
     @Mock
@@ -44,17 +46,9 @@ class UserServiceTest {
 
     private UserService userService;
 
-    private AutoCloseable autoCloseable;
-
     @BeforeEach
     void setUp() {
-        AutoCloseable autoCloseable = MockitoAnnotations.openMocks(this);
         userService = new UserService(userRepository, authenticationManager, jwtService, myUserDetailsService);
-    }
-
-    @AfterEach
-    void tearDown() throws Exception {
-        autoCloseable.close();
     }
 
     @Test
@@ -116,9 +110,10 @@ class UserServiceTest {
         HttpStatus expectedStatus = HttpStatus.NO_CONTENT;
         userRepository.save(sampleUser);
 
+        when (userRepository.findById(sampleUser.getId())).thenReturn(Optional.of(sampleUser));
         ResponseEntity<String> response = userService.deleteUser(sampleUser.getId());
 
-        verify(userRepository.findById(sampleUser.getId()));
+        verify(userRepository).findById(sampleUser.getId());
 
         assertNotNull(response);
         assertEquals(expectedStatus, response.getStatusCode());
