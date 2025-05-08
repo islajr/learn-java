@@ -37,8 +37,8 @@ public class UserService {
         userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body("""
                 {
-                    "access token": "%s",
-                    "refresh token": "%s"
+                    "access token": %s,
+                    "refresh token": %s
                 }
                 """.formatted(jwtService.generateToken(user.getEmail()), jwtService.generateRefreshToken(user.getEmail())));
     }

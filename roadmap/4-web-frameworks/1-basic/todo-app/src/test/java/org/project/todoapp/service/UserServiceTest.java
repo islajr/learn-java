@@ -7,16 +7,18 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.project.todoapp.dto.UserDTO;
+import org.project.todoapp.dto.UserLoginDTO;
 import org.project.todoapp.model.User;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class UserServiceTest {
@@ -31,10 +33,10 @@ class UserServiceTest {
     private JwtService jwtService;
 
     @Mock
-    private PasswordEncoder passwordEncoder;
+    private MyUserDetailsService myUserDetailsService;
 
     @Mock
-    private MyUserDetailsService myUserDetailsService;
+    private Authentication authentication;
 
     private AutoCloseable autoCloseable;
 
@@ -51,7 +53,6 @@ class UserServiceTest {
         autoCloseable.close();
     }
 
-    @Disabled
     @Test
     void register() {
         UserDTO sample = new UserDTO("Name", "name@email.com", "name@123", "USER");
@@ -60,8 +61,8 @@ class UserServiceTest {
         String refresh = "refresh";
         String responseModel = """
                 {
-                    "access token": "token",
-                    "refresh token": "refresh"
+                    "access token": token,
+                    "refresh token": refresh
                 }
                 """;
 
@@ -77,6 +78,27 @@ class UserServiceTest {
 
     @Test
     void login() {
+        UserLoginDTO loginDTO = new UserLoginDTO("login@email.com", "password");
+
+        String token = "token";
+        String refresh = "refresh";
+        String responseModel = """
+                {
+                    "access token": token,
+                    "refresh token": refresh
+                }
+                """;
+
+        when (authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.email(), loginDTO.password()))).thenReturn(authentication);
+        when (authentication.isAuthenticated()).thenReturn(true);
+        when (jwtService.generateToken(loginDTO.email())).thenReturn(token);
+        when (jwtService.generateRefreshToken(loginDTO.email())).thenReturn(refresh);
+
+        ResponseEntity<String> response = userService.login(loginDTO);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(responseModel, response.getBody());
 
     }
 }
