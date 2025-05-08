@@ -62,7 +62,7 @@ public class UserService {
         userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Cannot delete non-existent user"));
 
         userRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Successfully delete user.");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Successfully deleted user.");
     }
 
     public ResponseEntity<String> refresh(String refreshToken) {

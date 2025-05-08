@@ -1,13 +1,16 @@
 package org.project.todoapp.service;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.project.todoapp.dto.UserDTO;
 import org.project.todoapp.dto.UserLoginDTO;
+import org.project.todoapp.model.Role;
 import org.project.todoapp.model.User;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -18,9 +21,10 @@ import org.springframework.security.core.Authentication;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+//@ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
     @Mock
@@ -40,9 +44,17 @@ class UserServiceTest {
 
     private UserService userService;
 
+    private AutoCloseable autoCloseable;
+
     @BeforeEach
     void setUp() {
+        AutoCloseable autoCloseable = MockitoAnnotations.openMocks(this);
         userService = new UserService(userRepository, authenticationManager, jwtService, myUserDetailsService);
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        autoCloseable.close();
     }
 
     @Test
@@ -96,6 +108,21 @@ class UserServiceTest {
 
     @Test
     void deleteUser() {
+
+        User sampleUser = new User(
+                1L, "user", "user@email.com", "user@123", Role.USER, "USER"
+        );
+        String expectedResponseBody = "Successfully deleted user.";
+        HttpStatus expectedStatus = HttpStatus.NO_CONTENT;
+        userRepository.save(sampleUser);
+
+        ResponseEntity<String> response = userService.deleteUser(sampleUser.getId());
+
+        verify(userRepository.findById(sampleUser.getId()));
+
+        assertNotNull(response);
+        assertEquals(expectedStatus, response.getStatusCode());
+        assertEquals(expectedResponseBody, response.getBody());
 
     }
 
