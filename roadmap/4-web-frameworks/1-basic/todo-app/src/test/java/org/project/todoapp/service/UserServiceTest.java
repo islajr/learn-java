@@ -1,6 +1,5 @@
 package org.project.todoapp.service;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,13 +38,10 @@ class UserServiceTest {
     @Mock
     private Authentication authentication;
 
-    private AutoCloseable autoCloseable;
-
     private UserService userService;
 
     @BeforeEach
     void setUp() {
-        autoCloseable = MockitoAnnotations.openMocks(this);
         userService = new UserService(userRepository, authenticationManager, jwtService, myUserDetailsService);
     }
 
