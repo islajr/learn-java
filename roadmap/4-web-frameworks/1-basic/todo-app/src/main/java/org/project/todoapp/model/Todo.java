@@ -33,6 +33,13 @@ public class Todo {
         this.status = status;
     }
 
+    public Todo(String title, String description, Status status, User user) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.user = user;
+    }
+
     public boolean isValid() {
         return !title.isEmpty() || !description.isEmpty();
     }
