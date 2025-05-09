@@ -12,6 +12,7 @@ import org.project.todoapp.dto.UserDTO;
 import org.project.todoapp.dto.UserLoginDTO;
 import org.project.todoapp.model.Role;
 import org.project.todoapp.model.User;
+import org.project.todoapp.model.UserPrincipal;
 import org.project.todoapp.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,9 @@ class UserServiceTest {
 
     @Mock
     private Authentication authentication;
+
+    @Mock
+    private UserPrincipal userPrincipal;
 
     private UserService userService;
 
@@ -122,7 +126,30 @@ class UserServiceTest {
     }
 
     @Test
-    void refresh() {
+    void refreshTest() {
+        String refreshToken = "token";
+        String access = "access";
+        String refresh = "refresh";
+        String email = "user@email.com";
+        String expectedResponse = """
+                    {
+                         "access token": access,
+                         "refresh token": refresh
+                    }
+                    """;
+
+        when(jwtService.extractEmail(refreshToken)).thenReturn(email);
+        when(myUserDetailsService.loadUserByUsername(email)).thenReturn(userPrincipal);
+        when(jwtService.validateToken(refreshToken, userPrincipal)).thenReturn(true);
+        when(jwtService.generateToken(email)).thenReturn(access);
+        when(jwtService.generateRefreshToken(email)).thenReturn(refresh);
+
+        ResponseEntity<String> response = userService.refresh(refreshToken);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedResponse, response.getBody());
+
 
     }
 }
