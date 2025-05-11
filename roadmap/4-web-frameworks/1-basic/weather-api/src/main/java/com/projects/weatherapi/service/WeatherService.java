@@ -10,14 +10,13 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.LocalDate;
 
 @Service
 public class WeatherService {
         @Value("${weather.api.url}") String baseURL;
         @Value("${weather.api.key}") private String key;
 
-    public ResponseEntity<String> getWeather(String location, LocalDate start, LocalDate end) {
+    public ResponseEntity<String> getWeather(String location, String start, String end) {
 
         // input sanitation
 
@@ -28,18 +27,20 @@ public class WeatherService {
         // requests and caching
 
         // response filtering and display
+        return ResponseEntity.status(response.statusCode()).body(response.body());
+
 
     }
 
-    private HttpResponse<String> sendRequest(String location, LocalDate start, LocalDate end) {
+    private HttpResponse<String> sendRequest(String location, String start, String end) {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request;
 
         // validation
-        if (start.toString().equals("null")){
+        if (start.equals("null")){   // if there is no start date
             try {
                 request = HttpRequest.newBuilder()
-                        .uri(new URI(baseURL + location))
+                        .uri(new URI(baseURL + location + "?key=" + key))
                         .build();
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
@@ -47,7 +48,7 @@ public class WeatherService {
         } else {
             try {
                 request = HttpRequest.newBuilder()
-                        .uri(new URI(baseURL + location))
+                        .uri(new URI(baseURL + location + "/" + start + "/" + "end" + "?key=" + key))
                         .build();
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);

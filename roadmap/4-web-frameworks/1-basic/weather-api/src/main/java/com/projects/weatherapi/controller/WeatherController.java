@@ -19,8 +19,8 @@ public class WeatherController {
     @GetMapping("/api/weather")
     public ResponseEntity<String> getWeather(
             @RequestParam String location,
-            @RequestParam(required = false, defaultValue = "null")LocalDate start,
-            @RequestParam(required = false, defaultValue = "null")LocalDate end) {
+            @RequestParam(required = false, defaultValue = "null")String start,
+            @RequestParam(required = false, defaultValue = "null")String end) {
         return weatherService.getWeather(location, start, end);
     }
 
