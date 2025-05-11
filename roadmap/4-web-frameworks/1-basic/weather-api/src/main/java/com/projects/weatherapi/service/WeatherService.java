@@ -10,18 +10,20 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
 
 @Service
 public class WeatherService {
         @Value("${weather.api.url}") String baseURL;
         @Value("${weather.api.key}") private String key;
 
-    public ResponseEntity<String> getWeather() {
+    public ResponseEntity<String> getWeather(String location, LocalDate start, LocalDate end) {
 
         // input sanitation
 
+
         // connection to third-party api
-        HttpResponse<String> response = sendRequest();
+        HttpResponse<String> response = sendRequest(location, start, end);
 
         // requests and caching
 
@@ -29,16 +31,27 @@ public class WeatherService {
 
     }
 
-    private HttpResponse<String> sendRequest() {
+    private HttpResponse<String> sendRequest(String location, LocalDate start, LocalDate end) {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request;
 
-        try {
-            request = HttpRequest.newBuilder()
-                    .uri(new URI(baseURL + ))
-                    .build();
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        // validation
+        if (start.toString().equals("null")){
+            try {
+                request = HttpRequest.newBuilder()
+                        .uri(new URI(baseURL + location))
+                        .build();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                request = HttpRequest.newBuilder()
+                        .uri(new URI(baseURL + location))
+                        .build();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         try {
