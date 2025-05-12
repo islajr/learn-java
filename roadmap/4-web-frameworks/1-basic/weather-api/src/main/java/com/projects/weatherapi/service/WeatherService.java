@@ -18,9 +18,6 @@ public class WeatherService {
 
     public ResponseEntity<String> getWeather(String location, String start, String end) {
 
-        // input sanitation
-
-
         // connection to third-party api
         HttpResponse<String> response = sendRequest(location, start, end);
 
