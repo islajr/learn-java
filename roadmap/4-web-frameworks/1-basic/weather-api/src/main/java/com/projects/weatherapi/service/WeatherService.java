@@ -42,10 +42,19 @@ public class WeatherService {
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }
+        } else if (!start.equals("null") && end.equals("null")){
+            try {
+                request = HttpRequest.newBuilder()
+                        .uri(new URI(baseURL + location + "/" + start + "?key=" + key))
+                        .build();
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+
         } else {
             try {
                 request = HttpRequest.newBuilder()
-                        .uri(new URI(baseURL + location + "/" + start + "/" + "end" + "?key=" + key))
+                        .uri(new URI(baseURL + location + "/" + start + "/" + end + "?key=" + key))
                         .build();
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
