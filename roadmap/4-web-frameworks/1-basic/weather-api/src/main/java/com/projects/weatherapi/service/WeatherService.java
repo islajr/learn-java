@@ -1,6 +1,7 @@
 package com.projects.weatherapi.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,29 @@ public class WeatherService {
 
         // connection to third-party api
         HttpResponse<String> response = sendRequest(location, start, end);
+
+        switch (response.statusCode()) {
+            case 200 -> {
+                // cache entire response
+
+                // sort the response and display necessary information.
+            }
+            case 400 -> {
+                return ResponseEntity.badRequest().body("Please provide valid parameters!");
+            }
+            case 404 -> {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("There is no such location");
+            }
+            case 429 -> {
+                return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("You are rate-limited. Please try again later.");
+            }
+            case 500 -> {
+                return ResponseEntity.internalServerError().body("There was a problem on our end. We're sorry.");
+            }
+            default -> {
+                return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body("Unable to establish a connection. Please try again later.");
+            }
+        }
 
         // requests and caching
 
