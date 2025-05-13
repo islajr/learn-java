@@ -1,5 +1,7 @@
 package com.projects.weatherapi.service;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,19 +51,16 @@ public class WeatherService {
         UnifiedJedis jedis = openConnection();
         String stored = jedis.get(location.strip());
         if (!String.valueOf(stored).equals("null")) {   // if present in cache
+            JsonElement object = JsonParser.parseString(stored);
+
             return ResponseEntity.ok(stored);
         }   // else
 
         HttpResponse<String> response = sendRequest(location, start, end);
-        // connection to third-party api
 
         switch (response.statusCode()) {
             case 200 -> {
-                // cache entire response
-                jedis.setex(location, 10800000, response.body());
-
-                // sort the response and display necessary information.
-
+                jedis.setex(location, 10800, response.body());   // cache response for three hours.
                 return ResponseEntity.ok(response.body());
             }
             case 400 -> {
@@ -80,11 +79,6 @@ public class WeatherService {
                 return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).body("Unable to establish a connection. Please try again later.");
             }
         }
-
-        // requests and caching
-
-        // response filtering and display
-
 
     }
 
