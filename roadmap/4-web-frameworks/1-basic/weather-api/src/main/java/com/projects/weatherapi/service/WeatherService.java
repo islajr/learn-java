@@ -1,8 +1,5 @@
 package com.projects.weatherapi.service;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +27,7 @@ public class WeatherService {
                 // cache entire response
 
                 // sort the response and display necessary information.
-//                return ResponseEntity.status(response.statusCode()).body(response.body());
-                JsonArray content = JsonParser.parseString("[" + response.body() + "]").getAsJsonArray();
-                return ResponseEntity.ok(display(content));
+                return ResponseEntity.ok(response.body());
             }
             case 400 -> {
                 return ResponseEntity.badRequest().body("Please provide valid parameters!");
@@ -96,9 +91,5 @@ public class WeatherService {
             throw new RuntimeException(e);
         }
 
-    }
-
-    private String display(JsonArray data) {
-        return data.toString();
     }
 }
