@@ -4,6 +4,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.DefaultJedisClientConfig;
+import redis.clients.jedis.HostAndPort;
+import redis.clients.jedis.JedisClientConfig;
+import redis.clients.jedis.UnifiedJedis;
+import redis.clients.jedis.exceptions.JedisException;
 
 import java.io.IOException;
 import java.net.URI;
@@ -16,17 +21,47 @@ import java.net.http.HttpResponse;
 public class WeatherService {
         @Value("${weather.api.url}") String baseURL;
         @Value("${weather.api.key}") private String key;
+        @Value("${spring.data.redis.host}") private String host;
+        @Value("${spring.data.redis.port}") private int port;
+        @Value("${spring.data.redis.username}") private String username;
+        @Value("${spring.data.redis.password}") private String password;
+
+
+        UnifiedJedis openConnection() {
+            JedisClientConfig config = DefaultJedisClientConfig.builder()
+                    .user(username)
+                    .password(password)
+                    .build();
+
+            UnifiedJedis jedis;
+
+            try {
+                jedis = new UnifiedJedis(new HostAndPort(host, port), config);
+            } catch (JedisException e) {
+                throw new RuntimeException("Connection Failure: Failed to connect to redis");
+            }
+
+            return jedis;
+        }
 
     public ResponseEntity<String> getWeather(String location, String start, String end) {
 
-        // connection to third-party api
+        UnifiedJedis jedis = openConnection();
+        String stored = jedis.get(location.strip());
+        if (!String.valueOf(stored).equals("null")) {   // if present in cache
+            return ResponseEntity.ok(stored);
+        }   // else
+
         HttpResponse<String> response = sendRequest(location, start, end);
+        // connection to third-party api
 
         switch (response.statusCode()) {
             case 200 -> {
                 // cache entire response
+                jedis.setex(location, 10800000, response.body());
 
                 // sort the response and display necessary information.
+
                 return ResponseEntity.ok(response.body());
             }
             case 400 -> {
