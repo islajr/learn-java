@@ -1,6 +1,8 @@
 package com.projects.weatherapi.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,9 +18,14 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 
 @Service
 public class WeatherService {
+
+        @Autowired
+        private RedisTemplate<String, String> lettuce;
+
         @Value("${weather.api.url}") String baseURL;
         @Value("${weather.api.key}") private String key;
         @Value("${spring.data.redis.host}") private String host;
@@ -29,7 +36,7 @@ public class WeatherService {
         String elements = "datetime,conditions,description,temp,feelslike,precip,precipprob,preciptype,sunrise,sunset";
 
 
-        UnifiedJedis openConnection() {
+        /*UnifiedJedis openConnection() {
             JedisClientConfig config = DefaultJedisClientConfig.builder()
                     .user(username)
                     .password(password)
@@ -44,13 +51,13 @@ public class WeatherService {
             }
 
             return jedis;
-        }
+        }*/
 
     public ResponseEntity<String> getWeather(String location, String start, String end) {
 
         String key = capitalize(location.strip()) + "," + start + "," + end;
-        UnifiedJedis jedis = openConnection();
-        String stored = jedis.get(key);
+//        UnifiedJedis jedis = openConnection();
+        String stored = get(key);
         if (!String.valueOf(stored).equals("null")) {   // if present in cache
             return ResponseEntity.ok(stored);
         }   // else
@@ -59,7 +66,7 @@ public class WeatherService {
 
         switch (response.statusCode()) {
             case 200 -> {
-                jedis.setex(key, 10800, response.body());   // cache response for three hours.
+                save(key, response.body());   // cache response for three hours.
                 return ResponseEntity.ok(response.body());
             }
             case 400 -> {
@@ -124,5 +131,14 @@ public class WeatherService {
     String capitalize(String subject) {
             char index = Character.toUpperCase(subject.charAt(0));
             return index + subject.substring(1);
+    }
+
+    private void save(String key, String value) {
+            lettuce.opsForValue().set(key, value, Duration.ofSeconds(10800));
+
+    }
+
+    private String get(String key) {
+            return lettuce.opsForValue().get(key);
     }
 }
