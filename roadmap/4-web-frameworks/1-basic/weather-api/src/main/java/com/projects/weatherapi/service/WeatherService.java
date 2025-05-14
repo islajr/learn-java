@@ -1,7 +1,5 @@
 package com.projects.weatherapi.service;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +26,8 @@ public class WeatherService {
         @Value("${spring.data.redis.username}") private String username;
         @Value("${spring.data.redis.password}") private String password;
 
+        String elements = "datetime,conditions,description,temp,feelslike,precip,precipprob,preciptype,sunrise,sunset";
+
 
         UnifiedJedis openConnection() {
             JedisClientConfig config = DefaultJedisClientConfig.builder()
@@ -48,11 +48,10 @@ public class WeatherService {
 
     public ResponseEntity<String> getWeather(String location, String start, String end) {
 
+        String key = capitalize(location.strip()) + "," + start + "," + end;
         UnifiedJedis jedis = openConnection();
-        String stored = jedis.get(location.strip());
+        String stored = jedis.get(key);
         if (!String.valueOf(stored).equals("null")) {   // if present in cache
-            JsonElement object = JsonParser.parseString(stored);
-
             return ResponseEntity.ok(stored);
         }   // else
 
@@ -60,7 +59,7 @@ public class WeatherService {
 
         switch (response.statusCode()) {
             case 200 -> {
-                jedis.setex(location, 10800, response.body());   // cache response for three hours.
+                jedis.setex(key, 10800, response.body());   // cache response for three hours.
                 return ResponseEntity.ok(response.body());
             }
             case 400 -> {
@@ -90,7 +89,7 @@ public class WeatherService {
         if (start.equals("null")){   // if there is no start date
             try {
                 request = HttpRequest.newBuilder()
-                        .uri(new URI(baseURL + location + "?key=" + key))
+                        .uri(new URI(baseURL + location + "?key=" + key + "&include=days&elements=" + elements))
                         .build();
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
@@ -98,7 +97,7 @@ public class WeatherService {
         } else if (!start.equals("null") && end.equals("null")){
             try {
                 request = HttpRequest.newBuilder()
-                        .uri(new URI(baseURL + location + "/" + start + "?key=" + key))
+                        .uri(new URI(baseURL + location + "/" + start + "?key=" + key + "&include=days&elements=" + elements))
                         .build();
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
@@ -107,7 +106,7 @@ public class WeatherService {
         } else {
             try {
                 request = HttpRequest.newBuilder()
-                        .uri(new URI(baseURL + location + "/" + start + "/" + end + "?key=" + key))
+                        .uri(new URI(baseURL + location + "/" + start + "/" + end + "?key=" + key + "&include=days&elements=" + elements))
                         .build();
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
@@ -120,5 +119,10 @@ public class WeatherService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    String capitalize(String subject) {
+            char index = Character.toUpperCase(subject.charAt(0));
+            return index + subject.substring(1);
     }
 }
